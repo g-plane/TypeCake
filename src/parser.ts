@@ -64,35 +64,35 @@ export class Parser {
     )
   }
 
-  private startNode<N extends n.Node = n.Node>(type?: string) {
+  private startNode(type: string): n.Node {
     return {
       type,
       start: this.current.start,
       end: -1,
-      loc: { start: this.current.loc!.start },
-    } as N
+      loc: { start: this.current.loc!.start, end: this.current.loc!.end },
+    }
   }
 
-  private startNodeFromNode<N extends n.Node = n.Node>(
-    node: n.Node,
-    type: string
-  ): N {
+  private startNodeFromNode(node: n.Node, type: string): n.Node {
     return {
       type,
       start: node.start,
       end: -1,
-      loc: { start: node.loc.start },
-    } as N
+      loc: { start: node.loc.start, end: this.current.loc!.end },
+    }
   }
 
-  private finishNode<N extends n.Node = n.Node>(node: N): N {
+  private finishNode<N extends n.Node>(
+    node: n.Node,
+    data: Omit<N, 'type' | 'start' | 'end' | 'loc'>
+  ): N {
     node.end = this.last.end
     node.loc.end = this.last.loc!.end
 
-    return node
+    return Object.assign(node, data) as N
   }
 
-  private semicolon() {
+  protected semicolon() {
     if (
       !this.eat(tt.semi) &&
       !this.eat(tt.eof) &&
@@ -102,18 +102,19 @@ export class Parser {
     }
   }
 
-  private parseProgram(): n.Program {
-    const node = this.startNode<n.Program>('Program')
+  protected parseProgram(): n.Program {
+    const node = this.startNode('Program')
     const statements: n.Statement[] = []
     while (!this.eat(tt.eof)) {
       statements.push(this.parseStatement())
     }
-    node.statements = statements
 
-    return this.finishNode(node)
+    return this.finishNode<n.Program>(node, {
+      statements,
+    })
   }
 
-  private parseStatement() {
+  protected parseStatement(): n.Statement {
     if (this.current.type === tt.name) {
       const { value } = this.current
       switch (value) {
@@ -129,10 +130,10 @@ export class Parser {
     }
   }
 
-  private parseImportStatement() {
-    const node = this.startNode<n.ImportDeclaration>('ImportDeclaration')
+  protected parseImportStatement() {
+    const node = this.startNode('ImportDeclaration')
     this.expect(tt.name, 'from')
-    node.source = this.parseLiteral(tt.string)
+    const source = this.parseLiteral(tt.string)
     this.expect(tt._import)
     const specifiers: n.ImportSpecifier[] = []
     switch (this.current.type) {
@@ -151,47 +152,38 @@ export class Parser {
       default:
         this.raise(this.current, '')
     }
-    node.specifiers = specifiers
 
     this.semicolon()
 
-    return this.finishNode(node)
+    return this.finishNode<n.ImportDeclaration>(node, { specifiers, source })
   }
 
-  private parseImportDefaultSpecifier(): n.ImportDefaultSpecifier {
-    const node = this.startNode<n.ImportDefaultSpecifier>(
-      'ImportDefaultSpecifier'
-    )
-    node.local = this.parseIdentifier()
+  protected parseImportDefaultSpecifier(): n.ImportDefaultSpecifier {
+    const node = this.startNode('ImportDefaultSpecifier')
+    const local = this.parseIdentifier()
 
-    return this.finishNode(node)
+    return this.finishNode<n.ImportDefaultSpecifier>(node, { local })
   }
 
-  private parseImportNamespaceSpecifier(): n.ImportNamespaceSpecifier {
-    const node = this.startNode<n.ImportNamespaceSpecifier>(
-      'ImportNamespaceSpecifier'
-    )
+  protected parseImportNamespaceSpecifier(): n.ImportNamespaceSpecifier {
+    const node = this.startNode('ImportNamespaceSpecifier')
     this.expect(tt.star)
     this.expect(tt.name, 'as')
-    node.local = this.parseIdentifier()
+    const local = this.parseIdentifier()
 
-    return this.finishNode(node)
+    return this.finishNode<n.ImportNamespaceSpecifier>(node, { local })
   }
 
-  private parseImportNamedSpecifiers(): n.ImportNamedSpecifier[] {
+  protected parseImportNamedSpecifiers(): n.ImportNamedSpecifier[] {
     this.expect(tt.braceL)
     const specifiers: n.ImportNamedSpecifier[] = []
     while (!this.eat(tt.braceR)) {
-      const node = this.startNode<n.ImportNamedSpecifier>(
-        'ImportNamedSpecifier'
+      const node = this.startNode('ImportNamedSpecifier')
+      const imported = this.parseIdentifier()
+      const local = this.eat(tt.name, 'as') ? this.parseIdentifier() : imported
+      specifiers.push(
+        this.finishNode<n.ImportNamedSpecifier>(node, { imported, local })
       )
-      node.imported = this.parseIdentifier()
-      if (this.eat(tt.name, 'as')) {
-        node.local = this.parseIdentifier()
-      } else {
-        node.local = node.imported
-      }
-      specifiers.push(this.finishNode(node))
       if (this.current.type !== tt.braceR) {
         this.expect(tt.comma)
       }
@@ -200,38 +192,42 @@ export class Parser {
     return specifiers
   }
 
-  private parseFunctionDeclaration(): n.FunctionDeclaration {
-    const node = this.startNode<n.FunctionDeclaration>('FunctionDeclaration')
+  protected parseFunctionDeclaration(): n.FunctionDeclaration {
+    const node = this.startNode('FunctionDeclaration')
     this.expect(tt.name, 'fn')
-    node.id = this.parseIdentifier()
+    const id = this.parseIdentifier()
     this.expect(tt.parenL)
-    node.parameters = this.parseParameters()
+    const parameters = this.parseParameters()
     this.expect(tt.eq)
-    node.body = this.parseExpression()
+    const body = this.parseExpression()
 
-    return this.finishNode(node)
+    return this.finishNode<n.FunctionDeclaration>(node, {
+      id,
+      parameters,
+      body,
+    })
   }
 
-  private parseIdentifier(): n.Identifier {
-    const node = this.startNode<n.Identifier>('Identifier')
-    node.name = this.expect(tt.name).value
+  protected parseIdentifier(): n.Identifier {
+    const node = this.startNode('Identifier')
+    const name = this.expect(tt.name).value
 
-    return this.finishNode(node)
+    return this.finishNode<n.Identifier>(node, { name })
   }
 
-  private parseLiteral(type?: TokenType): n.Literal {
+  protected parseLiteral(type?: TokenType): n.Literal {
     if (!type || type === this.current.type) {
-      const node = this.startNode<n.Literal>('Literal')
-      node.value = this.current.value
+      const node = this.startNode('Literal')
+      const value = this.current.value
       this.nextToken()
-      return this.finishNode(node)
+      return this.finishNode<n.Literal>(node, { value })
     } else {
       this.raise(this.current, '')
     }
   }
 
-  private parseTupleExpression(): n.TupleExpression {
-    const node = this.startNode<n.TupleExpression>('TupleExpression')
+  protected parseTupleExpression(): n.TupleExpression {
+    const node = this.startNode('TupleExpression')
     this.expect(tt.bracketL)
     const elements: n.Expression[] = []
     while (!this.eat(tt.bracketR)) {
@@ -240,23 +236,18 @@ export class Parser {
         this.expect(tt.comma)
       }
     }
-    node.elements = elements
 
-    return this.finishNode(node)
+    return this.finishNode<n.TupleExpression>(node, { elements })
   }
 
-  private parseArrayExpression(element: n.Expression): n.ArrayExpression {
-    const node = this.startNodeFromNode<n.ArrayExpression>(
-      element,
-      'ArrayExpression'
-    )
-    node.element = element
+  protected parseArrayExpression(element: n.Expression): n.ArrayExpression {
+    const node = this.startNodeFromNode(element, 'ArrayExpression')
     this.expect(tt.bracketR)
 
-    return this.finishNode(node)
+    return this.finishNode<n.ArrayExpression>(node, { element })
   }
 
-  private parseParameters() {
+  protected parseParameters() {
     const parameters: n.Parameter[] = []
     while (!this.eat(tt.parenR)) {
       parameters.push(this.parseParameter())
@@ -268,26 +259,26 @@ export class Parser {
     return parameters
   }
 
-  private parseParameter(): n.Parameter {
-    const node = this.startNode<n.Parameter>('Parameter')
-    node.id = this.parseIdentifier()
-    node.constraint = this.eat(tt.colon) ? this.parseExpression() : null
-    node.defaultType = this.eat(tt.eq) ? this.parseExpression() : null
+  protected parseParameter(): n.Parameter {
+    const node = this.startNode('Parameter')
+    const id = this.parseIdentifier()
+    const constraint = this.eat(tt.colon) ? this.parseExpression() : null
+    const defaultType = this.eat(tt.eq) ? this.parseExpression() : null
 
-    return this.finishNode(node)
+    return this.finishNode<n.Parameter>(node, { id, constraint, defaultType })
   }
 
-  private parseSwitchExpression(): n.SwitchExpression {
-    const node = this.startNode<n.SwitchExpression>('SwitchExpression')
+  protected parseSwitchExpression(): n.SwitchExpression {
+    const node = this.startNode('SwitchExpression')
     this.expect(tt._switch)
-    node.expression = this.parseExpression()
+    const expression = this.parseExpression()
     this.expect(tt.braceL)
-    node.arms = this.parseSwitchArms()
+    const arms = this.parseSwitchArms()
 
-    return this.finishNode(node)
+    return this.finishNode<n.SwitchExpression>(node, { expression, arms })
   }
 
-  private parseSwitchArms(): n.SwitchExpressionArm[] {
+  protected parseSwitchArms(): n.SwitchExpressionArm[] {
     const arms: n.SwitchExpressionArm[] = []
     while (!this.eat(tt.braceR)) {
       arms.push(this.parseSwitchExpressionArm())
@@ -299,73 +290,71 @@ export class Parser {
     return arms
   }
 
-  private parseSwitchExpressionArm(): n.SwitchExpressionArm {
-    const node = this.startNode<n.SwitchExpressionArm>('SwitchExpressionArm')
-    node.pattern = this.parseExpression() // TODO: pattern
+  protected parseSwitchExpressionArm(): n.SwitchExpressionArm {
+    const node = this.startNode('SwitchExpressionArm')
+    const pattern = this.parseExpression() // TODO: pattern
     this.expect(tt.plusMin, '-')
     this.expect(tt.relational, '>')
-    node.body = this.parseExpression()
+    const body = this.parseExpression()
 
-    return this.finishNode(node)
+    return this.finishNode<n.SwitchExpressionArm>(node, { pattern, body })
   }
 
-  private parseIfExpression(): n.IfExpression {
-    const node = this.startNode<n.IfExpression>('IfExpression')
+  protected parseIfExpression(): n.IfExpression {
+    const node = this.startNode('IfExpression')
     this.expect(tt._if)
-    node.test = this.parseExpression()
+    const test = this.parseExpression()
     this.expect(tt.colon)
-    node.constraint = this.parseExpression() // TODO: pattern
+    const constraint = this.parseExpression() // TODO: pattern
     this.expect(tt.braceL)
-    node.consequent = this.parseExpression()
+    const consequent = this.parseExpression()
     this.expect(tt.braceR)
     this.expect(tt._else)
+    let alternate: n.Expression | null = null
     if (this.current.type === tt._if) {
-      node.alternate = this.parseIfExpression()
+      alternate = this.parseIfExpression()
     } else if (this.eat(tt.braceL)) {
-      node.alternate = this.parseExpression()
+      alternate = this.parseExpression()
       this.expect(tt.braceR)
     } else {
       this.raise(this.current, '')
     }
 
-    return this.finishNode(node)
+    return this.finishNode<n.IfExpression>(node, {
+      test,
+      constraint,
+      consequent,
+      alternate,
+    })
   }
 
-  private parseIndexedAccessExpression(
+  protected parseIndexedAccessExpression(
     object: n.Expression
   ): n.IndexedAccessExpression {
-    const node = this.startNodeFromNode<n.IndexedAccessExpression>(
-      object,
-      'IndexedAccessExpression'
-    )
-    node.object = object
-    node.index = this.parseExpression()
+    const node = this.startNodeFromNode(object, 'IndexedAccessExpression')
+    const index = this.parseExpression()
     this.expect(tt.bracketR)
 
-    return this.finishNode(node)
+    return this.finishNode<n.IndexedAccessExpression>(node, { object, index })
   }
 
-  private parseCallExpression(callee: n.Expression): n.CallExpression {
-    const node = this.startNodeFromNode<n.CallExpression>(
-      callee,
-      'CallExpression'
-    )
-    node.callee = callee
-    node.arguments = this.parseArguments()
+  protected parseCallExpression(callee: n.Expression): n.CallExpression {
+    const node = this.startNodeFromNode(callee, 'CallExpression')
+    const args = this.parseArguments()
 
-    return this.finishNode(node)
+    return this.finishNode<n.CallExpression>(node, { callee, arguments: args })
   }
 
-  private parseMacroCallExpression(): n.MacroCallExpression {
-    const node = this.startNode<n.MacroCallExpression>('MacroCallExpression')
+  protected parseMacroCallExpression(): n.MacroCallExpression {
+    const node = this.startNode('MacroCallExpression')
     this.expect(tt.dot)
-    node.id = this.parseIdentifier()
-    node.arguments = this.parseArguments()
+    const id = this.parseIdentifier()
+    const args = this.parseArguments()
 
-    return this.finishNode(node)
+    return this.finishNode<n.MacroCallExpression>(node, { id, arguments: args })
   }
 
-  private parseArguments(): n.Expression[] {
+  protected parseArguments(): n.Expression[] {
     const args: n.Expression[] = []
     this.expect(tt.parenL)
     while (!this.eat(tt.parenR)) {
@@ -379,7 +368,7 @@ export class Parser {
   }
 
   protected parseConstInExpression(): n.ConstInExpression {
-    const node = this.startNode<n.ConstInExpression>('ConstInExpression')
+    const node = this.startNode('ConstInExpression')
     this.expect(tt._const)
     const bindings: n.ConstInBinding[] = []
     do {
@@ -388,22 +377,24 @@ export class Parser {
         this.expect(tt.comma)
       }
     } while (!this.eat(tt._in))
-    node.bindings = bindings
-    node.body = this.parseExpression()
+    const body = this.parseExpression()
 
-    return this.finishNode(node)
+    return this.finishNode<n.ConstInExpression>(node, { bindings, body })
   }
 
   protected parseConstInBinding(): n.ConstInBinding {
-    const node = this.startNode<n.ConstInBinding>('ConstInBinding')
-    node.id = this.parseIdentifier()
+    const node = this.startNode('ConstInBinding')
+    const id = this.parseIdentifier()
     this.expect(tt.eq)
-    node.expression = this.parseExpression()
+    const expression = this.parseExpression()
 
-    return this.finishNode(node)
+    return this.finishNode<n.ConstInBinding>(node, { id, expression })
   }
 
-  private parseSubscripts(base: n.Expression, canCall: boolean): n.Expression {
+  protected parseSubscripts(
+    base: n.Expression,
+    canCall: boolean
+  ): n.Expression {
     while (true) {
       if (canCall && this.current.type === tt.parenL) {
         return this.parseCallExpression(base)
@@ -420,7 +411,7 @@ export class Parser {
     }
   }
 
-  private parseExpression(): n.Expression {
+  protected parseExpression(): n.Expression {
     switch (this.current.type) {
       case tt.name:
         return this.parseSubscripts(this.parseIdentifier(), true)

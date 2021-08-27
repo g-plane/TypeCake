@@ -73,9 +73,9 @@ fn F() = .union(string, number)
 
 ```python
 from 'a' import a
-from 'b' im * as b
-from 'c' from { x, y as z }
-from 'd' from d, { m, n }
+from 'b' import * as b
+from 'c' import { x, y as z }
+from 'd' import d, { m, n }
 ```
 
 ## License

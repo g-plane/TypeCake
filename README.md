@@ -66,7 +66,7 @@ fn F(T) =
 > Experimental.
 
 ```rust
-fn F() = .union(string, number)
+fn F() = union!(string, number)
 ```
 
 ### Import declaration

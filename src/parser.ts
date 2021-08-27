@@ -345,10 +345,8 @@ export class Parser {
     return this.finishNode<n.CallExpression>(node, { callee, arguments: args })
   }
 
-  protected parseMacroCallExpression(): n.MacroCallExpression {
+  protected parseMacroCallExpression(id: n.Identifier): n.MacroCallExpression {
     const node = this.startNode('MacroCallExpression')
-    this.expect(tt.dot)
-    const id = this.parseIdentifier()
     const args = this.parseArguments()
 
     return this.finishNode<n.MacroCallExpression>(node, { id, arguments: args })
@@ -413,16 +411,20 @@ export class Parser {
 
   protected parseExpression(): n.Expression {
     switch (this.current.type) {
-      case tt.name:
-        return this.parseSubscripts(this.parseIdentifier(), true)
+      case tt.name: {
+        const identifier = this.parseIdentifier()
+        if (this.eat(tt.prefix, '!')) {
+          return this.parseMacroCallExpression(identifier)
+        } else {
+          return this.parseSubscripts(identifier, true)
+        }
+      }
       case tt._switch:
         return this.parseSwitchExpression()
       case tt._if:
         return this.parseIfExpression()
       case tt.bracketL:
         return this.parseSubscripts(this.parseTupleExpression(), false)
-      case tt.dot:
-        return this.parseMacroCallExpression()
       case tt._const:
         return this.parseConstInExpression()
       case tt.string:

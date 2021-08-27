@@ -1,0 +1,22 @@
+{
+  "name": "typacro",
+  "version": "0.0.0",
+  "description": "DSL that generates TypeScript types.",
+  "author": "Pig Fang <g-plane@hotmail.com>",
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "build": "tsc -b",
+    "watch": "tsc -b -w",
+    "fmt": "prettier --write src"
+  },
+  "dependencies": {
+    "acorn": "^8.4.1"
+  },
+  "devDependencies": {
+    "@gplane/tsconfig": "^4.2.0",
+    "@types/node": "^16.7.1",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "extends": "@gplane/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declarationMap": false,
+    "module": "commonjs",
+    "lib": ["ES2018"],
+    "noUnusedParameters": false,
+    "noUnusedLocals": false
+  },
+  "include": ["src"]
+}

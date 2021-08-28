@@ -70,14 +70,14 @@ export interface SwitchExpression extends Node {
 
 export interface SwitchExpressionArm extends Node {
   type: 'SwitchExpressionArm'
-  pattern: Expression // TODO
+  pattern: Pattern
   body: Expression
 }
 
 export interface IfExpression extends Node {
   type: 'IfExpression'
   test: Expression
-  constraint: Expression // TODO
+  constraint: Pattern
   consequent: Expression
   alternate: Expression
 }
@@ -106,6 +106,36 @@ export interface Parameter extends Node {
   id: Identifier
   constraint: Expression | null
   defaultType: Expression | null
+}
+
+export type Pattern =
+  | InferReference
+  | Literal
+  | Identifier
+  | TuplePattern
+  | CallPattern
+  | IndexedAccessPattern
+
+export interface InferReference extends Node {
+  type: 'InferReference'
+  id: Identifier
+}
+
+export interface TuplePattern extends Node {
+  type: 'TuplePattern'
+  elements: Pattern[]
+}
+
+export interface CallPattern extends Node {
+  type: 'CallPattern'
+  callee: Pattern
+  arguments: Pattern[]
+}
+
+export interface IndexedAccessPattern extends Node {
+  type: 'IndexedAccessPattern'
+  object: Pattern
+  index: Expression
 }
 
 export interface ImportDeclaration extends Node {

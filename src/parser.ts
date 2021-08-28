@@ -292,7 +292,7 @@ export class Parser {
 
   protected parseSwitchExpressionArm(): n.SwitchExpressionArm {
     const node = this.startNode('SwitchExpressionArm')
-    const pattern = this.parseExpression() // TODO: pattern
+    const pattern = this.parsePattern()
     this.expect(tt.plusMin, '-')
     this.expect(tt.relational, '>')
     const body = this.parseExpression()
@@ -305,7 +305,7 @@ export class Parser {
     this.expect(tt._if)
     const test = this.parseExpression()
     this.expect(tt.colon)
-    const constraint = this.parseExpression() // TODO: pattern
+    const constraint = this.parsePattern()
     this.expect(tt.braceL)
     const consequent = this.parseExpression()
     this.expect(tt.braceR)
@@ -389,7 +389,7 @@ export class Parser {
     return this.finishNode<n.ConstInBinding>(node, { id, expression })
   }
 
-  protected parseSubscripts(
+  protected parseExpressionSubscripts(
     base: n.Expression,
     canCall: boolean
   ): n.Expression {
@@ -416,7 +416,7 @@ export class Parser {
         if (this.eat(tt.prefix, '!')) {
           return this.parseMacroCallExpression(identifier)
         } else {
-          return this.parseSubscripts(identifier, true)
+          return this.parseExpressionSubscripts(identifier, true)
         }
       }
       case tt._switch:
@@ -424,7 +424,10 @@ export class Parser {
       case tt._if:
         return this.parseIfExpression()
       case tt.bracketL:
-        return this.parseSubscripts(this.parseTupleExpression(), false)
+        return this.parseExpressionSubscripts(
+          this.parseTupleExpression(),
+          false
+        )
       case tt._const:
         return this.parseConstInExpression()
       case tt.string:
@@ -432,7 +435,89 @@ export class Parser {
       case tt._true:
       case tt._false:
       case tt._null:
-        return this.parseSubscripts(this.parseLiteral(), false)
+        return this.parseExpressionSubscripts(this.parseLiteral(), false)
+      default:
+        this.raise(this.current, '')
+    }
+  }
+
+  protected parseInferReference(): n.InferReference {
+    const node = this.startNode('InferReference')
+    this.expect(tt.bitwiseAND)
+    const id = this.parseIdentifier()
+
+    return this.finishNode<n.InferReference>(node, { id })
+  }
+
+  protected parseTuplePattern(): n.TuplePattern {
+    const node = this.startNode('TuplePattern')
+    this.expect(tt.bracketL)
+    const elements: n.Pattern[] = []
+    while (!this.eat(tt.bracketR)) {
+      elements.push(this.parsePattern())
+      if (this.current.type !== tt.bracketR) {
+        this.expect(tt.comma)
+      }
+    }
+
+    return this.finishNode<n.TuplePattern>(node, { elements })
+  }
+
+  protected parseCallPattern(callee: n.Pattern): n.CallPattern {
+    const node = this.startNodeFromNode(callee, 'CallPattern')
+    const args: n.Pattern[] = []
+    this.expect(tt.parenL)
+    while (!this.eat(tt.parenR)) {
+      args.push(this.parsePattern())
+      if (this.current.type !== tt.parenR) {
+        this.expect(tt.comma)
+      }
+    }
+
+    return this.finishNode<n.CallPattern>(node, { callee, arguments: args })
+  }
+
+  protected parseIndexedAccessPattern(
+    object: n.Pattern
+  ): n.IndexedAccessPattern {
+    const node = this.startNodeFromNode(object, 'IndexedAccessPattern')
+    const index = this.parseExpression()
+    this.expect(tt.bracketR)
+
+    return this.finishNode<n.IndexedAccessPattern>(node, { object, index })
+  }
+
+  protected parsePatternSubscripts(base: n.Pattern): n.Pattern {
+    while (true) {
+      if (this.current.type === tt.parenL) {
+        return this.parseCallPattern(base)
+      } else if (this.current.type === tt.bracketL) {
+        this.nextToken()
+        if (this.current.type === tt.bracketR) {
+          // base = this.parseArrayPattern(base)
+        } else {
+          base = this.parseIndexedAccessPattern(base)
+        }
+      } else {
+        return base
+      }
+    }
+  }
+
+  protected parsePattern(): n.Pattern {
+    switch (this.current.type) {
+      case tt.bitwiseAND:
+        return this.parseInferReference()
+      case tt.name:
+        return this.parsePatternSubscripts(this.parseIdentifier())
+      case tt.bracketL:
+        return this.parseTuplePattern()
+      case tt.string:
+      case tt.num:
+      case tt._true:
+      case tt._false:
+      case tt._null:
+        return this.parsePatternSubscripts(this.parseLiteral())
       default:
         this.raise(this.current, '')
     }

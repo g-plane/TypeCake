@@ -306,9 +306,13 @@ export class Emitter {
   }
 
   protected emitArrayExpression(node: n.ArrayExpression) {
-    this.add('(')
-    this.emitExpression(node.element)
-    this.add(')')
+    if (node.element.type === 'Literal' || node.element.type === 'Identifier') {
+      this.emitExpression(node.element)
+    } else {
+      this.add('(')
+      this.emitExpression(node.element)
+      this.add(')')
+    }
     this.add('[')
     this.add(']')
   }

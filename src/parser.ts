@@ -232,13 +232,25 @@ export class Parser {
     this.expect(tt.bracketL)
     const elements: n.Expression[] = []
     while (!this.eat(tt.bracketR)) {
-      elements.push(this.parseExpression())
+      if (this.current.type === tt.ellipsis) {
+        elements.push(this.parseRestExpression())
+      } else {
+        elements.push(this.parseExpression())
+      }
       if (this.current.type !== tt.bracketR) {
         this.expect(tt.comma)
       }
     }
 
     return this.finishNode<n.TupleExpression>(node, { elements })
+  }
+
+  protected parseRestExpression(): n.RestExpression {
+    const node = this.startNode('RestExpression')
+    this.expect(tt.ellipsis)
+    const expression = this.parseExpression()
+
+    return this.finishNode<n.RestExpression>(node, { expression })
   }
 
   protected parseArrayExpression(element: n.Expression): n.ArrayExpression {
@@ -505,13 +517,25 @@ export class Parser {
     this.expect(tt.bracketL)
     const elements: n.Pattern[] = []
     while (!this.eat(tt.bracketR)) {
-      elements.push(this.parsePattern())
+      if (this.current.type === tt.ellipsis) {
+        elements.push(this.parseRestPattern())
+      } else {
+        elements.push(this.parsePattern())
+      }
       if (this.current.type !== tt.bracketR) {
         this.expect(tt.comma)
       }
     }
 
     return this.finishNode<n.TuplePattern>(node, { elements })
+  }
+
+  protected parseRestPattern(): n.RestPattern {
+    const node = this.startNode('RestPattern')
+    this.expect(tt.ellipsis)
+    const pattern = this.parsePattern()
+
+    return this.finishNode<n.RestPattern>(node, { pattern })
   }
 
   protected parseCallPattern(callee: n.Pattern): n.CallPattern {

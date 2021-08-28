@@ -16,6 +16,7 @@ export type Expression =
   | Identifier
   | Literal
   | TupleExpression
+  | RestExpression
   | ArrayExpression
   | ObjectExpression
   | CallExpression
@@ -38,6 +39,11 @@ export interface Literal extends Node {
 export interface TupleExpression extends Node {
   type: 'TupleExpression'
   elements: Expression[]
+}
+
+export interface RestExpression extends Node {
+  type: 'RestExpression'
+  expression: Expression
 }
 
 export interface ArrayExpression extends Node {
@@ -132,6 +138,7 @@ export type Pattern =
   | Literal
   | Identifier
   | TuplePattern
+  | RestPattern
   | CallPattern
   | IndexedAccessPattern
 
@@ -143,6 +150,11 @@ export interface InferReference extends Node {
 export interface TuplePattern extends Node {
   type: 'TuplePattern'
   elements: Pattern[]
+}
+
+export interface RestPattern extends Node {
+  type: 'RestPattern'
+  pattern: Pattern
 }
 
 export interface CallPattern extends Node {

@@ -172,6 +172,9 @@ export class Emitter {
       case 'TupleExpression':
         this.emitTupleExpression(node)
         break
+      case 'RestExpression':
+        this.emitRestExpression(node)
+        break
       case 'ArrayExpression':
         this.emitArrayExpression(node)
         break
@@ -329,6 +332,11 @@ export class Emitter {
     this.add(']')
   }
 
+  protected emitRestExpression(node: n.RestExpression) {
+    this.add('...')
+    this.emitExpression(node.expression)
+  }
+
   protected emitArrayExpression(node: n.ArrayExpression) {
     if (node.element.type === 'Literal' || node.element.type === 'Identifier') {
       this.emitExpression(node.element)
@@ -410,6 +418,9 @@ export class Emitter {
       case 'TuplePattern':
         this.emitTuplePattern(node)
         break
+      case 'RestPattern':
+        this.emitRestPattern(node)
+        break
       case 'CallPattern':
         this.emitCallPattern(node)
         break
@@ -435,6 +446,11 @@ export class Emitter {
       }
     })
     this.add(']')
+  }
+
+  protected emitRestPattern(node: n.RestPattern) {
+    this.add('...')
+    this.emitPattern(node.pattern)
   }
 
   protected emitCallPattern(node: n.CallPattern) {

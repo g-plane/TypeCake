@@ -22,7 +22,7 @@ export class Emitter {
   }
 
   protected emitProgram(node: n.Program) {
-    node.statements.forEach((stmt) => {
+    node.statements.forEach((stmt, index, stmts) => {
       switch (stmt.type) {
         case 'FunctionDeclaration':
           this.emitFunctionDeclaration(stmt)
@@ -30,6 +30,13 @@ export class Emitter {
         case 'ImportDeclaration':
           this.emitImportDeclaration(stmt)
           break
+      }
+
+      const next = stmts[index + 1]
+      if (next) {
+        this.add('\n'.repeat(next.loc.start.line - stmt.loc.end.line))
+      } else {
+        this.newLine()
       }
     })
   }
@@ -65,7 +72,6 @@ export class Emitter {
     this.space()
     this.emitLiteral(node.source)
     this.add(';')
-    this.newLine()
   }
 
   protected emitImportDefaultSpecifier(node: n.ImportDefaultSpecifier) {
@@ -124,7 +130,6 @@ export class Emitter {
     this.space()
     this.emitExpression(node.body)
     this.add(';')
-    this.newLine()
   }
 
   protected emitParameter(node: n.Parameter) {

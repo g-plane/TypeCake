@@ -41,10 +41,17 @@ fn F2(T) = if T : string {
 ### Switch expression
 
 ```rust
-fn F(T) = switch T {
+fn F1(T) = switch T {
   string -> 'a',
   boolean -> 'b',
   _ -> 'c',
+}
+
+fn F2(T: unknown[]) = switch T {
+  [] -> unknown,
+  [&First] -> First,
+  [any, &Second] -> Second,
+  _ -> never,
 }
 ```
 

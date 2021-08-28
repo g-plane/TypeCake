@@ -305,19 +305,7 @@ export class Emitter {
   }
 
   protected emitLiteral(node: n.Literal) {
-    const { value } = node
-    if (typeof value === 'number') {
-      this.add(value.toString())
-    } else if (typeof value === 'bigint') {
-      this.add(value.toString())
-      this.add('n')
-    } else if (value === 'true' || value === 'false' || value === 'null') {
-      this.add(value)
-    } else {
-      this.add('"')
-      this.add(value)
-      this.add('"')
-    }
+    this.add(node.raw)
   }
 
   protected emitTupleExpression(node: n.TupleExpression) {

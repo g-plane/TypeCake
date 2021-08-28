@@ -220,8 +220,9 @@ export class Parser {
     if (!type || type === this.current.type) {
       const node = this.startNode('Literal')
       const value = this.current.value
+      const raw = this.input.slice(this.current.start, this.current.end)
       this.nextToken()
-      return this.finishNode<n.Literal>(node, { value })
+      return this.finishNode<n.Literal>(node, { value, raw })
     } else {
       this.raise(this.current, '')
     }

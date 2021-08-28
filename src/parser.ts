@@ -248,6 +248,51 @@ export class Parser {
     return this.finishNode<n.ArrayExpression>(node, { element })
   }
 
+  protected parseObjectExpression(): n.ObjectExpression {
+    const node = this.startNode('ObjectExpression')
+    this.expect(tt.braceL)
+    const properties: n.ObjectExpressionProperty[] = []
+    while (!this.eat(tt.braceR)) {
+      properties.push(this.parseObjectExpressionProperty())
+      if (this.current.type !== tt.braceR) {
+        this.expect(tt.comma)
+      }
+    }
+
+    return this.finishNode<n.ObjectExpression>(node, { properties })
+  }
+
+  protected parseObjectExpressionProperty(): n.ObjectExpressionProperty {
+    const node = this.startNode('ObjectExpressionProperty')
+    const key =
+      this.current.type === tt.bracketL
+        ? this.parseIndexedPropertyKey()
+        : this.parseIdentifier()
+    const optional = this.eat(tt.question)
+    this.expect(tt.colon)
+    const value = this.parseExpression()
+
+    return this.finishNode<n.ObjectExpressionProperty>(node, {
+      key,
+      value,
+      optional,
+    })
+  }
+
+  protected parseIndexedPropertyKey(): n.IndexedPropertyKey {
+    const node = this.startNode('IndexedPropertyKey')
+    this.expect(tt.bracketL)
+    const id = this.parseIdentifier()
+    this.expect(tt.colon)
+    const expression =
+      this.current.type === tt.name
+        ? this.parseIdentifier()
+        : this.parseLiteral()
+    this.expect(tt.bracketR)
+
+    return this.finishNode<n.IndexedPropertyKey>(node, { id, expression })
+  }
+
   protected parseParameters() {
     const parameters: n.Parameter[] = []
     while (!this.eat(tt.parenR)) {
@@ -427,6 +472,11 @@ export class Parser {
       case tt.bracketL:
         return this.parseExpressionSubscripts(
           this.parseTupleExpression(),
+          false
+        )
+      case tt.braceL:
+        return this.parseExpressionSubscripts(
+          this.parseObjectExpression(),
           false
         )
       case tt._const:

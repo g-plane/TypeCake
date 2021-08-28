@@ -20,6 +20,12 @@ fn F4(T = string) = T
 fn F5(T: string = string) = T
 ```
 
+### Declaring object type
+
+```rust
+fn Data() = { a: string, b?: number, [x: string]: unknown }
+```
+
 ### If expression
 
 ```rust

@@ -17,6 +17,7 @@ export type Expression =
   | Literal
   | TupleExpression
   | ArrayExpression
+  | ObjectExpression
   | CallExpression
   | IndexedAccessExpression
   | MacroCallExpression
@@ -42,6 +43,24 @@ export interface TupleExpression extends Node {
 export interface ArrayExpression extends Node {
   type: 'ArrayExpression'
   element: Expression
+}
+
+export interface ObjectExpression extends Node {
+  type: 'ObjectExpression'
+  properties: ObjectExpressionProperty[]
+}
+
+export interface ObjectExpressionProperty extends Node {
+  type: 'ObjectExpressionProperty'
+  key: Identifier | IndexedPropertyKey
+  value: Expression
+  optional: boolean
+}
+
+export interface IndexedPropertyKey extends Node {
+  type: 'IndexedPropertyKey'
+  id: Identifier
+  expression: Identifier | Literal
 }
 
 export interface MacroCallExpression extends Node {

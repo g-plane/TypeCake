@@ -2,6 +2,7 @@ import type * as n from './ast'
 
 export class Emitter {
   private blocks: string[] = []
+  private indentLevel = 0
 
   public emit(program: n.Program): string {
     this.emitProgram(program)
@@ -9,16 +10,28 @@ export class Emitter {
     return this.blocks.join('')
   }
 
-  protected add(text: string) {
+  private add(text: string) {
     this.blocks.push(text)
   }
 
-  protected space() {
+  private space() {
     this.blocks.push(' ')
   }
 
-  protected newLine() {
+  private newLine() {
     this.blocks.push('\n')
+  }
+
+  private indent() {
+    this.indentLevel += 1
+  }
+
+  private dedent() {
+    this.indentLevel -= 1
+  }
+
+  private printIndent() {
+    this.blocks.push('  '.repeat(this.indentLevel))
   }
 
   protected emitProgram(node: n.Program) {
@@ -161,6 +174,9 @@ export class Emitter {
         break
       case 'ArrayExpression':
         this.emitArrayExpression(node)
+        break
+      case 'ObjectExpression':
+        this.emitObjectExpression(node)
         break
       case 'CallExpression':
         this.emitCallExpression(node)
@@ -319,6 +335,61 @@ export class Emitter {
       this.add(')')
     }
     this.add('[')
+    this.add(']')
+  }
+
+  protected emitObjectExpression(node: n.ObjectExpression) {
+    this.add('{')
+    const shouldNewLineAndIndent = node.properties.length > 2
+    if (shouldNewLineAndIndent) {
+      this.newLine()
+      this.indent()
+      this.printIndent()
+    } else {
+      this.space()
+    }
+    node.properties.forEach((property, index, properties) => {
+      this.emitObjectExpressionProperty(property)
+      if (index !== properties.length - 1) {
+        this.add(',')
+        if (shouldNewLineAndIndent) {
+          this.newLine()
+          this.printIndent()
+        } else {
+          this.space()
+        }
+      }
+    })
+    if (shouldNewLineAndIndent) {
+      this.newLine()
+      this.dedent()
+      this.printIndent()
+    } else {
+      this.space()
+    }
+    this.add('}')
+  }
+
+  protected emitObjectExpressionProperty(node: n.ObjectExpressionProperty) {
+    if (node.key.type === 'Identifier') {
+      this.emitIdentifier(node.key)
+    } else {
+      this.emitIndexedPropertyKey(node.key)
+    }
+    if (node.optional) {
+      this.add('?')
+    }
+    this.add(':')
+    this.space()
+    this.emitExpression(node.value)
+  }
+
+  protected emitIndexedPropertyKey(node: n.IndexedPropertyKey) {
+    this.add('[')
+    this.emitIdentifier(node.id)
+    this.add(':')
+    this.space()
+    this.emitExpression(node.expression)
     this.add(']')
   }
 

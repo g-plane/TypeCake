@@ -106,7 +106,10 @@ export class Parser {
     const node = this.startNode('Program')
     const statements: n.Statement[] = []
     while (!this.eat(tt.eof)) {
-      statements.push(this.parseStatement())
+      if (!this.eat(tt.semi)) {
+        statements.push(this.parseStatement())
+        this.semicolon()
+      }
     }
 
     return this.finishNode<n.Program>(node, {
@@ -152,8 +155,6 @@ export class Parser {
       default:
         this.raise(this.current, '')
     }
-
-    this.semicolon()
 
     return this.finishNode<n.ImportDeclaration>(node, { specifiers, source })
   }

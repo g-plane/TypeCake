@@ -305,6 +305,9 @@ export class Emitter {
     const { value } = node
     if (typeof value === 'number') {
       this.add(value.toString())
+    } else if (typeof value === 'bigint') {
+      this.add(value.toString())
+      this.add('n')
     } else if (value === 'true' || value === 'false' || value === 'null') {
       this.add(value)
     } else {

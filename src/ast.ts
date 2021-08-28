@@ -32,7 +32,7 @@ export interface Identifier extends Node {
 
 export interface Literal extends Node {
   type: 'Literal'
-  value: string | number
+  value: string | number | bigint
 }
 
 export interface TupleExpression extends Node {

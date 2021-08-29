@@ -25,6 +25,7 @@ export type Expression =
   | SwitchExpression
   | IfExpression
   | ConstInExpression
+  | InferReference
 
 export interface Identifier extends Node {
   type: 'Identifier'
@@ -96,14 +97,14 @@ export interface SwitchExpression extends Node {
 
 export interface SwitchExpressionArm extends Node {
   type: 'SwitchExpressionArm'
-  pattern: Pattern
+  pattern: Expression
   body: Expression
 }
 
 export interface IfExpression extends Node {
   type: 'IfExpression'
   test: Expression
-  constraint: Pattern
+  constraint: Expression
   consequent: Expression
   alternate: Expression
 }
@@ -134,40 +135,9 @@ export interface Parameter extends Node {
   defaultType: Expression | null
 }
 
-export type Pattern =
-  | InferReference
-  | Literal
-  | Identifier
-  | TuplePattern
-  | RestPattern
-  | CallPattern
-  | IndexedAccessPattern
-
 export interface InferReference extends Node {
   type: 'InferReference'
   id: Identifier
-}
-
-export interface TuplePattern extends Node {
-  type: 'TuplePattern'
-  elements: Pattern[]
-}
-
-export interface RestPattern extends Node {
-  type: 'RestPattern'
-  pattern: Pattern
-}
-
-export interface CallPattern extends Node {
-  type: 'CallPattern'
-  callee: Pattern
-  arguments: Pattern[]
-}
-
-export interface IndexedAccessPattern extends Node {
-  type: 'IndexedAccessPattern'
-  object: Pattern
-  index: Expression
 }
 
 export interface ImportDeclaration extends Node {

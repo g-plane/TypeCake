@@ -196,6 +196,9 @@ export class Emitter {
       case 'ConstInExpression':
         this.emitConstInExpression(node)
         break
+      case 'InferReference':
+        this.emitInferReference(node)
+        break
     }
   }
 
@@ -252,7 +255,7 @@ export class Emitter {
       this.space()
       this.add('extends')
       this.space()
-      this.emitPattern(arm.pattern)
+      this.emitExpression(arm.pattern)
       this.space()
       this.add('?')
       this.space()
@@ -269,7 +272,7 @@ export class Emitter {
       this.space()
       this.add('extends')
       this.space()
-      this.emitPattern(arm.pattern)
+      this.emitExpression(arm.pattern)
       this.space()
       this.add('?')
       this.space()
@@ -289,7 +292,7 @@ export class Emitter {
     this.space()
     this.add('extends')
     this.space()
-    this.emitPattern(node.constraint)
+    this.emitExpression(node.constraint)
     this.space()
     this.add('?')
     this.space()
@@ -392,74 +395,9 @@ export class Emitter {
     this.add(']')
   }
 
-  protected emitPattern(node: n.Pattern) {
-    switch (node.type) {
-      case 'InferReference':
-        this.emitInferReference(node)
-        break
-      case 'Literal':
-        this.emitLiteral(node)
-        break
-      case 'Identifier':
-        this.emitIdentifier(node)
-        break
-      case 'TuplePattern':
-        this.emitTuplePattern(node)
-        break
-      case 'RestPattern':
-        this.emitRestPattern(node)
-        break
-      case 'CallPattern':
-        this.emitCallPattern(node)
-        break
-      case 'IndexedAccessPattern':
-        this.emitIndexedAccessPattern(node)
-        break
-    }
-  }
-
   protected emitInferReference(node: n.InferReference) {
     this.add('infer')
     this.space()
     this.emitIdentifier(node.id)
-  }
-
-  protected emitTuplePattern(node: n.TuplePattern) {
-    this.add('[')
-    node.elements.forEach((element, index, elements) => {
-      this.emitPattern(element)
-      if (index !== elements.length - 1) {
-        this.add(',')
-        this.space()
-      }
-    })
-    this.add(']')
-  }
-
-  protected emitRestPattern(node: n.RestPattern) {
-    this.add('...')
-    this.emitPattern(node.pattern)
-  }
-
-  protected emitCallPattern(node: n.CallPattern) {
-    this.emitPattern(node.callee)
-    if (node.arguments.length > 0) {
-      this.add('<')
-      node.arguments.forEach((argument, index, args) => {
-        this.emitPattern(argument)
-        if (index !== args.length - 1) {
-          this.add(',')
-          this.space()
-        }
-      })
-      this.add('>')
-    }
-  }
-
-  protected emitIndexedAccessPattern(node: n.IndexedAccessPattern) {
-    this.emitPattern(node.object)
-    this.add('[')
-    this.emitExpression(node.index)
-    this.add(']')
   }
 }

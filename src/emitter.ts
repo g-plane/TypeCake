@@ -169,6 +169,9 @@ export class Emitter {
       case 'Literal':
         this.emitLiteral(node)
         break
+      case 'TemplateLiteralExpression':
+        this.emitTemplateLiteralExpression(node)
+        break
       case 'TupleExpression':
         this.emitTupleExpression(node)
         break
@@ -308,6 +311,24 @@ export class Emitter {
   }
 
   protected emitLiteral(node: n.Literal) {
+    this.add(node.raw)
+  }
+
+  protected emitTemplateLiteralExpression(node: n.TemplateLiteralExpression) {
+    this.add('`')
+    node.quasis.forEach((element, index) => {
+      this.emitTemplateElement(element)
+      const expr = node.expressions[index]
+      if (expr) {
+        this.add('${')
+        this.emitExpression(expr)
+        this.add('}')
+      }
+    })
+    this.add('`')
+  }
+
+  protected emitTemplateElement(node: n.TemplateElement) {
     this.add(node.raw)
   }
 

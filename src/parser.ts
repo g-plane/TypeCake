@@ -233,6 +233,36 @@ export class Parser {
     }
   }
 
+  protected parseTemplateLiteralExpression(): n.TemplateLiteralExpression {
+    const node = this.startNode('TemplateLiteralExpression')
+    this.expect(tt.backQuote)
+    const expressions: n.Expression[] = []
+    const quasis: n.TemplateElement[] = []
+    while (!this.eat(tt.backQuote)) {
+      if (this.current.type === tt.template) {
+        quasis.push(this.parseTemplateElement())
+      } else {
+        this.expect(tt.dollarBraceL)
+        expressions.push(this.parseExpression())
+        this.expect(tt.braceR)
+      }
+    }
+
+    return this.finishNode<n.TemplateLiteralExpression>(node, {
+      expressions,
+      quasis,
+    })
+  }
+
+  protected parseTemplateElement(): n.TemplateElement {
+    const node = this.startNode('TemplateElement')
+    const { value } = this.current
+    const raw = this.input.slice(this.current.start, this.current.end)
+    this.nextToken()
+
+    return this.finishNode<n.TemplateElement>(node, { value, raw })
+  }
+
   protected parseTupleExpression(): n.TupleExpression {
     const node = this.startNode('TupleExpression')
     this.expect(tt.bracketL)
@@ -509,6 +539,11 @@ export class Parser {
       case tt._false:
       case tt._null:
         return this.parseExpressionSubscripts(this.parseLiteral(), false)
+      case tt.backQuote:
+        return this.parseExpressionSubscripts(
+          this.parseTemplateLiteralExpression(),
+          false
+        )
       case tt.bitwiseAND:
         if (this.state & StateFlags.AllowInfer) {
           return this.parseExpressionSubscripts(

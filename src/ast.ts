@@ -15,6 +15,7 @@ export interface Program extends Node {
 export type Expression =
   | Identifier
   | Literal
+  | TemplateLiteralExpression
   | TupleExpression
   | RestElement
   | ArrayExpression
@@ -35,6 +36,18 @@ export interface Identifier extends Node {
 export interface Literal extends Node {
   type: 'Literal'
   value: string | number | bigint
+  raw: string
+}
+
+export interface TemplateLiteralExpression extends Node {
+  type: 'TemplateLiteralExpression'
+  expressions: Expression[]
+  quasis: TemplateElement[]
+}
+
+export interface TemplateElement extends Node {
+  type: 'TemplateElement'
+  value: string
   raw: string
 }
 

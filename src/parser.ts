@@ -487,7 +487,7 @@ export class Parser {
     return this.finishNode<n.ConstInBinding>(node, { id, expression })
   }
 
-  protected parseExpressionSubscripts(
+  protected parseSubscripts(
     base: n.Expression,
     canCall: boolean
   ): n.Expression {
@@ -514,7 +514,7 @@ export class Parser {
         if (this.eat(tt.prefix, '!')) {
           return this.parseMacroCallExpression(identifier)
         } else {
-          return this.parseExpressionSubscripts(identifier, true)
+          return this.parseSubscripts(identifier, true)
         }
       }
       case tt._switch:
@@ -522,15 +522,9 @@ export class Parser {
       case tt._if:
         return this.parseIfExpression()
       case tt.bracketL:
-        return this.parseExpressionSubscripts(
-          this.parseTupleExpression(),
-          false
-        )
+        return this.parseSubscripts(this.parseTupleExpression(), false)
       case tt.braceL:
-        return this.parseExpressionSubscripts(
-          this.parseObjectExpression(),
-          false
-        )
+        return this.parseSubscripts(this.parseObjectExpression(), false)
       case tt._const:
         return this.parseConstInExpression()
       case tt.string:
@@ -538,18 +532,15 @@ export class Parser {
       case tt._true:
       case tt._false:
       case tt._null:
-        return this.parseExpressionSubscripts(this.parseLiteral(), false)
+        return this.parseSubscripts(this.parseLiteral(), false)
       case tt.backQuote:
-        return this.parseExpressionSubscripts(
+        return this.parseSubscripts(
           this.parseTemplateLiteralExpression(),
           false
         )
       case tt.bitwiseAND:
         if (this.state & StateFlags.AllowInfer) {
-          return this.parseExpressionSubscripts(
-            this.parseInferReference(),
-            false
-          )
+          return this.parseSubscripts(this.parseInferReference(), false)
         } else {
           this.raise(
             this.current,

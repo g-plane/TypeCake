@@ -5,6 +5,7 @@
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
   "keywords": [],
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b -w",

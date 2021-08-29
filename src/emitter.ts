@@ -172,8 +172,8 @@ export class Emitter {
       case 'TupleExpression':
         this.emitTupleExpression(node)
         break
-      case 'RestExpression':
-        this.emitRestExpression(node)
+      case 'RestElement':
+        this.emitRestElement(node)
         break
       case 'ArrayExpression':
         this.emitArrayExpression(node)
@@ -323,7 +323,7 @@ export class Emitter {
     this.add(']')
   }
 
-  protected emitRestExpression(node: n.RestExpression) {
+  protected emitRestElement(node: n.RestElement) {
     this.add('...')
     this.emitExpression(node.expression)
   }

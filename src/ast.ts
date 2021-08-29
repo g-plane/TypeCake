@@ -16,7 +16,7 @@ export type Expression =
   | Identifier
   | Literal
   | TupleExpression
-  | RestExpression
+  | RestElement
   | ArrayExpression
   | ObjectExpression
   | CallExpression
@@ -43,8 +43,8 @@ export interface TupleExpression extends Node {
   elements: Expression[]
 }
 
-export interface RestExpression extends Node {
-  type: 'RestExpression'
+export interface RestElement extends Node {
+  type: 'RestElement'
   expression: Expression
 }
 

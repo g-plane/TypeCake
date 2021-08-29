@@ -239,7 +239,7 @@ export class Parser {
     const elements: n.Expression[] = []
     while (!this.eat(tt.bracketR)) {
       if (this.current.type === tt.ellipsis) {
-        elements.push(this.parseRestExpression())
+        elements.push(this.parseRestElement())
       } else {
         elements.push(this.parseExpression())
       }
@@ -251,12 +251,12 @@ export class Parser {
     return this.finishNode<n.TupleExpression>(node, { elements })
   }
 
-  protected parseRestExpression(): n.RestExpression {
-    const node = this.startNode('RestExpression')
+  protected parseRestElement(): n.RestElement {
+    const node = this.startNode('RestElement')
     this.expect(tt.ellipsis)
     const expression = this.parseExpression()
 
-    return this.finishNode<n.RestExpression>(node, { expression })
+    return this.finishNode<n.RestElement>(node, { expression })
   }
 
   protected parseArrayExpression(element: n.Expression): n.ArrayExpression {

@@ -6,7 +6,7 @@
 
 ## Examples
 
-### Define "type" function
+### Declaring "type" function
 
 ```rust
 fn F1() = X; // semicolon is optional
@@ -44,7 +44,7 @@ fn F2(T) = if T : string {
 }
 ```
 
-### Switch expression
+### Switch expression (pattern matching)
 
 ```rust
 fn F1(T) = switch T {
@@ -85,7 +85,7 @@ fn F() = number
 
 ### Macro
 
-> Experimental.
+> Experimental. Not implemented yet.
 
 ```rust
 fn F() = union!(string, number)

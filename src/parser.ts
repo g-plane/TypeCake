@@ -443,6 +443,18 @@ export class Parser {
     return this.finishNode<n.CallExpression>(node, { callee, arguments: args })
   }
 
+  protected parsePipelineExpression(
+    source: n.Expression
+  ): n.PipelineExpression {
+    const node = this.startNodeFromNode(source, 'PipelineExpression')
+    this.expect(tt.relational, '>')
+    const id = this.parseIdentifier()
+    const transformer =
+      this.current.type === tt.parenL ? this.parseCallExpression(id) : id
+
+    return this.finishNode<n.PipelineExpression>(node, { source, transformer })
+  }
+
   protected parseMacroCallExpression(id: n.Identifier): n.MacroCallExpression {
     const node = this.startNode('MacroCallExpression')
     const args = this.parseArguments()
@@ -500,6 +512,12 @@ export class Parser {
           base = this.parseArrayExpression(base)
         } else {
           base = this.parseIndexedAccessExpression(base)
+        }
+      } else if (this.eat(tt.bitwiseOR)) {
+        if (this.current.type === tt.relational && this.current.value === '>') {
+          base = this.parsePipelineExpression(base)
+        } else {
+          this.raise(this.current, 'Unexpected token.')
         }
       } else {
         return base

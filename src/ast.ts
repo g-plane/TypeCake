@@ -21,6 +21,7 @@ export type Expression =
   | ArrayExpression
   | ObjectExpression
   | CallExpression
+  | PipelineExpression
   | IndexedAccessExpression
   | MacroCallExpression
   | SwitchExpression
@@ -94,6 +95,12 @@ export interface CallExpression extends Node {
   type: 'CallExpression'
   callee: Expression
   arguments: Expression[]
+}
+
+export interface PipelineExpression extends Node {
+  type: 'PipelineExpression'
+  source: Expression
+  transformer: Identifier | CallExpression
 }
 
 export interface IndexedAccessExpression extends Node {

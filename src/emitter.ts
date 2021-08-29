@@ -187,6 +187,9 @@ export class Emitter {
       case 'CallExpression':
         this.emitCallExpression(node)
         break
+      case 'PipelineExpression':
+        this.emitPipelineExpression(node)
+        break
       case 'IndexedAccessExpression':
         this.emitIndexedAccessExpression(node)
         break
@@ -216,6 +219,25 @@ export class Emitter {
           this.space()
         }
       })
+      this.add('>')
+    }
+  }
+
+  protected emitPipelineExpression(node: n.PipelineExpression) {
+    if (node.transformer.type === 'Identifier') {
+      this.emitIdentifier(node.transformer)
+      this.add('<')
+      this.emitExpression(node.source)
+      this.add('>')
+    } else {
+      this.emitExpression(node.transformer.callee)
+      this.add('<')
+      node.transformer.arguments.forEach((argument) => {
+        this.emitExpression(argument)
+        this.add(',')
+        this.space()
+      })
+      this.emitExpression(node.source)
       this.add('>')
     }
   }

@@ -74,6 +74,15 @@ fn F(T) =
   }
 ```
 
+### Pipeline Expression
+
+```fsharp
+fn F() = number
+  |> Promise
+  |> Set
+  |> Record(string)
+```
+
 ### Macro
 
 > Experimental.

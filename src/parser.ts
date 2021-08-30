@@ -62,11 +62,16 @@ export class Parser {
   }
 
   private raise(token: Token, message: string): never {
-    throw new SyntaxError(
-      `${message} (${token.loc!.start.line}:${token.loc!.start.column}) (${
-        token.value
-      })`
+    const error = new SyntaxError(
+      `${message} (${token.loc!.start.line}:${token.loc!.start.column})`
     )
+    // @ts-expect-error
+    error.cause = {
+      message,
+      token,
+    }
+
+    throw error
   }
 
   private startNode(type: string): n.Node {

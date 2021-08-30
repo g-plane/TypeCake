@@ -1,3 +1,4 @@
+import * as path from 'path'
 import type { Configuration } from 'webpack'
 import merge from 'webpack-merge'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -15,7 +16,11 @@ const baseConfig: Configuration = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ title: 'Typacro Playground' })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'public/index.html'),
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.tsx', '.ts'],
   },

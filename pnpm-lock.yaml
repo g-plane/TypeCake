@@ -8,14 +8,14 @@ importers:
       '@types/node': ^16.7.1
       acorn: ^8.4.1
       prettier: ^2.3.2
-      typescript: ^4.3.5
+      typescript: ^4.4.2
     dependencies:
       acorn: 8.4.1
     devDependencies:
       '@gplane/tsconfig': 4.2.0
       '@types/node': 16.7.1
       prettier: 2.3.2
-      typescript: 4.3.5
+      typescript: 4.4.2
 
   playground:
     specifiers:
@@ -4008,8 +4008,8 @@ packages:
       mime-types: 2.1.32
     dev: true
 
-  /typescript/4.3.5:
-    resolution: {integrity: sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==}
+  /typescript/4.4.2:
+    resolution: {integrity: sha512-gzP+t5W4hdy4c+68bfcv0t400HVJMMd2+H9B7gae1nQlBzCqvrXX+6GL/b3GAgyTH966pzrZ70/fRjwAtZksSQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true

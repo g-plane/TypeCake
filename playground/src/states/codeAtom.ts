@@ -12,6 +12,6 @@ export const generatedCodeAtom = atom((get): [string, SyntaxError | null] => {
 
     return [emitter.emit(parser.parse()), null]
   } catch (error) {
-    return ['// There may are syntax errors.\n', error]
+    return ['// There may be syntax errors.\n', error]
   }
 })

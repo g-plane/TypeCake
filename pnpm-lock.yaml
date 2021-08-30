@@ -24,11 +24,14 @@ importers:
       '@emotion/styled': ^11
       '@monaco-editor/react': ^4.2.2
       '@swc/core': ^1.2.83
+      '@types/pako': ^1.0.2
       '@types/react': ^17.0.19
       '@types/react-dom': ^17.0.9
       framer-motion: ^4
       html-webpack-plugin: ^5.3.2
       jotai: ^1.3.2
+      js-base64: ^3.6.1
+      pako: ^2.0.4
       react: ^17.0.2
       react-dom: ^17.0.2
       swc-loader: ^0.1.14
@@ -45,11 +48,14 @@ importers:
       '@monaco-editor/react': 4.2.2_react-dom@17.0.2+react@17.0.2
       framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
       jotai: 1.3.2_react@17.0.2
+      js-base64: 3.6.1
+      pako: 2.0.4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typacro: link:..
     devDependencies:
       '@swc/core': 1.2.83
+      '@types/pako': 1.0.2
       '@types/react': 17.0.19
       '@types/react-dom': 17.0.9
       html-webpack-plugin: 5.3.2_webpack@5.51.1
@@ -1329,6 +1335,10 @@ packages:
 
   /@types/node/16.7.1:
     resolution: {integrity: sha512-ncRdc45SoYJ2H4eWU9ReDfp3vtFqDYhjOsKlFFUDEn8V1Bgr2RjYal8YT5byfadWIRluhPFU6JiDOl0H6Sl87A==}
+    dev: true
+
+  /@types/pako/1.0.2:
+    resolution: {integrity: sha512-8UJl2MjkqqS6ncpLZqRZ5LmGiFBkbYxocD4e4jmBqGvfRG1RS23gKsBQbdtV9O9GvRyjFTiRHRByjSlKCLlmZw==}
     dev: true
 
   /@types/parse-json/4.0.0:
@@ -2859,6 +2869,10 @@ packages:
       react: 17.0.2
     dev: false
 
+  /js-base64/3.6.1:
+    resolution: {integrity: sha512-Frdq2+tRRGLQUIQOgsIGSCd1VePCS2fsddTG5dTCqR0JHgltXWfsxnY0gIXPoMeRmdom6Oyq+UMOFg5suduOjQ==}
+    dev: false
+
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
     dev: false
@@ -3231,6 +3245,10 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /pako/2.0.4:
+    resolution: {integrity: sha512-v8tweI900AUkZN6heMU/4Uy4cXRc2AYNRggVmTR+dEncawDJgCdLMximOVA2p4qO57WMynangsfGRb5WD6L1Bg==}
+    dev: false
 
   /param-case/3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}

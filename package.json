@@ -6,6 +6,7 @@
   "license": "MIT",
   "keywords": [],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b -w",

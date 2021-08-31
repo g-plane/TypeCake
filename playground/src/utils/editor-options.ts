@@ -9,4 +9,5 @@ export const editorOptions: editor.IStandaloneEditorConstructionOptions = {
   minimap: {
     enabled: false,
   },
+  tabSize: 2,
 }

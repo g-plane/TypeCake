@@ -24,6 +24,7 @@ export function codeFrame(input: string, options: CodeFrameOptions): string {
   const leftPad = ' '.repeat(Math.max(0, options.column) + paddingWidth + 5)
   if (
     options.endColumn != null &&
+    options.endColumn !== 0 &&
     (options.endColumn <= options.column || options.endColumn > totalColumns)
   ) {
     throw new RangeError(

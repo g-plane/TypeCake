@@ -54,6 +54,7 @@ export default (_: Record<string, string>, argv: Record<string, string>) => {
     devServer: {
       hot: true,
     },
+    devtool: 'eval-cheap-module-source-map',
     stats: 'errors-warnings',
     ignoreWarnings: [/size limit/i],
   }

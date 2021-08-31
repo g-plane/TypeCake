@@ -1,0 +1,15 @@
+fn Unwrap1(T) = if T : Promise(&U) {
+  U
+} else {
+  T
+}
+
+fn Unwrap2(T) = switch T {
+  Promise(&U) -> U,
+  _ -> T,
+}
+
+fn Result1() = Unwrap1(number)
+fn Result2() = Unwrap1(Promise(string))
+fn Result3() = Unwrap2(number)
+fn Result4() = Unwrap2(Promise(string))

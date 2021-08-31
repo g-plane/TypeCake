@@ -4,29 +4,48 @@ import { useAtom } from 'jotai'
 import { Box, Select, Text } from '@chakra-ui/react'
 import { sourceCodeAtom } from '../states/codeAtom'
 
-const fileNameMapping = new Map([
+const featuresMapping = new Map([
   ['basic', 'Basic'],
   ['switch-expr', 'Switch Expression'],
 ])
+const realWorldMapping = new Map([['unwrap-promise', 'Unwrap Promise']])
 
 const CodeSnippets: React.FC = () => {
   const [, setSourceCode] = useAtom(sourceCodeAtom)
-  const [snippets, updateSnippets] = useImmer(new Map<string, string>())
+  const [featureSnippets, updateFeatureSnippets] = useImmer(
+    new Map<string, string>()
+  )
+  const [realWorldSnippets, updateRealWorldSnippets] = useImmer(
+    new Map<string, string>()
+  )
 
   React.useEffect(() => {
     const loadSnippets = async () => {
-      Array.from(fileNameMapping).map(async ([file, name]) => {
+      Array.from(featuresMapping).map(async ([file, name]) => {
         const code = await import(`../snippets/${file}.tpc`)
-        updateSnippets((draft) => draft.set(name, code.default))
+        updateFeatureSnippets((draft) => draft.set(name, code.default))
+      })
+      Array.from(realWorldMapping).map(async ([file, name]) => {
+        const code = await import(`../snippets/${file}.tpc`)
+        updateRealWorldSnippets((draft) => draft.set(name, code.default))
       })
     }
     loadSnippets()
   }, [])
 
-  const handleSelectCodeSnippet = (
+  const handleSelectFeatureSnippet = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const code = snippets.get(event.target.value)
+    const code = featureSnippets.get(event.target.value)
+    if (code) {
+      setSourceCode(code)
+    }
+  }
+
+  const handleSelectRealWorldSnippet = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const code = realWorldSnippets.get(event.target.value)
     if (code) {
       setSourceCode(code)
     }
@@ -39,9 +58,21 @@ const CodeSnippets: React.FC = () => {
         ml={2}
         width="sm"
         placeholder="Language Features"
-        onChange={handleSelectCodeSnippet}
+        onChange={handleSelectFeatureSnippet}
       >
-        {Array.from(snippets.keys()).map((name) => (
+        {Array.from(featureSnippets.keys()).map((name) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
+      </Select>
+      <Select
+        ml={2}
+        width="sm"
+        placeholder="Real World Examples"
+        onChange={handleSelectRealWorldSnippet}
+      >
+        {Array.from(realWorldSnippets.keys()).map((name) => (
           <option key={name} value={name}>
             {name}
           </option>

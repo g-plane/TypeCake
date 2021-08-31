@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import HeaderBar from './components/HeaderBar'
 import CodeSnippets from './components/CodeSnippets'
+import OutputControl from './components/OutputControl'
 import TypacroEditor from './components/TypacroEditor'
 import TypeScriptEditor from './components/TypeScriptEditor'
 import FooterBar from './components/FooterBar'
@@ -26,7 +27,10 @@ const App: React.FC = () => (
       <Box>
         <HeaderBar />
         <Box px="2vw" pt={3}>
-          <CodeSnippets />
+          <Flex justifyContent="space-between" alignItems="center">
+            <CodeSnippets />
+            <OutputControl />
+          </Flex>
           <Center>
             <HStack width="full" height="80vh" spacing="60px">
               <TypacroEditor />

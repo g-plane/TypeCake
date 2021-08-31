@@ -22,11 +22,11 @@ const CodeSnippets: React.FC = () => {
   React.useEffect(() => {
     const loadSnippets = async () => {
       Array.from(featuresMapping).map(async ([file, name]) => {
-        const code = await import(`../snippets/${file}.tpc`)
+        const code = await import(`../snippets/features/${file}.tpc`)
         updateFeatureSnippets((draft) => draft.set(name, code.default))
       })
       Array.from(realWorldMapping).map(async ([file, name]) => {
-        const code = await import(`../snippets/${file}.tpc`)
+        const code = await import(`../snippets/real-world/${file}.tpc`)
         updateRealWorldSnippets((draft) => draft.set(name, code.default))
       })
     }

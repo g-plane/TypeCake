@@ -14,7 +14,7 @@ const featuresMapping = new Map([
   ['const-in', 'Const-in expression'],
   ['pipeline', 'Pipeline expression'],
   ['template-literal', 'Template literal'],
-  ['import', 'Import declarations']
+  ['import', 'Import declarations'],
 ])
 const realWorldMapping = new Map([['unwrap-promise', 'Unwrap Promise']])
 
@@ -74,8 +74,8 @@ const CodeSnippets: React.FC = () => {
           </option>
         ))}
       </Select>
+      <Text mx={2}>or</Text>
       <Select
-        ml={2}
         width="sm"
         placeholder="Real World Examples"
         onChange={handleSelectRealWorldSnippet}

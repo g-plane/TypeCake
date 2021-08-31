@@ -29,6 +29,7 @@
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
     "@types/webpack-dev-server": "^4.0.3",
+    "acorn": "^8.4.1",
     "html-webpack-plugin": "^5.3.2",
     "monaco-editor": "^0.27.0",
     "react-refresh": "^0.10.0",

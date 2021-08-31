@@ -5,6 +5,7 @@ import {
   isShowASTAtom,
   generatedCodeAtom,
   astJsonAtom,
+  errorOutputAtom,
 } from '../states/codeAtom'
 import { editorOptions } from '../utils/editor-options'
 
@@ -12,11 +13,12 @@ const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))
 
 export default function TypeScriptEditor() {
   const [isShowAST] = useAtom(isShowASTAtom)
-  const [[generatedCode]] = useAtom(generatedCodeAtom)
-  const [[ast]] = useAtom(astJsonAtom)
+  const [generatedCode] = useAtom(generatedCodeAtom)
+  const [ast] = useAtom(astJsonAtom)
+  const [errorOutput] = useAtom(errorOutputAtom)
 
   const language = isShowAST ? 'json' : 'typescript'
-  const output = isShowAST ? ast : generatedCode
+  const output = errorOutput ? errorOutput : isShowAST ? ast : generatedCode
   const options = { ...editorOptions, readOnly: isShowAST }
 
   return (

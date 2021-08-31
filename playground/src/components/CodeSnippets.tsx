@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useImmer } from 'use-immer'
 import { useAtom } from 'jotai'
-import { Box, Select } from '@chakra-ui/react'
+import { Box, Select, Text } from '@chakra-ui/react'
 import { sourceCodeAtom } from '../states/codeAtom'
 
 const fileNameMapping = new Map([
@@ -33,8 +33,11 @@ const CodeSnippets: React.FC = () => {
   }
 
   return (
-    <Box>
+    <Box display="flex" alignItems="center" mb={3}>
+      <Text>Examples:</Text>
       <Select
+        ml={2}
+        width="sm"
         placeholder="Language Features"
         onChange={handleSelectCodeSnippet}
       >

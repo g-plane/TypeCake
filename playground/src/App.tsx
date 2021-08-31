@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { extendTheme, ChakraProvider, Center, HStack } from '@chakra-ui/react'
+import {
+  extendTheme,
+  ChakraProvider,
+  Box,
+  Center,
+  HStack,
+} from '@chakra-ui/react'
 import HeaderBar from './components/HeaderBar'
 import CodeSnippets from './components/CodeSnippets'
 import TypacroEditor from './components/TypacroEditor'
@@ -15,13 +21,15 @@ const theme = extendTheme({
 const App: React.FC = () => (
   <ChakraProvider theme={theme}>
     <HeaderBar />
-    <CodeSnippets />
-    <Center>
-      <HStack width="96vw" height="88vh" spacing="60px">
-        <TypacroEditor />
-        <TypeScriptEditor />
-      </HStack>
-    </Center>
+    <Box px="2vw" pt={3}>
+      <CodeSnippets />
+      <Center>
+        <HStack width="full" height="88vh" spacing="60px">
+          <TypacroEditor />
+          <TypeScriptEditor />
+        </HStack>
+      </Center>
+    </Box>
   </ChakraProvider>
 )
 

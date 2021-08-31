@@ -1,15 +1,22 @@
 import * as React from 'react'
 import { useAtom } from 'jotai'
 import { Box } from '@chakra-ui/react'
+import type * as monaco from 'monaco-editor'
+import { useMonaco } from '@monaco-editor/react'
 import { gzip, ungzip } from 'pako'
 import { Base64 } from 'js-base64'
-import { sourceCodeAtom } from '../states/codeAtom'
+import { errorCauseAtom, sourceCodeAtom } from '../states/codeAtom'
 import { editorOptions } from '../utils/editor-options'
 
 const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))
 
 export default function TypacroEditor() {
   const [sourceCode, setSourceCode] = useAtom(sourceCodeAtom)
+  const [errorCause] = useAtom(errorCauseAtom)
+  const monacoInstance = useMonaco()
+  const editorRef = React.useRef<monaco.editor.IStandaloneCodeEditor | null>(
+    null
+  )
 
   React.useEffect(() => {
     const url = new URL(location.href)
@@ -33,6 +40,35 @@ export default function TypacroEditor() {
     history.pushState(null, '', url.toString())
   }, [sourceCode])
 
+  React.useEffect(() => {
+    const model = editorRef.current?.getModel()
+    if (!model || !monacoInstance) {
+      return
+    }
+
+    if (!errorCause) {
+      monacoInstance.editor.setModelMarkers(model, 'typacro', [])
+      return
+    }
+    monacoInstance.editor.setModelMarkers(model, 'typacro', [
+      {
+        source: 'Typacro',
+        message: errorCause.message,
+        severity: monacoInstance.MarkerSeverity.Error,
+        startLineNumber: errorCause.token.loc!.start.line,
+        startColumn: errorCause.token.loc!.start.column + 1,
+        endLineNumber: errorCause.token.loc!.end.line,
+        endColumn: errorCause.token.loc!.end.column + 1,
+      },
+    ])
+  }, [errorCause])
+
+  const handleEditorDidMount = (
+    editor: monaco.editor.IStandaloneCodeEditor
+  ) => {
+    editorRef.current = editor
+  }
+
   const handleEditorValueChange = (value?: string) => {
     if (value != null) {
       setSourceCode(value)
@@ -46,6 +82,7 @@ export default function TypacroEditor() {
           value={sourceCode}
           onChange={handleEditorValueChange}
           options={editorOptions}
+          onMount={handleEditorDidMount}
         />
       </React.Suspense>
     </Box>

@@ -1,0 +1,24 @@
+fn GetArrayElement(T) = if T : &U[] {
+  U
+} else {
+  T
+}
+fn Result1() = GetArrayElement(boolean)
+fn Result2() = GetArrayElement(string[])
+
+fn GetCollectionElement(T) = switch T {
+  Array(&U) -> U,
+  Set(&U) -> U,
+  _ -> T,
+}
+fn Result3() = GetCollectionElement(Map(string, number))
+fn Result4() = GetCollectionElement(Array(number))
+fn Result5() = GetCollectionElement(Set(string))
+
+fn TupleHead(T: unknown[]) = switch T {
+  [&U, ...unknown[]] -> U,
+  _ -> never,
+}
+fn Result6() = TupleHead([])
+fn Result7() = TupleHead(['a'])
+fn Result8() = TupleHead(['a', 23])

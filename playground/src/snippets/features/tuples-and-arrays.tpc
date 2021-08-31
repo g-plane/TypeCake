@@ -1,0 +1,7 @@
+fn TupleExample1() = [number, string]
+fn TupleExample2() = [number, string, ...boolean[]]
+fn AccessingTuple() = TupleExample1[0]
+
+fn ArrayExample1() = number[]
+fn ArrayExample2() = Array(number)
+fn AccessingArray() = ArrayExample1[0]

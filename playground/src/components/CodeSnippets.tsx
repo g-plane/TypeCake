@@ -6,7 +6,15 @@ import { sourceCodeAtom } from '../states/codeAtom'
 
 const featuresMapping = new Map([
   ['basic', 'Basic'],
-  ['switch-expr', 'Switch Expression'],
+  ['object-type', 'Object Type'],
+  ['tuples-and-arrays', 'Tuples and arrays'],
+  ['if-expr', 'If Expression'],
+  ['switch-expr', 'Pattern matching'],
+  ['infer', 'Capturing in patterns'],
+  ['const-in', 'Const-in expression'],
+  ['pipeline', 'Pipeline expression'],
+  ['template-literal', 'Template literal'],
+  ['import', 'Import declarations']
 ])
 const realWorldMapping = new Map([['unwrap-promise', 'Unwrap Promise']])
 

@@ -1,0 +1,4 @@
+from 'a' import a
+from 'b' import * as b
+from 'c' import { x, y as z }
+from 'd' import d, { m, n }

@@ -1,0 +1,9 @@
+fn EventName(T: string) = `on-${T}`
+
+fn ExtractEvent(T: string) = switch T {
+  `on-${&U}` -> U,
+  _ -> never,
+}
+
+fn Result1() = EventName('click')
+fn Result2() = ExtractEvent('on-dblclick')

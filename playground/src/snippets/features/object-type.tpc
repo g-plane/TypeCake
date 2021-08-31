@@ -1,0 +1,4 @@
+fn Data() = { a: string, b?: number, [x: string]: unknown }
+
+fn PropertyA() = Data['a']
+fn PropertyB() = Data['b']

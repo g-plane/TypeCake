@@ -1,0 +1,8 @@
+fn F() =
+  const T1 = Set(string),
+        T2 = Array(number)
+  in if T1 : T2 {
+    [T1]
+  } else {
+    [T2]
+  }

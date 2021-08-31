@@ -1,0 +1,17 @@
+fn F1() = if 's' : string {
+  'a'
+} else {
+  'b'
+}
+
+fn F2(T) = if T : string {
+  'this is string'
+} else if T : boolean {
+  'this is boolean'
+} else {
+  'other type'
+}
+
+fn Result1() = F2(string)
+fn Result2() = F2(boolean)
+fn Result3() = F2(number)

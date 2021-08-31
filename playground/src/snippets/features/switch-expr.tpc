@@ -4,3 +4,13 @@ fn Count(T: unknown[]) = switch T {
   [any, any] -> 2,
   _ -> 'many',
 }
+
+fn F1(T) = switch T {
+  string -> 'this is string',
+  boolean -> 'this is boolean',
+  _ -> 'other type',
+}
+
+fn Result1() = F1(string)
+fn Result2() = F1(boolean)
+fn Result3() = F1(number)

@@ -1,0 +1,4 @@
+fn F() = number
+  |> Promise
+  |> Set
+  |> Record(string)

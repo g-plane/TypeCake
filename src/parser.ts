@@ -69,6 +69,7 @@ export class Parser {
     error.cause = {
       message,
       token,
+      input: this.input,
     }
 
     throw error

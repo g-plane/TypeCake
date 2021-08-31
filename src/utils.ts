@@ -25,7 +25,7 @@ export function codeFrame(input: string, options: CodeFrameOptions): string {
   if (
     options.endColumn != null &&
     options.endColumn !== 0 &&
-    (options.endColumn <= options.column || options.endColumn > totalColumns)
+    (options.endColumn < options.column || options.endColumn > totalColumns)
   ) {
     throw new RangeError(
       "'endColumn' must be greater than 'column' and less than line length."
@@ -33,7 +33,7 @@ export function codeFrame(input: string, options: CodeFrameOptions): string {
   }
 
   const pointer = '^'.repeat(
-    options.endColumn ? options.endColumn - options.column : 1
+    options.endColumn ? Math.max(options.endColumn - options.column, 1) : 1
   )
   const focus = `${leftPad}${pointer}`
   frame.splice(options.line - topLineNumber, 0, focus)

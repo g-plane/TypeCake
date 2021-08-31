@@ -68,6 +68,7 @@ export class Parser {
     // @ts-expect-error
     error.cause = {
       message,
+      lastToken: this.last,
       token,
       input: this.input,
     }

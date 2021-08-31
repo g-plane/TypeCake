@@ -7,6 +7,7 @@ export const sourceCodeAtom = atom('')
 type ErrorCause = {
   message: string
   input: string
+  lastToken: Token
   token: Token
 }
 

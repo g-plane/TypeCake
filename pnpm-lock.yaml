@@ -32,6 +32,7 @@ importers:
       immer: ^9.0.5
       jotai: ^1.3.2
       js-base64: ^3.6.1
+      monaco-editor: ^0.27.0
       pako: ^2.0.4
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -48,7 +49,7 @@ importers:
       '@chakra-ui/react': 1.6.7_8d167c97cec7349161163108e2f2e3ad
       '@emotion/react': 11.4.1_4cd822c6044f4c1a7e1f1fea0e728f12
       '@emotion/styled': 11.3.0_4a13a1c8be6e32a351380640be5b202d
-      '@monaco-editor/react': 4.2.2_react-dom@17.0.2+react@17.0.2
+      '@monaco-editor/react': 4.2.2_936a28fe9e93542b5c7cddabcb732b47
       framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
       immer: 9.0.5
       jotai: 1.3.2_immer@9.0.5+react@17.0.2
@@ -65,6 +66,7 @@ importers:
       '@types/react': 17.0.19
       '@types/react-dom': 17.0.9
       html-webpack-plugin: 5.3.2_webpack@5.51.1
+      monaco-editor: 0.27.0
       swc-loader: 0.1.14_webpack@5.51.1
       ts-node: 10.2.1_17ce6fd8c8d1f99bc239cbb46ff9b5a2
       webpack: 5.51.1_webpack-cli@4.8.0
@@ -1058,22 +1060,24 @@ packages:
     resolution: {integrity: sha512-1R3mqDqi+GiYD/4P3aC4hIzdrRHfEvxsek6ZM8zQ87NBUsRe/+cV7GwG8L+4xsfssheKk/EuWud9cF8mFpvfMQ==}
     dev: true
 
-  /@monaco-editor/loader/1.1.1:
+  /@monaco-editor/loader/1.1.1_monaco-editor@0.27.0:
     resolution: {integrity: sha512-mkT4r4xDjIyOG9o9M6rJDSzEIeonwF80sYErxEvAAL4LncFVdcbNli8Qv6NDqF6nyv6sunuKkDzo4iFjxPL+uQ==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
+      monaco-editor: 0.27.0
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react/4.2.2_react-dom@17.0.2+react@17.0.2:
+  /@monaco-editor/react/4.2.2_936a28fe9e93542b5c7cddabcb732b47:
     resolution: {integrity: sha512-yDDct+f/mZ946tJEXudvmMC8zXDygkELNujpJGjqJ0gS3WePZmS/IwBBsuJ8JyKQQC3Dy/+Ivg1sSpW+UvCv9g==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0
       react-dom: ^16.8.0 || ^17.0.0
     dependencies:
-      '@monaco-editor/loader': 1.1.1
+      '@monaco-editor/loader': 1.1.1_monaco-editor@0.27.0
+      monaco-editor: 0.27.0
       prop-types: 15.7.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -3063,6 +3067,10 @@ packages:
     hasBin: true
     dependencies:
       minimist: 1.2.5
+    dev: true
+
+  /monaco-editor/0.27.0:
+    resolution: {integrity: sha512-UhwP78Wb8w0ZSYoKXQNTV/0CHObp6NS3nCt51QfKE6sKyBo5PBsvuDOHoI2ooBakc6uIwByRLHVeT7+yXQe2fQ==}
     dev: true
 
   /ms/2.0.0:

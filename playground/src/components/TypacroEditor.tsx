@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react'
 import { gzip, ungzip } from 'pako'
 import { Base64 } from 'js-base64'
 import { sourceCodeAtom } from '../states/codeAtom'
+import { editorOptions } from '../utils/editor-options'
 
 const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))
 
@@ -42,10 +43,9 @@ const TypacroEditor: React.FC = () => {
     <Box width="100%" height="100%" borderWidth="thin" borderColor="gray.400">
       <React.Suspense fallback={''}>
         <MonacoEditor
-          width="100%"
-          height="100%"
           value={sourceCode}
           onChange={handleEditorValueChange}
+          options={editorOptions}
         />
       </React.Suspense>
     </Box>

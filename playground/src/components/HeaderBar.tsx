@@ -3,6 +3,7 @@ import { Box, Heading } from '@chakra-ui/react'
 
 const HeaderBar: React.FC = () => (
   <Box
+    as="header"
     px="20px"
     py="12px"
     bg="pink.400"
@@ -11,7 +12,9 @@ const HeaderBar: React.FC = () => (
     borderBottomStyle="solid"
     borderBottomColor="gray.300"
   >
-    <Heading size="lg" letterSpacing="tight">Typacro Playground</Heading>
+    <Heading as="h1" size="lg" letterSpacing="tight">
+      Typacro Playground
+    </Heading>
   </Box>
 )
 

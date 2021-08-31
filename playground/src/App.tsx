@@ -4,12 +4,14 @@ import {
   ChakraProvider,
   Box,
   Center,
+  Flex,
   HStack,
 } from '@chakra-ui/react'
 import HeaderBar from './components/HeaderBar'
 import CodeSnippets from './components/CodeSnippets'
 import TypacroEditor from './components/TypacroEditor'
 import TypeScriptEditor from './components/TypeScriptEditor'
+import FooterBar from './components/FooterBar'
 
 const theme = extendTheme({
   fonts: {
@@ -20,16 +22,21 @@ const theme = extendTheme({
 
 const App: React.FC = () => (
   <ChakraProvider theme={theme}>
-    <HeaderBar />
-    <Box px="2vw" pt={3}>
-      <CodeSnippets />
-      <Center>
-        <HStack width="full" height="80vh" spacing="60px">
-          <TypacroEditor />
-          <TypeScriptEditor />
-        </HStack>
-      </Center>
-    </Box>
+    <Flex flexDirection="column" justifyContent="space-between" height="100vh">
+      <Box>
+        <HeaderBar />
+        <Box px="2vw" pt={3}>
+          <CodeSnippets />
+          <Center>
+            <HStack width="full" height="80vh" spacing="60px">
+              <TypacroEditor />
+              <TypeScriptEditor />
+            </HStack>
+          </Center>
+        </Box>
+      </Box>
+      <FooterBar />
+    </Flex>
   </ChakraProvider>
 )
 

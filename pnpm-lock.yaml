@@ -36,6 +36,7 @@ importers:
       pako: ^2.0.4
       react: ^17.0.2
       react-dom: ^17.0.2
+      react-icons: ^4.2.0
       regenerator-runtime: ^0.13.9
       swc-loader: ^0.1.14
       ts-node: ^10.2.1
@@ -57,6 +58,7 @@ importers:
       pako: 2.0.4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+      react-icons: 4.2.0_react@17.0.2
       regenerator-runtime: 0.13.9
       typacro: link:..
       use-immer: 0.6.0_immer@9.0.5+react@17.0.2
@@ -3477,6 +3479,14 @@ packages:
       use-sidecar: 1.0.5_react@17.0.2
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /react-icons/4.2.0_react@17.0.2:
+    resolution: {integrity: sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /react-is/16.13.1:

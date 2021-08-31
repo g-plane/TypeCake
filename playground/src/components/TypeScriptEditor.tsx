@@ -10,7 +10,7 @@ import { editorOptions } from '../utils/editor-options'
 
 const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))
 
-const TypeScriptEditor: React.FC = () => {
+export default function TypeScriptEditor() {
   const [isShowAST] = useAtom(isShowASTAtom)
   const [[generatedCode]] = useAtom(generatedCodeAtom)
   const [[ast]] = useAtom(astJsonAtom)
@@ -32,7 +32,3 @@ const TypeScriptEditor: React.FC = () => {
     </Box>
   )
 }
-
-TypeScriptEditor.displayName = 'TypeScriptEditor'
-
-export default TypeScriptEditor

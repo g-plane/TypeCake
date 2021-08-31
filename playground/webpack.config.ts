@@ -1,67 +1,17 @@
 import * as path from 'path'
 import type { Configuration } from 'webpack'
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server'
 import merge from 'webpack-merge'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-
-const baseConfig: Configuration = {
-  entry: './src/index.tsx',
-  output: {
-    clean: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tpc$/,
-        type: 'asset/source',
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'public/index.html'),
-    }),
-  ],
-  resolve: {
-    extensions: ['.js', '.tsx', '.ts'],
-  },
-  cache: {
-    type: 'filesystem',
-  },
-  // @ts-expect-error
-  devServer: {
-    hot: true,
-  },
-  stats: 'errors-warnings',
-  ignoreWarnings: [/size limit/i],
-}
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 
 export default (_: Record<string, string>, argv: Record<string, string>) => {
-  if (argv.mode === 'development') {
-    return merge(baseConfig, {
-      module: {
-        rules: [
-          {
-            test: /\.tsx?$/,
-            loader: 'swc-loader',
-            options: {
-              jsc: {
-                transform: {
-                  react: {
-                    runtime: 'automatic',
-                    development: true,
-                  },
-                },
-              },
-            },
-          },
-        ],
-      },
-    })
-  }
+  const isDev = argv.mode === 'development'
 
-  return merge(baseConfig, {
+  const baseConfig: Configuration & { devServer?: DevServerConfiguration } = {
+    entry: './src/index.tsx',
     output: {
-      filename: '[name].[contenthash:8].js',
+      clean: true,
     },
     module: {
       rules: [
@@ -70,15 +20,53 @@ export default (_: Record<string, string>, argv: Record<string, string>) => {
           loader: 'swc-loader',
           options: {
             jsc: {
+              parser: {
+                syntax: 'typescript',
+                tsx: true,
+                dynamicImport: true,
+              },
               transform: {
                 react: {
                   runtime: 'automatic',
+                  refresh: isDev,
                 },
               },
             },
           },
         },
+        {
+          test: /\.tpc$/,
+          type: 'asset/source',
+        },
       ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, 'public/index.html'),
+      }),
+    ],
+    resolve: {
+      extensions: ['.js', '.tsx', '.ts'],
+    },
+    cache: {
+      type: 'filesystem',
+    },
+    devServer: {
+      hot: true,
+    },
+    stats: 'errors-warnings',
+    ignoreWarnings: [/size limit/i],
+  }
+
+  if (isDev) {
+    return merge(baseConfig, {
+      plugins: [new ReactRefreshWebpackPlugin()],
+    })
+  }
+
+  return merge(baseConfig, {
+    output: {
+      filename: '[name].[contenthash:8].js',
     },
   })
 }

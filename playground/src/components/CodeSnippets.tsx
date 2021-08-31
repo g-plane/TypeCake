@@ -18,7 +18,7 @@ const featuresMapping = new Map([
 ])
 const realWorldMapping = new Map([['unwrap-promise', 'Unwrap Promise']])
 
-const CodeSnippets: React.FC = () => {
+export default function CodeSnippets() {
   const [, setSourceCode] = useAtom(sourceCodeAtom)
   const [featureSnippets, updateFeatureSnippets] = useImmer(
     new Map<string, string>()
@@ -89,7 +89,3 @@ const CodeSnippets: React.FC = () => {
     </Box>
   )
 }
-
-CodeSnippets.displayName = 'CodeSnippets'
-
-export default CodeSnippets

@@ -1,9 +1,8 @@
-import * as React from 'react'
 import { useAtom } from 'jotai'
 import { Box, FormControl, FormLabel, Switch } from '@chakra-ui/react'
 import { isShowASTAtom } from '../states/codeAtom'
 
-const OutputControl: React.FC = () => {
+export default function OutputControl() {
   const [isShowAST, setIsShowAST] = useAtom(isShowASTAtom)
 
   const handleToggleShowAST = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +24,3 @@ const OutputControl: React.FC = () => {
     </Box>
   )
 }
-
-OutputControl.displayName = 'OutputControl'
-
-export default OutputControl

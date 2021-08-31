@@ -8,7 +8,7 @@ import { editorOptions } from '../utils/editor-options'
 
 const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))
 
-const TypacroEditor: React.FC = () => {
+export default function TypacroEditor() {
   const [sourceCode, setSourceCode] = useAtom(sourceCodeAtom)
 
   React.useEffect(() => {
@@ -51,7 +51,3 @@ const TypacroEditor: React.FC = () => {
     </Box>
   )
 }
-
-TypacroEditor.displayName = 'TypacroEditor'
-
-export default TypacroEditor

@@ -21,7 +21,7 @@ export function codeFrame(input: string, options: CodeFrameOptions): string {
     })
 
   const totalColumns = lines[options.line - 1]!.length
-  const leftPad = ' '.repeat(Math.max(1, options.column) + paddingWidth + 4)
+  const leftPad = ' '.repeat(Math.max(0, options.column) + paddingWidth + 5)
   if (
     options.endColumn != null &&
     (options.endColumn <= options.column || options.endColumn > totalColumns)
@@ -32,7 +32,7 @@ export function codeFrame(input: string, options: CodeFrameOptions): string {
   }
 
   const pointer = '^'.repeat(
-    options.endColumn ? options.endColumn - options.column + 1 : 1
+    options.endColumn ? options.endColumn - options.column : 1
   )
   const focus = `${leftPad}${pointer}`
   frame.splice(options.line - topLineNumber, 0, focus)

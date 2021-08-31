@@ -5,6 +5,8 @@ const HeaderBar: React.FC = () => (
   <Box
     px="20px"
     py="12px"
+    bg="pink.400"
+    color="white"
     borderBottomWidth="1px"
     borderBottomStyle="solid"
     borderBottomColor="gray.300"

@@ -24,7 +24,7 @@ const App: React.FC = () => (
     <Box px="2vw" pt={3}>
       <CodeSnippets />
       <Center>
-        <HStack width="full" height="88vh" spacing="60px">
+        <HStack width="full" height="80vh" spacing="60px">
           <TypacroEditor />
           <TypeScriptEditor />
         </HStack>

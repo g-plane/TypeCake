@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b -w",
-    "fmt": "prettier --write src"
+    "fmt": "prettier --write src playground/src"
   },
   "dependencies": {
     "acorn": "^8.4.1"

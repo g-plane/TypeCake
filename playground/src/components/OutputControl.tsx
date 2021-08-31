@@ -18,7 +18,9 @@ const OutputControl: React.FC = () => {
           checked={isShowAST}
           onChange={handleToggleShowAST}
         />
-        <FormLabel htmlFor="show-ast" ml={2} mt={1} display="flex">AST</FormLabel>
+        <FormLabel htmlFor="show-ast" ml={2} mt={1} display="flex">
+          AST
+        </FormLabel>
       </FormControl>
     </Box>
   )

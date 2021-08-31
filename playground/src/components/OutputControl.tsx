@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { Box, FormControl, FormLabel, Switch } from '@chakra-ui/react'
+import { Flex, FormControl, FormLabel, Switch } from '@chakra-ui/react'
 import { isShowASTAtom } from '../states/codeAtom'
 
 export default function OutputControl() {
@@ -10,7 +10,7 @@ export default function OutputControl() {
   }
 
   return (
-    <Box>
+    <Flex alignItems="center">
       <FormControl display="flex" alignItems="center">
         <Switch
           id="show-ast"
@@ -21,6 +21,6 @@ export default function OutputControl() {
           AST
         </FormLabel>
       </FormControl>
-    </Box>
+    </Flex>
   )
 }

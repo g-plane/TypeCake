@@ -1,0 +1,11 @@
+fn CamelCase(S: string) = switch S {
+  `${&Front}-${&Back}` -> CamelCase(`${Front}${Capitalize(Back)}`),
+  `${&Front}_${&Back}` -> CamelCase(`${Front}${Capitalize(Back)}`),
+  _ -> S,
+}
+
+fn Result1() = CamelCase('test-my-string')
+fn Result2() = CamelCase('test_my_string')
+fn Result3() = CamelCase('test-my_string')
+
+fn Result4() = CamelCase('this-is-very-very-very-incredibly-long-long-string-for-testing')

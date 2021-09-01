@@ -16,7 +16,10 @@ const featuresMapping = new Map([
   ['template-literal', 'Template literal'],
   ['import', 'Import declarations'],
 ])
-const realWorldMapping = new Map([['unwrap-promise', 'Unwrap Promise']])
+const realWorldMapping = new Map([
+  ['unwrap-promise', 'Unwrap Promise'],
+  ['camel-case', 'Camel Case'],
+])
 
 export default function CodeSnippets() {
   const [, setSourceCode] = useAtom(sourceCodeAtom)

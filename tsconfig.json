@@ -2,6 +2,8 @@
   "extends": "@gplane/tsconfig",
   "compilerOptions": {
     "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "rootDir": "src",
     "module": "commonjs",
     "lib": ["ES2018"],
     "composite": true

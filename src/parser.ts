@@ -110,7 +110,7 @@ export class Parser {
       !this.eat(tt.eof) &&
       this.current.loc!.start.line <= this.last.loc!.end.line
     ) {
-      this.raise(this.current, 'Expect a semicolon.')
+      this.raise(this.current, "Expect a line break or a ';'.")
     }
   }
 
@@ -138,10 +138,16 @@ export class Parser {
         case 'from':
           return this.parseImportStatement()
         default:
-          this.raise(this.current, 'unexpected token')
+          this.raise(
+            this.current,
+            'Expect an import declaration or function declaration.'
+          )
       }
     } else {
-      this.raise(this.current, 'unexpected token')
+      this.raise(
+        this.current,
+        'Expect an import declaration or function declaration.'
+      )
     }
   }
 
@@ -165,7 +171,7 @@ export class Parser {
         }
         break
       default:
-        this.raise(this.current, '')
+        this.raise(this.current, "Expect an identifier, '{' or '*'.")
     }
 
     return this.finishNode<n.ImportDeclaration>(node, { specifiers, source })
@@ -223,7 +229,7 @@ export class Parser {
 
   protected parseIdentifier(): n.Identifier {
     const node = this.startNode('Identifier')
-    const name = this.expect(tt.name).value
+    const name = this.expect(tt.name, undefined, 'Expect an identifier.').value
 
     return this.finishNode<n.Identifier>(node, { name })
   }
@@ -236,7 +242,7 @@ export class Parser {
       this.nextToken()
       return this.finishNode<n.Literal>(node, { value, raw })
     } else {
-      this.raise(this.current, '')
+      this.raise(this.current, "Expect a literal or 'null'.")
     }
   }
 
@@ -414,7 +420,11 @@ export class Parser {
     this.expect(tt.braceL)
     const consequent = this.parseExpression()
     this.expect(tt.braceR)
-    this.expect(tt._else)
+    this.expect(
+      tt._else,
+      undefined,
+      "'if' expression must have an 'else' branch."
+    )
     let alternate: n.Expression | null = null
     if (this.current.type === tt._if) {
       alternate = this.parseIfExpression()
@@ -422,7 +432,10 @@ export class Parser {
       alternate = this.parseExpression()
       this.expect(tt.braceR)
     } else {
-      this.raise(this.current, '')
+      this.raise(
+        this.current,
+        "'else' must be followed by another 'if' expression or a block."
+      )
     }
 
     return this.finishNode<n.IfExpression>(node, {
@@ -524,7 +537,7 @@ export class Parser {
         if (this.current.type === tt.relational && this.current.value === '>') {
           base = this.parsePipelineExpression(base)
         } else {
-          this.raise(this.current, 'Unexpected token.')
+          this.raise(this.current, "Pipeline operator should be '|>'.")
         }
       } else {
         return base
@@ -573,7 +586,7 @@ export class Parser {
           )
         }
       default:
-        this.raise(this.current, '')
+        this.raise(this.current, 'Expect an expression here.')
     }
   }
 

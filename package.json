@@ -16,7 +16,7 @@
     "acorn": "^8.4.1"
   },
   "devDependencies": {
-    "@gplane/tsconfig": "^4.2.0",
+    "@gplane/tsconfig": "^5.0.0",
     "@types/node": "^16.7.1",
     "prettier": "^2.3.2",
     "typescript": "^4.4.2"

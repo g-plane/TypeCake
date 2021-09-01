@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   extendTheme,
   ChakraProvider,
@@ -21,27 +20,31 @@ const theme = extendTheme({
   },
 })
 
-const App: React.FC = () => (
-  <ChakraProvider theme={theme}>
-    <Flex flexDirection="column" justifyContent="space-between" height="100vh">
-      <Box>
-        <HeaderBar />
-        <Box px="2vw" pt={3}>
-          <Flex justifyContent="space-between" alignItems="center">
-            <CodeSnippets />
-            <OutputControl />
-          </Flex>
-          <Center>
-            <HStack width="full" height="80vh" spacing="60px">
-              <TypacroEditor />
-              <TypeScriptEditor />
-            </HStack>
-          </Center>
+export default function App() {
+  return (
+    <ChakraProvider theme={theme}>
+      <Flex
+        flexDirection="column"
+        justifyContent="space-between"
+        height="100vh"
+      >
+        <Box>
+          <HeaderBar />
+          <Box px="2vw" pt={3}>
+            <Flex justifyContent="space-between" alignItems="center">
+              <CodeSnippets />
+              <OutputControl />
+            </Flex>
+            <Center>
+              <HStack width="full" height="80vh" spacing="60px">
+                <TypacroEditor />
+                <TypeScriptEditor />
+              </HStack>
+            </Center>
+          </Box>
         </Box>
-      </Box>
-      <FooterBar />
-    </Flex>
-  </ChakraProvider>
-)
-
-export default App
+        <FooterBar />
+      </Flex>
+    </ChakraProvider>
+  )
+}

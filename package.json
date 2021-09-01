@@ -5,12 +5,17 @@
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
   "keywords": [],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b -w",
     "fmt": "prettier --write src playground/src"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js"
+    }
   },
   "dependencies": {
     "acorn": "^8.4.1"

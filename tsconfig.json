@@ -5,6 +5,7 @@
     "declarationMap": false,
     "module": "commonjs",
     "lib": ["ES2018"],
+    "composite": true,
     "noUnusedParameters": false,
     "noUnusedLocals": false
   },

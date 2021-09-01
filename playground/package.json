@@ -23,6 +23,7 @@
     "use-immer": "^0.6.0"
   },
   "devDependencies": {
+    "@gplane/tsconfig": "^5.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "next",
     "@swc/core": "^1.2.83",
     "@types/pako": "^1.0.2",

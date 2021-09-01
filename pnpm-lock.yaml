@@ -22,6 +22,7 @@ importers:
       '@chakra-ui/react': ^1.6.7
       '@emotion/react': ^11
       '@emotion/styled': ^11
+      '@gplane/tsconfig': ^5.0.0
       '@monaco-editor/react': ^4.2.2
       '@pmmmwh/react-refresh-webpack-plugin': next
       '@swc/core': ^1.2.83
@@ -67,6 +68,7 @@ importers:
       typacro: link:..
       use-immer: 0.6.0_immer@9.0.5+react@17.0.2
     devDependencies:
+      '@gplane/tsconfig': 5.0.0
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.0-rc.6_5beabfc7b86e47016d82cf6516307c31
       '@swc/core': 1.2.83
       '@types/pako': 1.0.2
@@ -1068,6 +1070,10 @@ packages:
 
   /@gplane/tsconfig/4.2.0:
     resolution: {integrity: sha512-1R3mqDqi+GiYD/4P3aC4hIzdrRHfEvxsek6ZM8zQ87NBUsRe/+cV7GwG8L+4xsfssheKk/EuWud9cF8mFpvfMQ==}
+    dev: true
+
+  /@gplane/tsconfig/5.0.0:
+    resolution: {integrity: sha512-RgyxDE865mkyME4qavYnVg3L2EzWJXMGgMAyZEKvkHL200vRBWpkrpgwYdib1RFk9NhigczHntTdc6tRsvjDiQ==}
     dev: true
 
   /@monaco-editor/loader/1.1.1_monaco-editor@0.27.0:

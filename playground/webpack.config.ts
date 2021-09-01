@@ -31,6 +31,8 @@ export default (_: Record<string, string>, argv: Record<string, string>) => {
                   refresh: isDev,
                 },
               },
+              target: 'es2019',
+              loose: true,
             },
           },
         },

@@ -2,6 +2,7 @@
   "name": "@typacro/playground",
   "private": true,
   "scripts": {
+    "check": "tsc -b",
     "start": "webpack serve --mode=development",
     "build": "webpack build --mode=production"
   },

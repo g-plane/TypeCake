@@ -6,6 +6,7 @@ const featuresExamples = new Map([
   ['Basic', 'basic'],
   ['Object Type', 'object-type'],
   ['Tuples and arrays', 'tuples-and-arrays'],
+  ['Intersection type', 'intersection-type'],
   ['If Expression', 'if-expr'],
   ['Pattern matching', 'switch-expr'],
   ['Capturing in patterns', 'infer'],

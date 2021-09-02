@@ -1,5 +1,5 @@
 import { tokenizer, tokTypes as tt } from 'acorn'
-import type { TokenType, Token } from 'acorn'
+import type { TokenType } from 'acorn'
 import type * as n from './ast'
 
 enum StateFlags {
@@ -7,8 +7,8 @@ enum StateFlags {
 }
 
 export class Parser {
-  private last!: Token
-  private current!: Token
+  private last!: n.Token
+  private current!: n.Token
   private tokens!: ReturnType<typeof tokenizer>
   private state = 0
 
@@ -24,19 +24,19 @@ export class Parser {
     return this.parseProgram()
   }
 
-  private nextToken() {
+  private nextToken(): n.Token {
     this.last = this.current
     const token = this.tokens.getToken()
-    this.current = token
+    this.current = token as n.Token
 
-    return token
+    return token as n.Token
   }
 
   private expect(
     type: TokenType,
     value?: string,
     message: string = 'Unexpected token.'
-  ): Token {
+  ): n.Token {
     if (
       this.current.type === type &&
       (!value || value === this.current.value)
@@ -61,7 +61,7 @@ export class Parser {
     }
   }
 
-  private raise(token: Token, message: string): never {
+  private raise(token: n.Token, message: string): never {
     const error = new SyntaxError(
       `${message} (${token.loc!.start.line}:${token.loc!.start.column})`
     )
@@ -76,7 +76,7 @@ export class Parser {
     throw error
   }
 
-  private startNode(type: string): n.Node {
+  private startNode(type: string): n.NodeBase {
     return {
       type,
       start: this.current.start,
@@ -85,7 +85,7 @@ export class Parser {
     }
   }
 
-  private startNodeFromNode(node: n.Node, type: string): n.Node {
+  private startNodeFromNode(node: n.NodeBase, type: string): n.NodeBase {
     return {
       type,
       start: node.start,
@@ -94,8 +94,8 @@ export class Parser {
     }
   }
 
-  private finishNode<N extends n.Node>(
-    node: n.Node,
+  private finishNode<N extends n.NodeBase>(
+    node: n.NodeBase,
     data: Omit<N, 'type' | 'start' | 'end' | 'loc'>
   ): N {
     node.end = this.last.end

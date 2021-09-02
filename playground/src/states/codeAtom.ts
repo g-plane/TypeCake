@@ -1,6 +1,5 @@
 import { atom } from 'jotai'
-import type { Token } from 'acorn'
-import { Parser, Emitter, codeFrame } from 'typacro'
+import { Token, Parser, Emitter, codeFrame } from 'typacro'
 
 export const sourceCodeAtom = atom('')
 

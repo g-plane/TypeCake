@@ -1,64 +1,44 @@
-import * as React from 'react'
-import { useImmer } from 'use-immer'
 import { useAtom } from 'jotai'
 import { Box, Select, Text } from '@chakra-ui/react'
 import { sourceCodeAtom } from '../states/codeAtom'
 
-const featuresMapping = new Map([
-  ['basic', 'Basic'],
-  ['object-type', 'Object Type'],
-  ['tuples-and-arrays', 'Tuples and arrays'],
-  ['if-expr', 'If Expression'],
-  ['switch-expr', 'Pattern matching'],
-  ['infer', 'Capturing in patterns'],
-  ['const-in', 'Const-in expression'],
-  ['pipeline', 'Pipeline expression'],
-  ['template-literal', 'Template literal'],
-  ['import', 'Import declarations'],
+const featuresExamples = new Map([
+  ['Basic', 'basic'],
+  ['Object Type', 'object-type'],
+  ['Tuples and arrays', 'tuples-and-arrays'],
+  ['If Expression', 'if-expr'],
+  ['Pattern matching', 'switch-expr'],
+  ['Capturing in patterns', 'infer'],
+  ['Const-in expression', 'const-in'],
+  ['Pipeline expression', 'pipeline'],
+  ['Template literal', 'template-literal'],
+  ['Import declarations', 'import'],
 ])
-const realWorldMapping = new Map([
-  ['unwrap-promise', 'Unwrap Promise'],
-  ['camel-case', 'Camel Case'],
+const realWorldExamples = new Map([
+  ['Unwrap Promise', 'unwrap-promise'],
+  ['Camel Case', 'camel-case'],
 ])
 
 export default function CodeSnippets() {
   const [, setSourceCode] = useAtom(sourceCodeAtom)
-  const [featureSnippets, updateFeatureSnippets] = useImmer(
-    new Map<string, string>()
-  )
-  const [realWorldSnippets, updateRealWorldSnippets] = useImmer(
-    new Map<string, string>()
-  )
 
-  React.useEffect(() => {
-    const loadSnippets = async () => {
-      Array.from(featuresMapping).map(async ([file, name]) => {
-        const code = await import(`../snippets/features/${file}.tpc`)
-        updateFeatureSnippets((draft) => draft.set(name, code.default))
-      })
-      Array.from(realWorldMapping).map(async ([file, name]) => {
-        const code = await import(`../snippets/real-world/${file}.tpc`)
-        updateRealWorldSnippets((draft) => draft.set(name, code.default))
-      })
-    }
-    loadSnippets()
-  }, [])
-
-  const handleSelectFeatureSnippet = (
+  const handleSelectFeatureSnippet = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const code = featureSnippets.get(event.target.value)
-    if (code) {
-      setSourceCode(code)
+    const file = featuresExamples.get(event.target.value)
+    if (file) {
+      const code = await import(`../snippets/features/${file}.tpc`)
+      setSourceCode(code.default)
     }
   }
 
-  const handleSelectRealWorldSnippet = (
+  const handleSelectRealWorldSnippet = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const code = realWorldSnippets.get(event.target.value)
-    if (code) {
-      setSourceCode(code)
+    const file = realWorldExamples.get(event.target.value)
+    if (file) {
+      const code = await import(`../snippets/real-world/${file}.tpc`)
+      setSourceCode(code.default)
     }
   }
 
@@ -71,7 +51,7 @@ export default function CodeSnippets() {
         placeholder="Language Features"
         onChange={handleSelectFeatureSnippet}
       >
-        {Array.from(featureSnippets.keys()).map((name) => (
+        {Array.from(featuresExamples.keys()).map((name) => (
           <option key={name} value={name}>
             {name}
           </option>
@@ -83,7 +63,7 @@ export default function CodeSnippets() {
         placeholder="Real World Examples"
         onChange={handleSelectRealWorldSnippet}
       >
-        {Array.from(realWorldSnippets.keys()).map((name) => (
+        {Array.from(realWorldExamples.keys()).map((name) => (
           <option key={name} value={name}>
             {name}
           </option>

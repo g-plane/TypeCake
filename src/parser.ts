@@ -517,10 +517,10 @@ export class Parser {
     while (true) {
       if (base.type === 'Identifier' && this.current.type === tt.parenL) {
         // only identifier can be called
-        return this.parseCallExpression(base)
+        base = this.parseCallExpression(base)
       } else if (base.type === 'Identifier' && this.current.type === tt.dot) {
         // namespace can only start with an identifier
-        return this.parseNamespaceAccessExpression(base)
+        base = this.parseNamespaceAccessExpression(base)
       } else if (this.current.type === tt.bracketL) {
         this.nextToken()
         if (this.current.type === tt.bracketR) {

@@ -184,6 +184,9 @@ export class Emitter {
       case 'ObjectExpression':
         this.emitObjectExpression(node)
         break
+      case 'NamespaceAccessExpression':
+        this.emitNamespaceAccessExpression(node)
+        break
       case 'CallExpression':
         this.emitCallExpression(node)
         break
@@ -436,6 +439,12 @@ export class Emitter {
     this.space()
     this.emitExpression(node.expression)
     this.add(']')
+  }
+
+  protected emitNamespaceAccessExpression(node: n.NamespaceAccessExpression) {
+    this.emitExpression(node.namespace)
+    this.add('.')
+    this.emitIdentifier(node.key)
   }
 
   protected emitInferReference(node: n.InferReference) {

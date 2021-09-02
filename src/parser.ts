@@ -354,6 +354,14 @@ export class Parser {
     return this.finishNode<n.IndexedPropertyKey>(node, { id, expression })
   }
 
+  protected parseNamespaceAccessExpression(object: n.Expression): n.NamespaceAccessExpression {
+    const node = this.startNodeFromNode(object, 'MemberExpression')
+    this.expect(tt.dot)
+    const key = this.parseIdentifier()
+
+    return this.finishNode<n.NamespaceAccessExpression>(node, { namespace: object, key })
+  }
+
   protected parseParameters() {
     const parameters: n.Parameter[] = []
     while (!this.eat(tt.parenR)) {
@@ -533,6 +541,8 @@ export class Parser {
         } else {
           base = this.parseIndexedAccessExpression(base)
         }
+      } else if (this.current.type === tt.dot) {
+        base = this.parseNamespaceAccessExpression(base)
       } else if (this.eat(tt.bitwiseOR)) {
         if (this.current.type === tt.relational && this.current.value === '>') {
           base = this.parsePipelineExpression(base)

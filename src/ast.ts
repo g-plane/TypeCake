@@ -21,6 +21,7 @@ export type Node =
   | ObjectExpression
   | ObjectExpressionProperty
   | IndexedPropertyKey
+  | NamespaceAccessExpression
   | MacroCallExpression
   | CallExpression
   | PipelineExpression
@@ -51,6 +52,7 @@ export type Expression =
   | RestElement
   | ArrayExpression
   | ObjectExpression
+  | NamespaceAccessExpression
   | CallExpression
   | PipelineExpression
   | IndexedAccessExpression
@@ -114,6 +116,12 @@ export interface IndexedPropertyKey extends NodeBase {
   type: 'IndexedPropertyKey'
   id: Identifier
   expression: Identifier | Literal
+}
+
+export interface NamespaceAccessExpression extends NodeBase {
+  type: 'NamespaceAccessExpression'
+  namespace: Expression
+  key: Identifier
 }
 
 export interface MacroCallExpression extends NodeBase {

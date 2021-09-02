@@ -19,6 +19,7 @@ export type Node =
   | TupleExpression
   | RestElement
   | ArrayExpression
+  | IntersectionExpression
   | ObjectExpression
   | ObjectExpressionProperty
   | IndexedPropertyKey
@@ -52,6 +53,7 @@ export type Expression =
   | TupleExpression
   | RestElement
   | ArrayExpression
+  | IntersectionExpression
   | ObjectExpression
   | NamespaceAccessExpression
   | CallExpression
@@ -99,6 +101,11 @@ export interface RestElement extends NodeBase {
 export interface ArrayExpression extends NodeBase {
   type: 'ArrayExpression'
   element: Expression
+}
+
+export interface IntersectionExpression extends NodeBase {
+  type: 'IntersectionExpression'
+  expressions: Expression[]
 }
 
 export interface ObjectExpression extends NodeBase {

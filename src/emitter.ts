@@ -181,6 +181,9 @@ export class Emitter {
       case 'ArrayExpression':
         this.emitArrayExpression(node)
         break
+      case 'IntersectionExpression':
+        this.emitIntersectionExpression(node)
+        break
       case 'ObjectExpression':
         this.emitObjectExpression(node)
         break
@@ -384,6 +387,17 @@ export class Emitter {
     }
     this.add('[')
     this.add(']')
+  }
+
+  protected emitIntersectionExpression(node: n.IntersectionExpression) {
+    node.expressions.forEach((expression, index) => {
+      if (index > 0) {
+        this.space()
+        this.add('&')
+        this.space()
+      }
+      this.emitExpression(expression)
+    })
   }
 
   protected emitObjectExpression(node: n.ObjectExpression) {

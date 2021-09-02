@@ -1,3 +1,10 @@
+import type * as n from './ast'
+
+export type GetNodeByType<N extends n.Node['type']> = Extract<
+  n.Node,
+  { type: N }
+>
+
 export interface CodeFrameOptions {
   line: number
   column: number

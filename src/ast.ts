@@ -3,14 +3,15 @@ import type { SourceLocation, Token as AcornToken } from 'acorn'
 export type Token = Omit<AcornToken, 'loc' | 'range'> &
   Required<Pick<AcornToken, 'loc'>>
 
-export interface NodeBase {
-  type: string
+export interface NodeBase<N extends string = string> {
+  type: N
   start: number
   end: number
   loc: SourceLocation
 }
 
 export type Node =
+  | Program
   | Identifier
   | Literal
   | TemplateLiteralExpression

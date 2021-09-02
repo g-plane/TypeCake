@@ -1,6 +1,7 @@
 import { tokenizer, tokTypes as tt } from 'acorn'
 import type { TokenType } from 'acorn'
 import type * as n from './ast'
+import type { GetNodeByType } from './utils'
 
 enum StateFlags {
   AllowInfer = 1,
@@ -76,7 +77,7 @@ export class Parser {
     throw error
   }
 
-  private startNode(type: string): n.NodeBase {
+  private startNode<N extends n.Node['type']>(type: N): n.NodeBase<N> {
     return {
       type,
       start: this.current.start,
@@ -85,7 +86,10 @@ export class Parser {
     }
   }
 
-  private startNodeFromNode(node: n.NodeBase, type: string): n.NodeBase {
+  private startNodeFromNode<N extends n.Node['type']>(
+    node: n.NodeBase,
+    type: N
+  ): n.NodeBase<N> {
     return {
       type,
       start: node.start,
@@ -94,8 +98,8 @@ export class Parser {
     }
   }
 
-  private finishNode<N extends n.NodeBase>(
-    node: n.NodeBase,
+  private finishNode<T extends n.Node['type'], N extends GetNodeByType<T>>(
+    node: n.NodeBase<T>,
     data: Omit<N, 'type' | 'start' | 'end' | 'loc'>
   ): N {
     node.end = this.last.end
@@ -124,9 +128,7 @@ export class Parser {
       }
     }
 
-    return this.finishNode<n.Program>(node, {
-      statements,
-    })
+    return this.finishNode(node, { statements })
   }
 
   protected parseStatement(): n.Statement {
@@ -174,14 +176,14 @@ export class Parser {
         this.raise(this.current, "Expect an identifier, '{' or '*'.")
     }
 
-    return this.finishNode<n.ImportDeclaration>(node, { specifiers, source })
+    return this.finishNode(node, { specifiers, source })
   }
 
   protected parseImportDefaultSpecifier(): n.ImportDefaultSpecifier {
     const node = this.startNode('ImportDefaultSpecifier')
     const local = this.parseIdentifier()
 
-    return this.finishNode<n.ImportDefaultSpecifier>(node, { local })
+    return this.finishNode(node, { local })
   }
 
   protected parseImportNamespaceSpecifier(): n.ImportNamespaceSpecifier {
@@ -190,7 +192,7 @@ export class Parser {
     this.expect(tt.name, 'as')
     const local = this.parseIdentifier()
 
-    return this.finishNode<n.ImportNamespaceSpecifier>(node, { local })
+    return this.finishNode(node, { local })
   }
 
   protected parseImportNamedSpecifiers(): n.ImportNamedSpecifier[] {
@@ -200,9 +202,7 @@ export class Parser {
       const node = this.startNode('ImportNamedSpecifier')
       const imported = this.parseIdentifier()
       const local = this.eat(tt.name, 'as') ? this.parseIdentifier() : imported
-      specifiers.push(
-        this.finishNode<n.ImportNamedSpecifier>(node, { imported, local })
-      )
+      specifiers.push(this.finishNode(node, { imported, local }))
       if (this.current.type !== tt.braceR) {
         this.expect(tt.comma)
       }
@@ -220,18 +220,14 @@ export class Parser {
     this.expect(tt.eq)
     const body = this.parseExpression()
 
-    return this.finishNode<n.FunctionDeclaration>(node, {
-      id,
-      parameters,
-      body,
-    })
+    return this.finishNode(node, { id, parameters, body })
   }
 
   protected parseIdentifier(): n.Identifier {
     const node = this.startNode('Identifier')
     const name = this.expect(tt.name, undefined, 'Expect an identifier.').value
 
-    return this.finishNode<n.Identifier>(node, { name })
+    return this.finishNode(node, { name })
   }
 
   protected parseLiteral(type?: TokenType): n.Literal {
@@ -240,7 +236,7 @@ export class Parser {
       const value = this.current.value
       const raw = this.input.slice(this.current.start, this.current.end)
       this.nextToken()
-      return this.finishNode<n.Literal>(node, { value, raw })
+      return this.finishNode(node, { value, raw })
     } else {
       this.raise(this.current, "Expect a literal or 'null'.")
     }
@@ -261,10 +257,7 @@ export class Parser {
       }
     }
 
-    return this.finishNode<n.TemplateLiteralExpression>(node, {
-      expressions,
-      quasis,
-    })
+    return this.finishNode(node, { expressions, quasis })
   }
 
   protected parseTemplateElement(): n.TemplateElement {
@@ -273,7 +266,7 @@ export class Parser {
     const raw = this.input.slice(this.current.start, this.current.end)
     this.nextToken()
 
-    return this.finishNode<n.TemplateElement>(node, { value, raw })
+    return this.finishNode(node, { value, raw })
   }
 
   protected parseTupleExpression(): n.TupleExpression {
@@ -291,7 +284,7 @@ export class Parser {
       }
     }
 
-    return this.finishNode<n.TupleExpression>(node, { elements })
+    return this.finishNode(node, { elements })
   }
 
   protected parseRestElement(): n.RestElement {
@@ -299,14 +292,14 @@ export class Parser {
     this.expect(tt.ellipsis)
     const expression = this.parseExpression()
 
-    return this.finishNode<n.RestElement>(node, { expression })
+    return this.finishNode(node, { expression })
   }
 
   protected parseArrayExpression(element: n.Expression): n.ArrayExpression {
     const node = this.startNodeFromNode(element, 'ArrayExpression')
     this.expect(tt.bracketR)
 
-    return this.finishNode<n.ArrayExpression>(node, { element })
+    return this.finishNode(node, { element })
   }
 
   protected parseObjectExpression(): n.ObjectExpression {
@@ -320,7 +313,7 @@ export class Parser {
       }
     }
 
-    return this.finishNode<n.ObjectExpression>(node, { properties })
+    return this.finishNode(node, { properties })
   }
 
   protected parseObjectExpressionProperty(): n.ObjectExpressionProperty {
@@ -333,11 +326,7 @@ export class Parser {
     this.expect(tt.colon)
     const value = this.parseExpression()
 
-    return this.finishNode<n.ObjectExpressionProperty>(node, {
-      key,
-      value,
-      optional,
-    })
+    return this.finishNode(node, { key, value, optional })
   }
 
   protected parseIndexedPropertyKey(): n.IndexedPropertyKey {
@@ -351,20 +340,17 @@ export class Parser {
         : this.parseLiteral()
     this.expect(tt.bracketR)
 
-    return this.finishNode<n.IndexedPropertyKey>(node, { id, expression })
+    return this.finishNode(node, { id, expression })
   }
 
   protected parseNamespaceAccessExpression(
     namespace: n.Identifier
   ): n.NamespaceAccessExpression {
-    const node = this.startNodeFromNode(namespace, 'MemberExpression')
+    const node = this.startNodeFromNode(namespace, 'NamespaceAccessExpression')
     this.expect(tt.dot)
     const key = this.parseIdentifier()
 
-    return this.finishNode<n.NamespaceAccessExpression>(node, {
-      namespace,
-      key,
-    })
+    return this.finishNode(node, { namespace, key })
   }
 
   protected parseParameters() {
@@ -385,7 +371,7 @@ export class Parser {
     const constraint = this.eat(tt.colon) ? this.parseExpression() : null
     const defaultType = this.eat(tt.eq) ? this.parseExpression() : null
 
-    return this.finishNode<n.Parameter>(node, { id, constraint, defaultType })
+    return this.finishNode(node, { id, constraint, defaultType })
   }
 
   protected parseSwitchExpression(): n.SwitchExpression {
@@ -395,7 +381,7 @@ export class Parser {
     this.expect(tt.braceL)
     const arms = this.parseSwitchArms()
 
-    return this.finishNode<n.SwitchExpression>(node, { expression, arms })
+    return this.finishNode(node, { expression, arms })
   }
 
   protected parseSwitchArms(): n.SwitchExpressionArm[] {
@@ -419,7 +405,7 @@ export class Parser {
     this.expect(tt.relational, '>')
     const body = this.parseExpression()
 
-    return this.finishNode<n.SwitchExpressionArm>(node, { pattern, body })
+    return this.finishNode(node, { pattern, body })
   }
 
   protected parseIfExpression(): n.IfExpression {
@@ -451,12 +437,7 @@ export class Parser {
       )
     }
 
-    return this.finishNode<n.IfExpression>(node, {
-      test,
-      constraint,
-      consequent,
-      alternate,
-    })
+    return this.finishNode(node, { test, constraint, consequent, alternate })
   }
 
   protected parseIndexedAccessExpression(
@@ -466,14 +447,14 @@ export class Parser {
     const index = this.parseExpression()
     this.expect(tt.bracketR)
 
-    return this.finishNode<n.IndexedAccessExpression>(node, { object, index })
+    return this.finishNode(node, { object, index })
   }
 
   protected parseCallExpression(callee: n.Identifier): n.CallExpression {
     const node = this.startNodeFromNode(callee, 'CallExpression')
     const args = this.parseArguments()
 
-    return this.finishNode<n.CallExpression>(node, { callee, arguments: args })
+    return this.finishNode(node, { callee, arguments: args })
   }
 
   protected parsePipelineExpression(
@@ -485,14 +466,14 @@ export class Parser {
     const transformer =
       this.current.type === tt.parenL ? this.parseCallExpression(id) : id
 
-    return this.finishNode<n.PipelineExpression>(node, { source, transformer })
+    return this.finishNode(node, { source, transformer })
   }
 
   protected parseMacroCallExpression(id: n.Identifier): n.MacroCallExpression {
     const node = this.startNode('MacroCallExpression')
     const args = this.parseArguments()
 
-    return this.finishNode<n.MacroCallExpression>(node, { id, arguments: args })
+    return this.finishNode(node, { id, arguments: args })
   }
 
   protected parseArguments(): n.Expression[] {
@@ -520,7 +501,7 @@ export class Parser {
     } while (!this.eat(tt._in))
     const body = this.parseExpression()
 
-    return this.finishNode<n.ConstInExpression>(node, { bindings, body })
+    return this.finishNode(node, { bindings, body })
   }
 
   protected parseConstInBinding(): n.ConstInBinding {
@@ -529,7 +510,7 @@ export class Parser {
     this.expect(tt.eq)
     const expression = this.parseExpression()
 
-    return this.finishNode<n.ConstInBinding>(node, { id, expression })
+    return this.finishNode(node, { id, expression })
   }
 
   protected parseSubscripts(base: n.Expression): n.Expression {
@@ -606,6 +587,6 @@ export class Parser {
     this.expect(tt.bitwiseAND)
     const id = this.parseIdentifier()
 
-    return this.finishNode<n.InferReference>(node, { id })
+    return this.finishNode(node, { id })
   }
 }

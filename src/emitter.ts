@@ -442,7 +442,7 @@ export class Emitter {
   }
 
   protected emitNamespaceAccessExpression(node: n.NamespaceAccessExpression) {
-    this.emitExpression(node.namespace)
+    this.emitIdentifier(node.namespace)
     this.add('.')
     this.emitIdentifier(node.key)
   }

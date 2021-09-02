@@ -354,12 +354,17 @@ export class Parser {
     return this.finishNode<n.IndexedPropertyKey>(node, { id, expression })
   }
 
-  protected parseNamespaceAccessExpression(object: n.Expression): n.NamespaceAccessExpression {
-    const node = this.startNodeFromNode(object, 'MemberExpression')
+  protected parseNamespaceAccessExpression(
+    namespace: n.Identifier
+  ): n.NamespaceAccessExpression {
+    const node = this.startNodeFromNode(namespace, 'MemberExpression')
     this.expect(tt.dot)
     const key = this.parseIdentifier()
 
-    return this.finishNode<n.NamespaceAccessExpression>(node, { namespace: object, key })
+    return this.finishNode<n.NamespaceAccessExpression>(node, {
+      namespace,
+      key,
+    })
   }
 
   protected parseParameters() {
@@ -464,7 +469,7 @@ export class Parser {
     return this.finishNode<n.IndexedAccessExpression>(node, { object, index })
   }
 
-  protected parseCallExpression(callee: n.Expression): n.CallExpression {
+  protected parseCallExpression(callee: n.Identifier): n.CallExpression {
     const node = this.startNodeFromNode(callee, 'CallExpression')
     const args = this.parseArguments()
 
@@ -527,13 +532,14 @@ export class Parser {
     return this.finishNode<n.ConstInBinding>(node, { id, expression })
   }
 
-  protected parseSubscripts(
-    base: n.Expression,
-    canCall: boolean
-  ): n.Expression {
+  protected parseSubscripts(base: n.Expression): n.Expression {
     while (true) {
-      if (canCall && this.current.type === tt.parenL) {
+      if (base.type === 'Identifier' && this.current.type === tt.parenL) {
+        // only identifier can be called
         return this.parseCallExpression(base)
+      } else if (base.type === 'Identifier' && this.current.type === tt.dot) {
+        // namespace can only start with an identifier
+        return this.parseNamespaceAccessExpression(base)
       } else if (this.current.type === tt.bracketL) {
         this.nextToken()
         if (this.current.type === tt.bracketR) {
@@ -541,8 +547,6 @@ export class Parser {
         } else {
           base = this.parseIndexedAccessExpression(base)
         }
-      } else if (this.current.type === tt.dot) {
-        base = this.parseNamespaceAccessExpression(base)
       } else if (this.eat(tt.bitwiseOR)) {
         if (this.current.type === tt.relational && this.current.value === '>') {
           base = this.parsePipelineExpression(base)
@@ -562,7 +566,7 @@ export class Parser {
         if (this.eat(tt.prefix, '!')) {
           return this.parseMacroCallExpression(identifier)
         } else {
-          return this.parseSubscripts(identifier, true)
+          return this.parseSubscripts(identifier)
         }
       }
       case tt._switch:
@@ -570,9 +574,9 @@ export class Parser {
       case tt._if:
         return this.parseIfExpression()
       case tt.bracketL:
-        return this.parseSubscripts(this.parseTupleExpression(), false)
+        return this.parseSubscripts(this.parseTupleExpression())
       case tt.braceL:
-        return this.parseSubscripts(this.parseObjectExpression(), false)
+        return this.parseSubscripts(this.parseObjectExpression())
       case tt._const:
         return this.parseConstInExpression()
       case tt.string:
@@ -580,15 +584,12 @@ export class Parser {
       case tt._true:
       case tt._false:
       case tt._null:
-        return this.parseSubscripts(this.parseLiteral(), false)
+        return this.parseSubscripts(this.parseLiteral())
       case tt.backQuote:
-        return this.parseSubscripts(
-          this.parseTemplateLiteralExpression(),
-          false
-        )
+        return this.parseSubscripts(this.parseTemplateLiteralExpression())
       case tt.bitwiseAND:
         if (this.state & StateFlags.AllowInfer) {
-          return this.parseSubscripts(this.parseInferReference(), false)
+          return this.parseSubscripts(this.parseInferReference())
         } else {
           this.raise(
             this.current,

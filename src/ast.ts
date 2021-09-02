@@ -120,7 +120,7 @@ export interface IndexedPropertyKey extends NodeBase {
 
 export interface NamespaceAccessExpression extends NodeBase {
   type: 'NamespaceAccessExpression'
-  namespace: Expression
+  namespace: Identifier
   key: Identifier
 }
 
@@ -132,7 +132,7 @@ export interface MacroCallExpression extends NodeBase {
 
 export interface CallExpression extends NodeBase {
   type: 'CallExpression'
-  callee: Expression
+  callee: Identifier
   arguments: Expression[]
 }
 

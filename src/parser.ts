@@ -491,11 +491,10 @@ export class Parser {
   protected parseIfExpression(): n.IfExpression {
     const node = this.startNode('IfExpression')
     this.expect(tt._if)
-    const test = this.parseExpression()
-    this.expect(tt.colon)
-    this.state |= StateFlags.AllowInfer
-    const constraint = this.parseExpression()
-    this.state ^= StateFlags.AllowInfer
+    const conditions: n.SubtypeRelation[] = []
+    do {
+      conditions.push(this.parseSubtypeRelation())
+    } while (this.eat(tt.logicalAND))
     this.expect(tt.braceL)
     const consequent = this.parseExpression()
     this.expect(tt.braceR)
@@ -517,7 +516,18 @@ export class Parser {
       )
     }
 
-    return this.finishNode(node, { test, constraint, consequent, alternate })
+    return this.finishNode(node, { conditions, consequent, alternate })
+  }
+
+  protected parseSubtypeRelation() {
+    const node = this.startNode('SubtypeRelation')
+    const expression = this.parseExpression()
+    this.expect(tt.colon)
+    this.state |= StateFlags.AllowInfer
+    const constraint = this.parseExpression()
+    this.state ^= StateFlags.AllowInfer
+
+    return this.finishNode(node, { expression, constraint })
   }
 
   protected parseIndexedAccessExpression(

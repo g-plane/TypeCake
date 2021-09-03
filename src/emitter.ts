@@ -331,19 +331,23 @@ export class Emitter {
   }
 
   protected emitIfExpression(node: n.IfExpression) {
-    this.emitExpression(node.test)
-    this.space()
-    this.add('extends')
-    this.space()
-    this.emitExpression(node.constraint)
-    this.space()
-    this.add('?')
-    this.space()
+    node.conditions.forEach((condition) => {
+      this.emitExpression(condition.expression)
+      this.space()
+      this.add('extends')
+      this.space()
+      this.emitExpression(condition.constraint)
+      this.space()
+      this.add('?')
+      this.space()
+    })
     this.emitExpression(node.consequent)
-    this.space()
-    this.add(':')
-    this.space()
-    this.emitExpression(node.alternate)
+    node.conditions.forEach(() => {
+      this.space()
+      this.add(':')
+      this.space()
+      this.emitExpression(node.alternate)
+    })
   }
 
   protected emitIdentifier(node: n.Identifier) {

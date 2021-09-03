@@ -33,6 +33,7 @@ export type Node =
   | SwitchExpression
   | SwitchExpressionArm
   | IfExpression
+  | SubtypeRelation
   | ConstInExpression
   | ConstInBinding
   | FunctionDeclaration
@@ -184,10 +185,15 @@ export interface SwitchExpressionArm extends NodeBase {
 
 export interface IfExpression extends NodeBase {
   type: 'IfExpression'
-  test: Expression
-  constraint: Expression
+  conditions: SubtypeRelation[]
   consequent: Expression
   alternate: Expression
+}
+
+export interface SubtypeRelation extends NodeBase {
+  type: 'SubtypeRelation'
+  expression: Expression
+  constraint: Expression
 }
 
 export interface ConstInExpression extends NodeBase {

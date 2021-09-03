@@ -1,0 +1,9 @@
+fn a() = { a: string }
+fn b() = { b: string }
+fn c() = { c: string }
+
+fn r1() = b | c
+fn r2() =
+  | a
+  | b
+  | c

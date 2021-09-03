@@ -7,6 +7,13 @@ enum StateFlags {
   AllowInfer = 1,
 }
 
+type ExpressionAtom =
+  | n.Identifier
+  | n.TupleExpression
+  | n.ObjectExpression
+  | n.TemplateLiteralExpression
+  | n.Literal
+
 export class Parser {
   private last!: n.Token
   private current!: n.Token
@@ -249,10 +256,19 @@ export class Parser {
     }
   }
 
-  protected parseExpressionAtom(): n.Identifier | n.Literal {
-    return this.current.type === tt.name
-      ? this.parseIdentifier()
-      : this.parseLiteral()
+  protected parseExpressionAtom(): ExpressionAtom {
+    switch (this.current.type) {
+      case tt.name:
+        return this.parseIdentifier()
+      case tt.bracketL:
+        return this.parseTupleExpression()
+      case tt.braceL:
+        return this.parseObjectExpression()
+      case tt.backQuote:
+        return this.parseTemplateLiteralExpression()
+      default:
+        return this.parseLiteral()
+    }
   }
 
   protected parseTemplateLiteralExpression(): n.TemplateLiteralExpression {

@@ -29,6 +29,7 @@ export type Node =
   | CallExpression
   | PipelineExpression
   | IndexedAccessExpression
+  | ParenthesizedExpression
   | SwitchExpression
   | SwitchExpressionArm
   | IfExpression
@@ -61,6 +62,7 @@ export type Expression =
   | CallExpression
   | PipelineExpression
   | IndexedAccessExpression
+  | ParenthesizedExpression
   | MacroCallExpression
   | SwitchExpression
   | IfExpression
@@ -161,6 +163,11 @@ export interface IndexedAccessExpression extends NodeBase {
   type: 'IndexedAccessExpression'
   object: Expression
   index: Expression
+}
+
+export interface ParenthesizedExpression extends NodeBase {
+  type: 'ParenthesizedExpression'
+  expression: Expression
 }
 
 export interface SwitchExpression extends NodeBase {

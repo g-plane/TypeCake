@@ -12,6 +12,7 @@ type ExpressionAtom =
   | n.TupleExpression
   | n.ObjectExpression
   | n.TemplateLiteralExpression
+  | n.ParenthesizedExpression
   | n.Literal
 
 export class Parser {
@@ -266,6 +267,8 @@ export class Parser {
         return this.parseObjectExpression()
       case tt.backQuote:
         return this.parseTemplateLiteralExpression()
+      case tt.parenL:
+        return this.parseParenthesizedExpression()
       default:
         return this.parseLiteral()
     }
@@ -518,6 +521,15 @@ export class Parser {
     return this.finishNode(node, { object, index })
   }
 
+  protected parseParenthesizedExpression(): n.ParenthesizedExpression {
+    const node = this.startNode('ParenthesizedExpression')
+    this.expect(tt.parenL)
+    const expression = this.parseExpression()
+    this.expect(tt.parenR)
+
+    return this.finishNode(node, { expression })
+  }
+
   protected parseCallExpression(callee: n.Identifier): n.CallExpression {
     const node = this.startNodeFromNode(callee, 'CallExpression')
     const args = this.parseArguments()
@@ -640,6 +652,10 @@ export class Parser {
         return this.parseNonConditionalExpression(this.parseTupleExpression())
       case tt.braceL:
         return this.parseNonConditionalExpression(this.parseObjectExpression())
+      case tt.parenL:
+        return this.parseNonConditionalExpression(
+          this.parseParenthesizedExpression()
+        )
       case tt._const:
         return this.parseConstInExpression()
       case tt.string:

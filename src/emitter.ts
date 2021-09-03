@@ -202,6 +202,9 @@ export class Emitter {
       case 'IndexedAccessExpression':
         this.emitIndexedAccessExpression(node)
         break
+      case 'ParenthesizedExpression':
+        this.emitParenthesizedExpression(node)
+        break
       case 'SwitchExpression':
         this.emitSwitchExpression(node)
         break
@@ -256,6 +259,12 @@ export class Emitter {
     this.add('[')
     this.emitExpression(node.index)
     this.add(']')
+  }
+
+  protected emitParenthesizedExpression(node: n.ParenthesizedExpression) {
+    this.add('(')
+    this.emitExpression(node.expression)
+    this.add(')')
   }
 
   protected emitConstInExpression(node: n.ConstInExpression) {

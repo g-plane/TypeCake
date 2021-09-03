@@ -269,8 +269,17 @@ export class Parser {
         return this.parseTemplateLiteralExpression()
       case tt.parenL:
         return this.parseParenthesizedExpression()
-      default:
+      case tt.num:
+      case tt.string:
+      case tt._true:
+      case tt._false:
+      case tt._null:
         return this.parseLiteral()
+      default:
+        this.raise(
+          this.current,
+          'Expect an identifier, literal, object literal or tuple.'
+        )
     }
   }
 
@@ -648,26 +657,8 @@ export class Parser {
         return this.parseSwitchExpression()
       case tt._if:
         return this.parseIfExpression()
-      case tt.bracketL:
-        return this.parseNonConditionalExpression(this.parseTupleExpression())
-      case tt.braceL:
-        return this.parseNonConditionalExpression(this.parseObjectExpression())
-      case tt.parenL:
-        return this.parseNonConditionalExpression(
-          this.parseParenthesizedExpression()
-        )
       case tt._const:
         return this.parseConstInExpression()
-      case tt.string:
-      case tt.num:
-      case tt._true:
-      case tt._false:
-      case tt._null:
-        return this.parseNonConditionalExpression(this.parseLiteral())
-      case tt.backQuote:
-        return this.parseNonConditionalExpression(
-          this.parseTemplateLiteralExpression()
-        )
       case tt.bitwiseAND:
         return this.state & StateFlags.AllowInfer
           ? this.parseNonConditionalExpression(this.parseInferReference())
@@ -675,7 +666,7 @@ export class Parser {
       case tt.bitwiseOR:
         return this.parseUnionExpression()
       default:
-        this.raise(this.current, 'Expect an expression here.')
+        return this.parseNonConditionalExpression(this.parseExpressionAtom())
     }
   }
 

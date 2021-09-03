@@ -334,6 +334,26 @@ export class Parser {
     return this.finishNode(node, { expressions })
   }
 
+  protected parseUnionExpression(first?: n.Expression): n.UnionExpression {
+    const node = first
+      ? this.startNodeFromNode(first, 'UnionExpression')
+      : this.startNode('UnionExpression')
+    const expressions: n.Expression[] = []
+    if (first) {
+      expressions.push(first)
+    } else {
+      this.expect(tt.bitwiseOR)
+    }
+    do {
+      expressions.push(this.parseNonUnionExpression(this.parseExpressionAtom()))
+    } while (this.last.type === tt.bitwiseOR)
+    //            ^^^^
+    // token '|' was consumed by checking if is pipeline operator,
+    // so we may retrieve it by accessing last token
+
+    return this.finishNode(node, { expressions })
+  }
+
   protected parseObjectExpression(): n.ObjectExpression {
     const node = this.startNode('ObjectExpression')
     this.expect(tt.braceL)
@@ -560,12 +580,12 @@ export class Parser {
         } else {
           base = this.parseIndexedAccessExpression(base)
         }
-      } else if (this.eat(tt.bitwiseOR)) {
-        if (this.current.type === tt.relational && this.current.value === '>') {
-          base = this.parsePipelineExpression(base)
-        } else {
-          this.raise(this.current, "Pipeline operator should be '|>'.")
-        }
+      } else if (
+        this.eat(tt.bitwiseOR) &&
+        this.current.type === tt.relational &&
+        this.current.value === '>'
+      ) {
+        base = this.parsePipelineExpression(base)
       } else {
         return base
       }
@@ -577,6 +597,15 @@ export class Parser {
     return this.eat(tt.bitwiseAND) ? this.parseIntersectionType(base) : base
   }
 
+  protected parseNonConditionalExpression(base: n.Expression): n.Expression {
+    base = this.parseNonUnionExpression(base)
+    // token '|' was consumed by checking if is pipeline operator,
+    // so we may retrieve it by accessing last token
+    return this.last.type === tt.bitwiseOR
+      ? this.parseUnionExpression(base)
+      : base
+  }
+
   protected parseExpression(): n.Expression {
     switch (this.current.type) {
       case tt.name: {
@@ -584,7 +613,7 @@ export class Parser {
         if (this.eat(tt.prefix, '!')) {
           return this.parseMacroCallExpression(identifier)
         } else {
-          return this.parseNonUnionExpression(identifier)
+          return this.parseNonConditionalExpression(identifier)
         }
       }
       case tt._switch:
@@ -592,9 +621,9 @@ export class Parser {
       case tt._if:
         return this.parseIfExpression()
       case tt.bracketL:
-        return this.parseNonUnionExpression(this.parseTupleExpression())
+        return this.parseNonConditionalExpression(this.parseTupleExpression())
       case tt.braceL:
-        return this.parseNonUnionExpression(this.parseObjectExpression())
+        return this.parseNonConditionalExpression(this.parseObjectExpression())
       case tt._const:
         return this.parseConstInExpression()
       case tt.string:
@@ -602,15 +631,17 @@ export class Parser {
       case tt._true:
       case tt._false:
       case tt._null:
-        return this.parseNonUnionExpression(this.parseLiteral())
+        return this.parseNonConditionalExpression(this.parseLiteral())
       case tt.backQuote:
-        return this.parseNonUnionExpression(
+        return this.parseNonConditionalExpression(
           this.parseTemplateLiteralExpression()
         )
       case tt.bitwiseAND:
         return this.state & StateFlags.AllowInfer
-          ? this.parseNonUnionExpression(this.parseInferReference())
+          ? this.parseNonConditionalExpression(this.parseInferReference())
           : this.parseIntersectionType()
+      case tt.bitwiseOR:
+        return this.parseUnionExpression()
       default:
         this.raise(this.current, 'Expect an expression here.')
     }

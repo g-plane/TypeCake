@@ -20,6 +20,7 @@ export type Node =
   | RestElement
   | ArrayExpression
   | IntersectionExpression
+  | UnionExpression
   | ObjectExpression
   | ObjectExpressionProperty
   | IndexedPropertyKey
@@ -54,6 +55,7 @@ export type Expression =
   | RestElement
   | ArrayExpression
   | IntersectionExpression
+  | UnionExpression
   | ObjectExpression
   | NamespaceAccessExpression
   | CallExpression
@@ -105,6 +107,11 @@ export interface ArrayExpression extends NodeBase {
 
 export interface IntersectionExpression extends NodeBase {
   type: 'IntersectionExpression'
+  expressions: Expression[]
+}
+
+export interface UnionExpression extends NodeBase {
+  type: 'UnionExpression'
   expressions: Expression[]
 }
 

@@ -184,6 +184,9 @@ export class Emitter {
       case 'IntersectionExpression':
         this.emitIntersectionExpression(node)
         break
+      case 'UnionExpression':
+        this.emitUnionExpression(node)
+        break
       case 'ObjectExpression':
         this.emitObjectExpression(node)
         break
@@ -394,6 +397,17 @@ export class Emitter {
       if (index > 0) {
         this.space()
         this.add('&')
+        this.space()
+      }
+      this.emitExpression(expression)
+    })
+  }
+
+  protected emitUnionExpression(node: n.UnionExpression) {
+    node.expressions.forEach((expression, index) => {
+      if (index > 0) {
+        this.space()
+        this.add('|')
         this.space()
       }
       this.emitExpression(expression)

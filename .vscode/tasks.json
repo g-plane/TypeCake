@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start playground",
+      "type": "npm",
+      "script": "start",
+      "path": "playground/",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Build compiler in watch mode",
+      "type": "npm",
+      "script": "watch",
+      "group": "build",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Watch with playground",
+      "dependsOn": [
+        "Start playground",
+        "Build compiler in watch mode"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

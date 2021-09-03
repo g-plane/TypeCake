@@ -1,0 +1,26 @@
+{
+  "name": "@typacro/cli",
+  "version": "0.0.0",
+  "description": "Typacro CLI",
+  "author": "Pig Fang <g-plane@hotmail.com>",
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "build": "tsc -b",
+    "watch": "rollup -b -w"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js"
+    }
+  },
+  "bin": "./dist/index.js",
+  "dependencies": {
+    "typacro": "workspace:*"
+  },
+  "devDependencies": {
+    "@gplane/tsconfig": "^5.0.0",
+    "@types/node": "^16.7.1"
+  }
+}

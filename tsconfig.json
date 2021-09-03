@@ -6,7 +6,11 @@
     "rootDir": "src",
     "module": "commonjs",
     "lib": ["ES2018"],
+    "types": [],
     "composite": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "typeAcquisition": {
+    "enable": false
+  }
 }

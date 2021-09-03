@@ -1,6 +1,5 @@
 import { promises as fs } from 'fs'
-import { Emitter } from './emitter'
-import { Parser } from './parser'
+import { Parser, Emitter } from 'typacro'
 ;(async () => {
   let code = ''
   if (process.argv[2]) {

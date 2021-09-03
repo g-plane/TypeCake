@@ -1,0 +1,9 @@
+{
+  "extends": "@gplane/tsconfig",
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "outDir": "dist"
+  },
+  "references": [{ "path": "../" }]
+}

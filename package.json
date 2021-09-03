@@ -25,7 +25,6 @@
   "devDependencies": {
     "@gplane/tsconfig": "^5.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
-    "@types/node": "^16.7.1",
     "prettier": "^2.3.2",
     "rollup": "^2.56.3",
     "rollup-plugin-swc": "^0.2.0",

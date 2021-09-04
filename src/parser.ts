@@ -479,7 +479,7 @@ export class Parser {
   protected parseSwitchExpressionArm(): n.SwitchExpressionArm {
     const node = this.startNode('SwitchExpressionArm')
     this.state |= StateFlags.AllowInfer
-    const pattern = this.parseExpression()
+    const pattern = this.parseNonConditionalExpression()
     this.state ^= StateFlags.AllowInfer
     this.expect(tt.plusMin, '-')
     this.expect(tt.relational, '>')
@@ -521,10 +521,10 @@ export class Parser {
 
   protected parseSubtypeRelation() {
     const node = this.startNode('SubtypeRelation')
-    const expression = this.parseExpression()
+    const expression = this.parseNonConditionalExpression()
     this.expect(tt.colon)
     this.state |= StateFlags.AllowInfer
-    const constraint = this.parseExpression()
+    const constraint = this.parseNonConditionalExpression()
     this.state ^= StateFlags.AllowInfer
 
     return this.finishNode(node, { expression, constraint })
@@ -644,8 +644,8 @@ export class Parser {
     return this.eat(tt.bitwiseAND) ? this.parseIntersectionType(base) : base
   }
 
-  protected parseNonConditionalExpression(base: n.Expression): n.Expression {
-    base = this.parseNonUnionExpression(base)
+  protected parseNonConditionalExpression(base?: n.Expression): n.Expression {
+    base = this.parseNonUnionExpression(base ?? this.parseExpressionAtom())
     // token '|' was consumed by checking if is pipeline operator,
     // so we may retrieve it by accessing last token
     return this.last.type === tt.bitwiseOR

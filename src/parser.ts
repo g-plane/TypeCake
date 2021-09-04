@@ -3,9 +3,7 @@ import type { TokenType } from 'acorn'
 import type * as n from './ast'
 import type { GetNodeByType } from './utils'
 
-enum StateFlags {
-  AllowInfer = 1,
-}
+const IN_PATTERN = 1
 
 type ExpressionAtom =
   | n.Identifier
@@ -14,12 +12,13 @@ type ExpressionAtom =
   | n.TemplateLiteralExpression
   | n.ParenthesizedExpression
   | n.Literal
+  | n.InferReference
 
 export class Parser {
   private last!: n.Token
   private current!: n.Token
   private tokens!: ReturnType<typeof tokenizer>
-  private state = 0
+  private isInPattern = 0
 
   constructor(private input: string) {}
 
@@ -275,6 +274,12 @@ export class Parser {
       case tt._false:
       case tt._null:
         return this.parseLiteral()
+      case tt.bitwiseAND:
+        if (this.isInPattern & IN_PATTERN) {
+          return this.parseInferReference()
+        } else {
+          this.raise(this.current, "'infer' is only allowed in patterns.")
+        }
       default:
         this.raise(
           this.current,
@@ -478,9 +483,10 @@ export class Parser {
 
   protected parseSwitchExpressionArm(): n.SwitchExpressionArm {
     const node = this.startNode('SwitchExpressionArm')
-    this.state |= StateFlags.AllowInfer
+    this.isInPattern <<= 1
+    this.isInPattern |= IN_PATTERN
     const pattern = this.parseNonConditionalExpression()
-    this.state ^= StateFlags.AllowInfer
+    this.isInPattern >>= 1
     this.expect(tt.plusMin, '-')
     this.expect(tt.relational, '>')
     const body = this.parseExpression()
@@ -521,11 +527,12 @@ export class Parser {
 
   protected parseSubtypeRelation() {
     const node = this.startNode('SubtypeRelation')
+    this.isInPattern <<= 1
     const expression = this.parseNonConditionalExpression()
     this.expect(tt.colon)
-    this.state |= StateFlags.AllowInfer
+    this.isInPattern |= IN_PATTERN
     const constraint = this.parseNonConditionalExpression()
-    this.state ^= StateFlags.AllowInfer
+    this.isInPattern >>= 1
 
     return this.finishNode(node, { expression, constraint })
   }
@@ -670,7 +677,7 @@ export class Parser {
       case tt._const:
         return this.parseConstInExpression()
       case tt.bitwiseAND:
-        return this.state & StateFlags.AllowInfer
+        return this.isInPattern & IN_PATTERN
           ? this.parseNonConditionalExpression(this.parseInferReference())
           : this.parseIntersectionType()
       case tt.bitwiseOR:

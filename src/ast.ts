@@ -36,6 +36,7 @@ export type Node =
   | SubtypeRelation
   | ConstInExpression
   | ConstInBinding
+  | ForExpression
   | FunctionDeclaration
   | Parameter
   | InferReference
@@ -68,6 +69,7 @@ export type Expression =
   | SwitchExpression
   | IfExpression
   | ConstInExpression
+  | ForExpression
   | InferReference
 
 export interface Identifier extends NodeBase {
@@ -206,6 +208,14 @@ export interface ConstInBinding extends NodeBase {
   type: 'ConstInBinding'
   id: Identifier
   expression: Expression
+}
+
+export interface ForExpression extends NodeBase {
+  type: 'ForExpression'
+  each: Identifier
+  collection: Expression
+  mapper: Expression | null
+  body: Expression
 }
 
 export interface FunctionDeclaration extends NodeBase {

@@ -619,6 +619,20 @@ export class Parser {
     return this.finishNode(node, { id, expression })
   }
 
+  protected parseForExpression(): n.ForExpression {
+    const node = this.startNode('ForExpression')
+    this.expect(tt._for)
+    const each = this.parseIdentifier()
+    this.expect(tt._in)
+    const collection = this.parseExpression()
+    const mapper = this.eat(tt.name, 'as') ? this.parseExpression() : null
+    this.expect(tt.braceL)
+    const body = this.parseExpression()
+    this.expect(tt.braceR)
+
+    return this.finishNode(node, { each, collection, mapper, body })
+  }
+
   protected parseSubscripts(base: n.Expression): n.Expression {
     while (true) {
       if (base.type === 'Identifier' && this.current.type === tt.parenL) {
@@ -674,6 +688,8 @@ export class Parser {
         return this.parseSwitchExpression()
       case tt._if:
         return this.parseIfExpression()
+      case tt._for:
+        return this.parseForExpression()
       case tt._const:
         return this.parseConstInExpression()
       case tt.bitwiseAND:

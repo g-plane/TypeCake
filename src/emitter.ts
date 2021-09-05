@@ -214,6 +214,9 @@ export class Emitter {
       case 'ConstInExpression':
         this.emitConstInExpression(node)
         break
+      case 'ForExpression':
+        this.emitForExpression(node)
+        break
       case 'InferReference':
         this.emitInferReference(node)
         break
@@ -348,6 +351,29 @@ export class Emitter {
       this.space()
       this.emitExpression(node.alternate)
     })
+  }
+
+  protected emitForExpression(node: n.ForExpression) {
+    this.add('{')
+    this.space()
+    this.add('[')
+    this.emitIdentifier(node.each)
+    this.space()
+    this.add('in')
+    this.space()
+    this.emitExpression(node.collection)
+    if (node.mapper) {
+      this.space()
+      this.add('as')
+      this.space()
+      this.emitExpression(node.mapper)
+    }
+    this.add(']')
+    this.add(':')
+    this.space()
+    this.emitExpression(node.body)
+    this.space()
+    this.add('}')
   }
 
   protected emitIdentifier(node: n.Identifier) {

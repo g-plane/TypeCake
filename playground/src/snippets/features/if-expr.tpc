@@ -15,3 +15,12 @@ fn F2(T) = if T : string {
 fn Result1() = F2(string)
 fn Result2() = F2(boolean)
 fn Result3() = F2(number)
+
+fn F3(T1, T2) = if T1 : string && T2 : number {
+  'T1 is string and T2 is number.'
+} else {
+  'I don\'t know.'
+}
+
+fn Result4() = F3('', 0)
+fn Result5() = F3(false, 0)

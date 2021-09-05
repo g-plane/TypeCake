@@ -6,6 +6,8 @@
 
 ## Examples
 
+You can open [playground](https://typacro.vercel.app/) to edit and compile the code on-the-fly.
+
 ### Declaring "type" function
 
 ```rust
@@ -41,6 +43,14 @@ fn F2(T) = if T : string {
   'b'
 } else {
   'c'
+}
+```
+
+### For expression
+
+```rust
+fn F2() = for K in 'click' | 'change' as `on${Capitalize(K)}` {
+  K
 }
 ```
 

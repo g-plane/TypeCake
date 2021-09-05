@@ -1,0 +1,7 @@
+fn F1() = for K in 'click' | 'change' {
+  `on-${K}`
+}
+
+fn F2() = for K in 'click' | 'change' as `on${Capitalize(K)}` {
+  K
+}

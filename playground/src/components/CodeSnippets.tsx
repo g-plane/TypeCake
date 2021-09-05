@@ -4,11 +4,12 @@ import { sourceCodeAtom } from '../states/codeAtom'
 
 const featuresExamples = new Map([
   ['Basic', 'basic'],
-  ['Object Type', 'object-type'],
+  ['Object type', 'object-type'],
   ['Tuples and arrays', 'tuples-and-arrays'],
   ['Intersection type', 'intersection-type'],
   ['Union type', 'union-type'],
-  ['If Expression', 'if-expr'],
+  ['If expression', 'if-expr'],
+  ['For expression', 'for-expr'],
   ['Pattern matching', 'switch-expr'],
   ['Capturing in patterns', 'infer'],
   ['Const-in expression', 'const-in'],
@@ -17,8 +18,8 @@ const featuresExamples = new Map([
   ['Import declarations', 'import'],
 ])
 const realWorldExamples = new Map([
-  ['Unwrap Promise', 'unwrap-promise'],
-  ['Camel Case', 'camel-case'],
+  ['Unwrap promise', 'unwrap-promise'],
+  ['Camel case', 'camel-case'],
 ])
 
 export default function CodeSnippets() {

@@ -10,7 +10,7 @@ import { editorOptions } from '../utils/editor-options'
 
 const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))
 
-export default function TypacroEditor() {
+export default function TypeCakeEditor() {
   const [sourceCode, setSourceCode] = useAtom(sourceCodeAtom)
   const [errorCause] = useAtom(errorCauseAtom)
   const monacoInstance = useMonaco()
@@ -47,12 +47,12 @@ export default function TypacroEditor() {
     }
 
     if (!errorCause) {
-      monacoInstance.editor.setModelMarkers(model, 'typacro', [])
+      monacoInstance.editor.setModelMarkers(model, 'typecake', [])
       return
     }
-    monacoInstance.editor.setModelMarkers(model, 'typacro', [
+    monacoInstance.editor.setModelMarkers(model, 'typecake', [
       {
-        source: 'Typacro',
+        source: 'TypeCake',
         message: errorCause.message,
         severity: monacoInstance.MarkerSeverity.Error,
         startLineNumber: errorCause.token.loc!.start.line,

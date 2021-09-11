@@ -9,7 +9,7 @@ import {
 import HeaderBar from './components/HeaderBar'
 import CodeSnippets from './components/CodeSnippets'
 import OutputControl from './components/OutputControl'
-import TypacroEditor from './components/TypacroEditor'
+import TypeCakeEditor from './components/TypeCakeEditor'
 import TypeScriptEditor from './components/TypeScriptEditor'
 import FooterBar from './components/FooterBar'
 
@@ -37,7 +37,7 @@ export default function App() {
             </Flex>
             <Center>
               <HStack width="full" height="80vh" spacing="60px">
-                <TypacroEditor />
+                <TypeCakeEditor />
                 <TypeScriptEditor />
               </HStack>
             </Center>

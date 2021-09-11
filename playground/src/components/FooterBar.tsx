@@ -17,7 +17,7 @@ export default function FooterBar() {
           Pig Fang
         </Link>
       </Text>
-      <Link href="https://github.com/g-plane/typacro" isExternal>
+      <Link href="https://github.com/g-plane/typecake" isExternal>
         <FiGithub size={24} />
       </Link>
     </Flex>

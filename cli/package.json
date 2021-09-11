@@ -1,7 +1,7 @@
 {
-  "name": "@typacro/cli",
+  "name": "@typecake/cli",
   "version": "0.0.0",
-  "description": "Typacro CLI",
+  "description": "TypeCake CLI",
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
   "keywords": [],
@@ -17,7 +17,7 @@
   },
   "bin": "./dist/index.js",
   "dependencies": {
-    "typacro": "workspace:*"
+    "typecake": "workspace:*"
   },
   "devDependencies": {
     "@gplane/tsconfig": "^5.0.0",

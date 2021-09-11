@@ -1,4 +1,4 @@
-# typacro
+# 🍰 TypeCake
 
 > DSL that generates TypeScript types.
 
@@ -6,7 +6,7 @@
 
 ## Examples
 
-You can open [playground](https://typacro.vercel.app/) to edit and compile the code on-the-fly.
+You can open [playground](https://typecake.vercel.app/) to edit and compile the code on-the-fly.
 
 ### Declaring "type" function
 

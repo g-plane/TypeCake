@@ -13,7 +13,7 @@ export default function HeaderBar() {
       borderBottomColor="gray.300"
     >
       <Heading as="h1" size="lg" letterSpacing="tight">
-        Typacro Playground
+        🍰 TypeCake Playground
       </Heading>
     </Box>
   )

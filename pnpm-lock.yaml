@@ -25,9 +25,9 @@ importers:
     specifiers:
       '@gplane/tsconfig': ^5.0.0
       '@types/node': ^16.7.1
-      typacro: workspace:*
+      typecake: workspace:*
     dependencies:
-      typacro: link:..
+      typecake: link:..
     devDependencies:
       '@gplane/tsconfig': 5.0.0
       '@types/node': 16.7.1
@@ -58,7 +58,7 @@ importers:
       regenerator-runtime: ^0.13.9
       swc-loader: ^0.1.14
       ts-node: ^10.2.1
-      typacro: workspace:*
+      typecake: workspace:*
       webpack: ^5.51.1
       webpack-cli: ^4.8.0
       webpack-dev-server: ^4.0.0
@@ -76,7 +76,7 @@ importers:
       react-dom: 17.0.2_react@17.0.2
       react-icons: 4.2.0_react@17.0.2
       regenerator-runtime: 0.13.9
-      typacro: link:..
+      typecake: link:..
     devDependencies:
       '@gplane/tsconfig': 5.0.0
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.0-rc.6_5beabfc7b86e47016d82cf6516307c31
@@ -89,7 +89,7 @@ importers:
       monaco-editor: 0.27.0
       react-refresh: 0.10.0
       swc-loader: 0.1.14_webpack@5.51.1
-      ts-node: 10.2.1_17ce6fd8c8d1f99bc239cbb46ff9b5a2
+      ts-node: 10.2.1_6f808acaa9e2a713aefa7722c8815f84
       webpack: 5.51.1_webpack-cli@4.8.0
       webpack-cli: 4.8.0_cfb727fee7eb167458a87e2689887cca
       webpack-dev-server: 4.0.0_webpack-cli@4.8.0+webpack@5.51.1
@@ -4303,7 +4303,7 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
-  /ts-node/10.2.1_17ce6fd8c8d1f99bc239cbb46ff9b5a2:
+  /ts-node/10.2.1_6f808acaa9e2a713aefa7722c8815f84:
     resolution: {integrity: sha512-hCnyOyuGmD5wHleOQX6NIjJtYVIO8bPP8F2acWkB4W06wdlkgyvJtubO/I9NkI88hCFECbsEgoLc0VNkYmcSfw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -4324,7 +4324,6 @@ packages:
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
       '@tsconfig/node16': 1.0.2
-      '@types/node': 16.7.1
       acorn: 8.4.1
       acorn-walk: 8.1.1
       arg: 4.1.3

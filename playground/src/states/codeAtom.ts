@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import { Token, Parser, Emitter, codeFrame } from 'typacro'
+import { Token, Parser, Emitter, codeFrame } from 'typecake'
 
 export const sourceCodeAtom = atom('')
 

@@ -1,5 +1,5 @@
 {
-  "name": "typacro",
+  "name": "typecake",
   "version": "0.0.0",
   "description": "DSL that generates TypeScript types.",
   "author": "Pig Fang <g-plane@hotmail.com>",
@@ -12,10 +12,10 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "module": "dist/typacro.mjs",
+  "module": "dist/typecake.mjs",
   "exports": {
     ".": {
-      "import": "./dist/typacro.mjs",
+      "import": "./dist/typecake.mjs",
       "require": "./dist/index.js"
     }
   },

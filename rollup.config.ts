@@ -5,7 +5,7 @@ import swc from 'rollup-plugin-swc'
 export default defineConfig({
   input: './src/index.ts',
   output: {
-    file: './dist/typacro.mjs',
+    file: './dist/typecake.mjs',
     format: 'esm',
     sourcemap: true,
   },

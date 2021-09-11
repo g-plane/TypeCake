@@ -220,6 +220,9 @@ export class Emitter {
       case 'InferReference':
         this.emitInferReference(node)
         break
+      case 'TypeOperator':
+        this.emitTypeOperator(node)
+        break
     }
   }
 
@@ -518,5 +521,11 @@ export class Emitter {
     this.add('infer')
     this.space()
     this.emitIdentifier(node.id)
+  }
+
+  protected emitTypeOperator(node: n.TypeOperator) {
+    this.add(node.operator)
+    this.space()
+    this.emitExpression(node.expression)
   }
 }

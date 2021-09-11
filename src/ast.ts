@@ -40,6 +40,7 @@ export type Node =
   | FunctionDeclaration
   | Parameter
   | InferReference
+  | TypeOperator
   | ImportDeclaration
   | ImportDefaultSpecifier
   | ImportNamespaceSpecifier
@@ -71,6 +72,7 @@ export type Expression =
   | ConstInExpression
   | ForExpression
   | InferReference
+  | TypeOperator
 
 export interface Identifier extends NodeBase {
   type: 'Identifier'
@@ -235,6 +237,12 @@ export interface Parameter extends NodeBase {
 export interface InferReference extends NodeBase {
   type: 'InferReference'
   id: Identifier
+}
+
+export interface TypeOperator extends NodeBase {
+  type: 'TypeOperator'
+  operator: string
+  expression: Expression
 }
 
 export interface ImportDeclaration extends NodeBase {

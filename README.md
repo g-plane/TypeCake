@@ -1,6 +1,6 @@
 # 🍰 TypeCake
 
-> DSL that generates TypeScript types.
+> Language that generates TypeScript types.
 
 > Still in progress.
 

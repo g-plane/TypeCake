@@ -1,7 +1,7 @@
 {
   "name": "typecake",
   "version": "0.0.0",
-  "description": "DSL that generates TypeScript types.",
+  "description": "Language that generates TypeScript types.",
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
   "keywords": [],

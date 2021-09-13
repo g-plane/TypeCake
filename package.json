@@ -1,6 +1,6 @@
 {
   "name": "typecake",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Language that generates TypeScript types.",
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
@@ -8,9 +8,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -b && rollup -c rollup.config.ts",
     "watch": "rollup -w -c rollup.config.ts",
+    "prepublishOnly": "tsc -b && rollup -c rollup.config.ts",
     "fmt": "prettier --write src playground/src"
   },
   "main": "dist/index.js",

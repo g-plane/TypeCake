@@ -5,6 +5,9 @@
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
   "keywords": [],
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist"
   ],

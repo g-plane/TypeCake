@@ -1,9 +1,6 @@
 {
   "name": "@typecake/playground",
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "check": "tsc -b",
     "start": "webpack serve --mode=development",

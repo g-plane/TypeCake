@@ -37,7 +37,7 @@ export default (_: Record<string, string>, argv: Record<string, string>) => {
           },
         },
         {
-          test: /\.tpc$/,
+          test: /\.tc$/,
           type: 'asset/source',
         },
       ],

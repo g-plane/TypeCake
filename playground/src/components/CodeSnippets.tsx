@@ -30,7 +30,7 @@ export default function CodeSnippets() {
   ) => {
     const file = featuresExamples.get(event.target.value)
     if (file) {
-      const code = await import(`../snippets/features/${file}.tpc`)
+      const code = await import(`../snippets/features/${file}.tc`)
       setSourceCode(code.default)
     }
   }
@@ -40,7 +40,7 @@ export default function CodeSnippets() {
   ) => {
     const file = realWorldExamples.get(event.target.value)
     if (file) {
-      const code = await import(`../snippets/real-world/${file}.tpc`)
+      const code = await import(`../snippets/real-world/${file}.tc`)
       setSourceCode(code.default)
     }
   }

@@ -5,6 +5,9 @@
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",
   "keywords": [],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -b && rollup -c rollup.config.ts",
     "watch": "rollup -w -c rollup.config.ts",

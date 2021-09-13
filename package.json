@@ -1,6 +1,6 @@
 {
   "name": "typecake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Language that generates TypeScript types.",
   "author": "Pig Fang <g-plane@hotmail.com>",
   "license": "MIT",

@@ -1,6 +1,6 @@
 # 🍰 TypeCake
 
-TypeCake is a language that compiles TypeScript types.
+TypeCake is a language that compiles to TypeScript types.
 
 > Still in progress.
 

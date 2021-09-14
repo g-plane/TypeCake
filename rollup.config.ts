@@ -13,16 +13,7 @@ export default defineConfig({
     resolve({
       extensions: ['.ts'],
     }),
-    swc({
-      jsc: {
-        parser: {
-          syntax: 'typescript',
-        },
-        loose: true,
-        target: 'es2018',
-      },
-      sourceMaps: true,
-    }),
+    swc(),
   ],
   external: ['acorn'],
 })

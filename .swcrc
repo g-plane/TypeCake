@@ -1,0 +1,10 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript"
+    },
+    "loose": true,
+    "target": "es2019"
+  },
+  "sourceMaps": true
+}

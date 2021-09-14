@@ -15,6 +15,7 @@
     "build": "tsc -b && rollup -c rollup.config.ts",
     "watch": "rollup -w -c rollup.config.ts",
     "prepublishOnly": "tsc -b && rollup -c rollup.config.ts",
+    "test": "jest",
     "fmt": "prettier --write src playground/src"
   },
   "main": "dist/index.js",
@@ -32,6 +33,10 @@
   "devDependencies": {
     "@gplane/tsconfig": "^5.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
+    "@swc/core": "^1.2.85",
+    "@swc/jest": "^0.2.3",
+    "@types/jest": "^27.0.1",
+    "jest": "^27.2.0",
     "prettier": "^2.3.2",
     "rollup": "^2.56.3",
     "rollup-plugin-swc": "^0.2.0",

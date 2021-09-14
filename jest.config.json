@@ -1,0 +1,12 @@
+{
+  "transform": {
+    "\\.tsx?$": [
+      "@swc/jest",
+      {
+        "module": {
+          "type": "commonjs"
+        }
+      }
+    ]
+  }
+}

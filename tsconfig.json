@@ -9,8 +9,5 @@
     "types": [],
     "composite": true
   },
-  "include": ["src"],
-  "typeAcquisition": {
-    "enable": false
-  }
+  "include": ["src"]
 }

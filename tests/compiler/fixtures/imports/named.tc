@@ -1,0 +1,2 @@
+from "a" import { x, y as z }
+from 'b' import { $1, _2 };

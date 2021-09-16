@@ -1,0 +1,3 @@
+from '$' import $
+from '_' import _;
+from "abc" import def

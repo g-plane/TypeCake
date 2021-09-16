@@ -1,0 +1,5 @@
+fn IsString(T) = if T : string {
+  'a string'
+} else {
+  'something else'
+}

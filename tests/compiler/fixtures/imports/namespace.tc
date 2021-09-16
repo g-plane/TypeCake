@@ -1,0 +1,3 @@
+from '$' import * as $
+from '_' import * as _;
+from "abc" import * as def

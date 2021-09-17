@@ -1,0 +1,7 @@
+fn F1() = number[]
+fn F2() = 'x'[]
+fn F3() = true[]
+fn F4() = false[]
+fn F5() = null[]
+fn F6() = 23.4[]
+fn F7() = Object[]

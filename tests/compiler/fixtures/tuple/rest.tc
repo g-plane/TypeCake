@@ -1,0 +1,3 @@
+fn F1() = [number, ...string[]]
+fn F2() = [...string[], number]
+fn F3() = [number, ...string[], boolean]

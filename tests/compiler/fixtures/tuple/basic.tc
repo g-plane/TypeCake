@@ -1,0 +1,4 @@
+fn F1() = []
+fn F2() = [number]
+fn F3() = [number, string]
+fn F4() = [number, if string : string { true } else { false }]

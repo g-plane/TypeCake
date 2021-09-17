@@ -1,0 +1,10 @@
+fn F1() = { a: b, c: d }
+fn F2() = { a: b, c: d, }
+fn F3() = {
+  a: b,
+  c: d
+}
+fn F4() = {
+  a: b,
+  c: d,
+}

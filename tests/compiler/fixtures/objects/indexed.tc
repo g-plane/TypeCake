@@ -1,0 +1,3 @@
+fn F1() = { [x: string]: any }
+fn F2() = { [x: 'a']: any }
+fn F3() = { a: b, [x: string]: any }

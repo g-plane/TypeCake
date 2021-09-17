@@ -1,0 +1,4 @@
+fn F1() =
+  | string
+  | number
+  | boolean

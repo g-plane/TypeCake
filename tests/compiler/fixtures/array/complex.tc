@@ -1,0 +1,8 @@
+fn F1() = [][]
+fn F2() = Record(string, string)[]
+fn F3() = number[][]
+fn F4() = [][][][][][][]
+fn F5() = []    []    []
+fn F6() = MyModule.MyType[]
+fn F7() = (string)[]
+fn F8() = (if string : string { true } else { false })[]

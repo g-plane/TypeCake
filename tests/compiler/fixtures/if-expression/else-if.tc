@@ -1,0 +1,7 @@
+fn Check(T) = if T : string {
+  'a string'
+} else if T : number {
+  'a number'
+} else {
+  'something else'
+}

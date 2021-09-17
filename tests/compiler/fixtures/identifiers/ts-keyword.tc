@@ -1,0 +1,3 @@
+fn type(type: type = type) = type
+fn number(number: number = number) = number
+fn unknown(unknown: unknown = unknown) = unknown

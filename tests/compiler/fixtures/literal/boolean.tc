@@ -1,0 +1,2 @@
+fn True() = true
+fn False() = false

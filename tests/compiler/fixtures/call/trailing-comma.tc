@@ -1,0 +1,10 @@
+fn F1() = Record(string, string)
+fn F2() = Record(string, string,)
+fn F3() = Record(
+  string,
+  string
+)
+fn F4() = Record(
+  string,
+  string,
+)

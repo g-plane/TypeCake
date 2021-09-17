@@ -1,0 +1,3 @@
+fn F1() = Record(string, string)
+fn F2() = Promise(Set(Record(string, Map(string, object))))
+fn F3() = Promise()

@@ -31,7 +31,7 @@ export default function TypeCakeEditor() {
     } catch {
       // ignore
     }
-  }, [])
+  }, [setSourceCode])
 
   React.useEffect(() => {
     const gzippedCode = Base64.fromUint8Array(gzip(sourceCode), true)
@@ -61,7 +61,7 @@ export default function TypeCakeEditor() {
         endColumn: errorCause.token.loc!.end.column + 1,
       },
     ])
-  }, [errorCause])
+  }, [errorCause, monacoInstance])
 
   const handleEditorDidMount = (
     editor: monaco.editor.IStandaloneCodeEditor

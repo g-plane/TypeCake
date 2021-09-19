@@ -36,6 +36,8 @@
     "@swc/core": "^1.2.85",
     "@swc/jest": "^0.2.3",
     "@types/jest": "^27.0.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
     "jest": "^27.2.0",
     "prettier": "^2.3.2",
     "rollup": "^2.56.3",

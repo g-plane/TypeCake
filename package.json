@@ -27,6 +27,7 @@
       "require": "./dist/index.js"
     }
   },
+  "sideEffects": false,
   "dependencies": {
     "acorn": "^8.4.1"
   },

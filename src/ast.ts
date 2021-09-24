@@ -46,6 +46,43 @@ export type Node =
   | ImportNamespaceSpecifier
   | ImportNamedSpecifier
 
+export enum NodeKind {
+  Program,
+  Identifier,
+  Literal,
+  TemplateLiteralExpression,
+  TemplateElement,
+  TupleExpression,
+  RestElement,
+  ArrayExpression,
+  IntersectionExpression,
+  UnionExpression,
+  ObjectExpression,
+  ObjectExpressionProperty,
+  IndexedPropertyKey,
+  NamespaceAccessExpression,
+  MacroCallExpression,
+  CallExpression,
+  PipelineExpression,
+  IndexedAccessExpression,
+  ParenthesizedExpression,
+  SwitchExpression,
+  SwitchExpressionArm,
+  IfExpression,
+  SubtypeRelation,
+  ConstInExpression,
+  ConstInBinding,
+  ForExpression,
+  FunctionDeclaration,
+  Parameter,
+  InferReference,
+  TypeOperator,
+  ImportDeclaration,
+  ImportDefaultSpecifier,
+  ImportNamespaceSpecifier,
+  ImportNamedSpecifier,
+}
+
 export interface Program extends NodeBase {
   type: 'Program'
   statements: Statement[]

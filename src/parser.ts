@@ -462,7 +462,7 @@ export class Parser {
   protected parseSwitchExpression(): n.SwitchExpression {
     const node = this.startNode('SwitchExpression')
     this.expect(tt._switch)
-    const expression = this.parseExpression()
+    const expression = this.parseNonConditionalExpression()
     this.expect(tt.braceL)
     const arms = this.parseSwitchArms()
 

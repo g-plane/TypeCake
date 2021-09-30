@@ -1,0 +1,212 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 74,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 4,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 22,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 22
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 16,
+          "end": 22,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 16
+            },
+            "end": {
+              "line": 1,
+              "column": 22
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 21,
+            "end": 22,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 21
+              },
+              "end": {
+                "line": 1,
+                "column": 22
+              }
+            },
+            "name": "$"
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "start": 5,
+        "end": 8,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 5
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        "value": "$",
+        "raw": "'$'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 23,
+      "end": 45,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 22
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 39,
+          "end": 45,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 16
+            },
+            "end": {
+              "line": 2,
+              "column": 22
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 44,
+            "end": 45,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 21
+              },
+              "end": {
+                "line": 2,
+                "column": 22
+              }
+            },
+            "name": "_"
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "start": 28,
+        "end": 31,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 5
+          },
+          "end": {
+            "line": 2,
+            "column": 8
+          }
+        },
+        "value": "_",
+        "raw": "'_'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 47,
+      "end": 73,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 26
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 65,
+          "end": 73,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 18
+            },
+            "end": {
+              "line": 3,
+              "column": 26
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 70,
+            "end": 73,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 23
+              },
+              "end": {
+                "line": 3,
+                "column": 26
+              }
+            },
+            "name": "def"
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "start": 52,
+        "end": 57,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 5
+          },
+          "end": {
+            "line": 3,
+            "column": 10
+          }
+        },
+        "value": "abc",
+        "raw": "\"abc\""
+      }
+    }
+  ]
+}

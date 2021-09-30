@@ -1,0 +1,115 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 36,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 3,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 16,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 16
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 7,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        "name": "True"
+      },
+      "parameters": [],
+      "body": {
+        "type": "Literal",
+        "start": 12,
+        "end": 16,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "line": 1,
+            "column": 16
+          }
+        },
+        "value": "true",
+        "raw": "true"
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 17,
+      "end": 35,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 18
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 20,
+        "end": 25,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 8
+          }
+        },
+        "name": "False"
+      },
+      "parameters": [],
+      "body": {
+        "type": "Literal",
+        "start": 30,
+        "end": 35,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 13
+          },
+          "end": {
+            "line": 2,
+            "column": 18
+          }
+        },
+        "value": "false",
+        "raw": "false"
+      }
+    }
+  ]
+}

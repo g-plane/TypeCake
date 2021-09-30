@@ -1,0 +1,374 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 122,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 5,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 12,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 12
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 5,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        },
+        "name": "F1"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TupleExpression",
+        "start": 10,
+        "end": 12,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 10
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        "elements": []
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 13,
+      "end": 31,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 18
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 16,
+        "end": 18,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 5
+          }
+        },
+        "name": "F2"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TupleExpression",
+        "start": 23,
+        "end": 31,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 10
+          },
+          "end": {
+            "line": 2,
+            "column": 18
+          }
+        },
+        "elements": [
+          {
+            "type": "Identifier",
+            "start": 24,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 11
+              },
+              "end": {
+                "line": 2,
+                "column": 17
+              }
+            },
+            "name": "number"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 32,
+      "end": 58,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 26
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 35,
+        "end": 37,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 5
+          }
+        },
+        "name": "F3"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TupleExpression",
+        "start": 42,
+        "end": 58,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 10
+          },
+          "end": {
+            "line": 3,
+            "column": 26
+          }
+        },
+        "elements": [
+          {
+            "type": "Identifier",
+            "start": 43,
+            "end": 49,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 11
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            },
+            "name": "number"
+          },
+          {
+            "type": "Identifier",
+            "start": 51,
+            "end": 57,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 19
+              },
+              "end": {
+                "line": 3,
+                "column": 25
+              }
+            },
+            "name": "string"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 59,
+      "end": 121,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 62
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 62,
+        "end": 64,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 3
+          },
+          "end": {
+            "line": 4,
+            "column": 5
+          }
+        },
+        "name": "F4"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TupleExpression",
+        "start": 69,
+        "end": 121,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 10
+          },
+          "end": {
+            "line": 4,
+            "column": 62
+          }
+        },
+        "elements": [
+          {
+            "type": "Identifier",
+            "start": 70,
+            "end": 76,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 11
+              },
+              "end": {
+                "line": 4,
+                "column": 17
+              }
+            },
+            "name": "number"
+          },
+          {
+            "type": "IfExpression",
+            "start": 78,
+            "end": 120,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 19
+              },
+              "end": {
+                "line": 4,
+                "column": 61
+              }
+            },
+            "conditions": [
+              {
+                "type": "SubtypeRelation",
+                "start": 81,
+                "end": 96,
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 22
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 37
+                  }
+                },
+                "expression": {
+                  "type": "Identifier",
+                  "start": 81,
+                  "end": 87,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 22
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 28
+                    }
+                  },
+                  "name": "string"
+                },
+                "constraint": {
+                  "type": "Identifier",
+                  "start": 90,
+                  "end": 96,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 31
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 37
+                    }
+                  },
+                  "name": "string"
+                }
+              }
+            ],
+            "consequent": {
+              "type": "Literal",
+              "start": 99,
+              "end": 103,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 40
+                },
+                "end": {
+                  "line": 4,
+                  "column": 44
+                }
+              },
+              "value": "true",
+              "raw": "true"
+            },
+            "alternate": {
+              "type": "Literal",
+              "start": 113,
+              "end": 118,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 54
+                },
+                "end": {
+                  "line": 4,
+                  "column": 59
+                }
+              },
+              "value": "false",
+              "raw": "false"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

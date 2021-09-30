@@ -1,0 +1,1180 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 214,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 13,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 12,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 12
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 5,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        },
+        "name": "F1"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 10,
+        "end": 12,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 10
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        "expressions": [],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 11,
+            "end": 11,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 11
+              },
+              "end": {
+                "line": 1,
+                "column": 11
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 13,
+      "end": 27,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 14
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 16,
+        "end": 18,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 5
+          }
+        },
+        "name": "F2"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 23,
+        "end": 27,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 10
+          },
+          "end": {
+            "line": 2,
+            "column": 14
+          }
+        },
+        "expressions": [],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 24,
+            "end": 26,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 11
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            },
+            "value": "F2",
+            "raw": "F2"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 28,
+      "end": 42,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 14
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 31,
+        "end": 33,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 5
+          }
+        },
+        "name": "F3"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 38,
+        "end": 42,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 10
+          },
+          "end": {
+            "line": 3,
+            "column": 14
+          }
+        },
+        "expressions": [],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 39,
+            "end": 41,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 11
+              },
+              "end": {
+                "line": 3,
+                "column": 13
+              }
+            },
+            "value": "`",
+            "raw": "\\`"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 43,
+      "end": 57,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 14
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 46,
+        "end": 48,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 3
+          },
+          "end": {
+            "line": 4,
+            "column": 5
+          }
+        },
+        "name": "F4"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 53,
+        "end": 57,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 10
+          },
+          "end": {
+            "line": 4,
+            "column": 14
+          }
+        },
+        "expressions": [],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 54,
+            "end": 56,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 11
+              },
+              "end": {
+                "line": 4,
+                "column": 13
+              }
+            },
+            "value": "\n",
+            "raw": "\\n"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 58,
+      "end": 75,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 17
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 61,
+        "end": 63,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 3
+          },
+          "end": {
+            "line": 5,
+            "column": 5
+          }
+        },
+        "name": "F5"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 68,
+        "end": 75,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 10
+          },
+          "end": {
+            "line": 5,
+            "column": 17
+          }
+        },
+        "expressions": [
+          {
+            "type": "Literal",
+            "start": 71,
+            "end": 73,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "line": 5,
+                "column": 15
+              }
+            },
+            "value": "",
+            "raw": "''"
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 69,
+            "end": 69,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 11
+              },
+              "end": {
+                "line": 5,
+                "column": 11
+              }
+            },
+            "value": "",
+            "raw": ""
+          },
+          {
+            "type": "TemplateElement",
+            "start": 74,
+            "end": 74,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 16
+              },
+              "end": {
+                "line": 5,
+                "column": 16
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 76,
+      "end": 93,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 17
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 79,
+        "end": 81,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "line": 6,
+            "column": 5
+          }
+        },
+        "name": "F6"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 86,
+        "end": 93,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 10
+          },
+          "end": {
+            "line": 6,
+            "column": 17
+          }
+        },
+        "expressions": [
+          {
+            "type": "Literal",
+            "start": 89,
+            "end": 91,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 13
+              },
+              "end": {
+                "line": 6,
+                "column": 15
+              }
+            },
+            "value": "",
+            "raw": "\"\""
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 87,
+            "end": 87,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 11
+              },
+              "end": {
+                "line": 6,
+                "column": 11
+              }
+            },
+            "value": "",
+            "raw": ""
+          },
+          {
+            "type": "TemplateElement",
+            "start": 92,
+            "end": 92,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 16
+              },
+              "end": {
+                "line": 6,
+                "column": 16
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 94,
+      "end": 111,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 17
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 97,
+        "end": 99,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 3
+          },
+          "end": {
+            "line": 7,
+            "column": 5
+          }
+        },
+        "name": "F7"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 104,
+        "end": 111,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 10
+          },
+          "end": {
+            "line": 7,
+            "column": 17
+          }
+        },
+        "expressions": [
+          {
+            "type": "TemplateLiteralExpression",
+            "start": 107,
+            "end": 109,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 13
+              },
+              "end": {
+                "line": 7,
+                "column": 15
+              }
+            },
+            "expressions": [],
+            "quasis": [
+              {
+                "type": "TemplateElement",
+                "start": 108,
+                "end": 108,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 14
+                  }
+                },
+                "value": "",
+                "raw": ""
+              }
+            ]
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 105,
+            "end": 105,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 11
+              },
+              "end": {
+                "line": 7,
+                "column": 11
+              }
+            },
+            "value": "",
+            "raw": ""
+          },
+          {
+            "type": "TemplateElement",
+            "start": 110,
+            "end": 110,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 16
+              },
+              "end": {
+                "line": 7,
+                "column": 16
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 112,
+      "end": 128,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 16
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 115,
+        "end": 117,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 3
+          },
+          "end": {
+            "line": 8,
+            "column": 5
+          }
+        },
+        "name": "F8"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 122,
+        "end": 128,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 10
+          },
+          "end": {
+            "line": 8,
+            "column": 16
+          }
+        },
+        "expressions": [
+          {
+            "type": "Identifier",
+            "start": 125,
+            "end": 126,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 13
+              },
+              "end": {
+                "line": 8,
+                "column": 14
+              }
+            },
+            "name": "a"
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 123,
+            "end": 123,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 11
+              },
+              "end": {
+                "line": 8,
+                "column": 11
+              }
+            },
+            "value": "",
+            "raw": ""
+          },
+          {
+            "type": "TemplateElement",
+            "start": 127,
+            "end": 127,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 15
+              },
+              "end": {
+                "line": 8,
+                "column": 15
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 129,
+      "end": 146,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 17
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 132,
+        "end": 134,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 3
+          },
+          "end": {
+            "line": 9,
+            "column": 5
+          }
+        },
+        "name": "F9"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 139,
+        "end": 146,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 10
+          },
+          "end": {
+            "line": 9,
+            "column": 17
+          }
+        },
+        "expressions": [
+          {
+            "type": "Identifier",
+            "start": 142,
+            "end": 143,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 13
+              },
+              "end": {
+                "line": 9,
+                "column": 14
+              }
+            },
+            "name": "a"
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 140,
+            "end": 140,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 11
+              },
+              "end": {
+                "line": 9,
+                "column": 11
+              }
+            },
+            "value": "",
+            "raw": ""
+          },
+          {
+            "type": "TemplateElement",
+            "start": 144,
+            "end": 145,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 15
+              },
+              "end": {
+                "line": 9,
+                "column": 16
+              }
+            },
+            "value": "b",
+            "raw": "b"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 147,
+      "end": 165,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 18
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 150,
+        "end": 153,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 3
+          },
+          "end": {
+            "line": 10,
+            "column": 6
+          }
+        },
+        "name": "F10"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 158,
+        "end": 165,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 11
+          },
+          "end": {
+            "line": 10,
+            "column": 18
+          }
+        },
+        "expressions": [
+          {
+            "type": "Identifier",
+            "start": 162,
+            "end": 163,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 15
+              },
+              "end": {
+                "line": 10,
+                "column": 16
+              }
+            },
+            "name": "b"
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 159,
+            "end": 160,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 12
+              },
+              "end": {
+                "line": 10,
+                "column": 13
+              }
+            },
+            "value": "a",
+            "raw": "a"
+          },
+          {
+            "type": "TemplateElement",
+            "start": 164,
+            "end": 164,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 17
+              },
+              "end": {
+                "line": 10,
+                "column": 17
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 166,
+      "end": 185,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 19
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 169,
+        "end": 172,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 3
+          },
+          "end": {
+            "line": 11,
+            "column": 6
+          }
+        },
+        "name": "F11"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 177,
+        "end": 185,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 11
+          },
+          "end": {
+            "line": 11,
+            "column": 19
+          }
+        },
+        "expressions": [
+          {
+            "type": "Identifier",
+            "start": 181,
+            "end": 182,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 15
+              },
+              "end": {
+                "line": 11,
+                "column": 16
+              }
+            },
+            "name": "b"
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 178,
+            "end": 179,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 12
+              },
+              "end": {
+                "line": 11,
+                "column": 13
+              }
+            },
+            "value": "a",
+            "raw": "a"
+          },
+          {
+            "type": "TemplateElement",
+            "start": 183,
+            "end": 184,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 17
+              },
+              "end": {
+                "line": 11,
+                "column": 18
+              }
+            },
+            "value": "c",
+            "raw": "c"
+          }
+        ]
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 186,
+      "end": 213,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 27
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 189,
+        "end": 192,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 3
+          },
+          "end": {
+            "line": 12,
+            "column": 6
+          }
+        },
+        "name": "F12"
+      },
+      "parameters": [],
+      "body": {
+        "type": "TemplateLiteralExpression",
+        "start": 197,
+        "end": 213,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 11
+          },
+          "end": {
+            "line": 12,
+            "column": 27
+          }
+        },
+        "expressions": [
+          {
+            "type": "Identifier",
+            "start": 201,
+            "end": 202,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 15
+              },
+              "end": {
+                "line": 12,
+                "column": 16
+              }
+            },
+            "name": "b"
+          },
+          {
+            "type": "Identifier",
+            "start": 206,
+            "end": 207,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 20
+              },
+              "end": {
+                "line": 12,
+                "column": 21
+              }
+            },
+            "name": "d"
+          },
+          {
+            "type": "Identifier",
+            "start": 210,
+            "end": 211,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 24
+              },
+              "end": {
+                "line": 12,
+                "column": 25
+              }
+            },
+            "name": "e"
+          }
+        ],
+        "quasis": [
+          {
+            "type": "TemplateElement",
+            "start": 198,
+            "end": 199,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 12
+              },
+              "end": {
+                "line": 12,
+                "column": 13
+              }
+            },
+            "value": "a",
+            "raw": "a"
+          },
+          {
+            "type": "TemplateElement",
+            "start": 203,
+            "end": 204,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 17
+              },
+              "end": {
+                "line": 12,
+                "column": 18
+              }
+            },
+            "value": "c",
+            "raw": "c"
+          },
+          {
+            "type": "TemplateElement",
+            "start": 208,
+            "end": 208,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 22
+              },
+              "end": {
+                "line": 12,
+                "column": 22
+              }
+            },
+            "value": "",
+            "raw": ""
+          },
+          {
+            "type": "TemplateElement",
+            "start": 212,
+            "end": 212,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 26
+              },
+              "end": {
+                "line": 12,
+                "column": 26
+              }
+            },
+            "value": "",
+            "raw": ""
+          }
+        ]
+      }
+    }
+  ]
+}

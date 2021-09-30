@@ -20,7 +20,7 @@ describe.each(
         fileName,
         testName: normalizeTestName(path.basename(fileName, '.tc')),
       }))
-  )('$testName', async ({ fileName, testName }) => {
+  )('$testName', async ({ fileName }) => {
     const code = await fs.promises.readFile(
       path.join(__dirname, 'fixtures', category, fileName),
       'utf8'
@@ -28,7 +28,11 @@ describe.each(
     const parser = new Parser(code)
     const ast = parser.parse()
 
-    const snapshotPath = path.join(snapshotDir, category, testName)
+    const snapshotPath = path.join(
+      snapshotDir,
+      category,
+      path.basename(fileName, '.tc')
+    )
     if (!(await isExist(snapshotPath))) {
       await fs.promises.mkdir(snapshotPath, { recursive: true })
     }

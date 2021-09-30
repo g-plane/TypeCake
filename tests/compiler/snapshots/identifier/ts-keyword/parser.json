@@ -1,0 +1,353 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 127,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 4,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 33,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 33
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 7,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        "name": "type"
+      },
+      "parameters": [
+        {
+          "type": "Parameter",
+          "start": 8,
+          "end": 25,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 25
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 8,
+            "end": 12,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            },
+            "name": "type"
+          },
+          "constraint": {
+            "type": "Identifier",
+            "start": 14,
+            "end": 18,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 14
+              },
+              "end": {
+                "line": 1,
+                "column": 18
+              }
+            },
+            "name": "type"
+          },
+          "defaultType": {
+            "type": "Identifier",
+            "start": 21,
+            "end": 25,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 21
+              },
+              "end": {
+                "line": 1,
+                "column": 25
+              }
+            },
+            "name": "type"
+          }
+        }
+      ],
+      "body": {
+        "type": "Identifier",
+        "start": 29,
+        "end": 33,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 29
+          },
+          "end": {
+            "line": 1,
+            "column": 33
+          }
+        },
+        "name": "type"
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 34,
+      "end": 77,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 43
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 37,
+        "end": 43,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 9
+          }
+        },
+        "name": "number"
+      },
+      "parameters": [
+        {
+          "type": "Parameter",
+          "start": 44,
+          "end": 67,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 10
+            },
+            "end": {
+              "line": 2,
+              "column": 33
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 44,
+            "end": 50,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 10
+              },
+              "end": {
+                "line": 2,
+                "column": 16
+              }
+            },
+            "name": "number"
+          },
+          "constraint": {
+            "type": "Identifier",
+            "start": 52,
+            "end": 58,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 18
+              },
+              "end": {
+                "line": 2,
+                "column": 24
+              }
+            },
+            "name": "number"
+          },
+          "defaultType": {
+            "type": "Identifier",
+            "start": 61,
+            "end": 67,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 27
+              },
+              "end": {
+                "line": 2,
+                "column": 33
+              }
+            },
+            "name": "number"
+          }
+        }
+      ],
+      "body": {
+        "type": "Identifier",
+        "start": 71,
+        "end": 77,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 37
+          },
+          "end": {
+            "line": 2,
+            "column": 43
+          }
+        },
+        "name": "number"
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 78,
+      "end": 126,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 48
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 81,
+        "end": 88,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 10
+          }
+        },
+        "name": "unknown"
+      },
+      "parameters": [
+        {
+          "type": "Parameter",
+          "start": 89,
+          "end": 115,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 11
+            },
+            "end": {
+              "line": 3,
+              "column": 37
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 89,
+            "end": 96,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 11
+              },
+              "end": {
+                "line": 3,
+                "column": 18
+              }
+            },
+            "name": "unknown"
+          },
+          "constraint": {
+            "type": "Identifier",
+            "start": 98,
+            "end": 105,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 20
+              },
+              "end": {
+                "line": 3,
+                "column": 27
+              }
+            },
+            "name": "unknown"
+          },
+          "defaultType": {
+            "type": "Identifier",
+            "start": 108,
+            "end": 115,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 30
+              },
+              "end": {
+                "line": 3,
+                "column": 37
+              }
+            },
+            "name": "unknown"
+          }
+        }
+      ],
+      "body": {
+        "type": "Identifier",
+        "start": 119,
+        "end": 126,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 41
+          },
+          "end": {
+            "line": 3,
+            "column": 48
+          }
+        },
+        "name": "unknown"
+      }
+    }
+  ]
+}

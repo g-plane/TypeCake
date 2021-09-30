@@ -1,0 +1,129 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 59,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 58,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 58
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 12,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        "name": "undefined"
+      },
+      "parameters": [
+        {
+          "type": "Parameter",
+          "start": 13,
+          "end": 45,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 13
+            },
+            "end": {
+              "line": 1,
+              "column": 45
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 13,
+            "end": 22,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 13
+              },
+              "end": {
+                "line": 1,
+                "column": 22
+              }
+            },
+            "name": "undefined"
+          },
+          "constraint": {
+            "type": "Identifier",
+            "start": 24,
+            "end": 33,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 24
+              },
+              "end": {
+                "line": 1,
+                "column": 33
+              }
+            },
+            "name": "undefined"
+          },
+          "defaultType": {
+            "type": "Identifier",
+            "start": 36,
+            "end": 45,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 36
+              },
+              "end": {
+                "line": 1,
+                "column": 45
+              }
+            },
+            "name": "undefined"
+          }
+        }
+      ],
+      "body": {
+        "type": "Identifier",
+        "start": 49,
+        "end": 58,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 49
+          },
+          "end": {
+            "line": 1,
+            "column": 58
+          }
+        },
+        "name": "undefined"
+      }
+    }
+  ]
+}

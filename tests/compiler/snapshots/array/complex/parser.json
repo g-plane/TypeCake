@@ -1,0 +1,818 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 227,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 9,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 14,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 14
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 5,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        },
+        "name": "F1"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 10,
+        "end": 14,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 10
+          },
+          "end": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        "element": {
+          "type": "TupleExpression",
+          "start": 10,
+          "end": 12,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 10
+            },
+            "end": {
+              "line": 1,
+              "column": 12
+            }
+          },
+          "elements": []
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 15,
+      "end": 49,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 34
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 18,
+        "end": 20,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 5
+          }
+        },
+        "name": "F2"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 25,
+        "end": 49,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 10
+          },
+          "end": {
+            "line": 2,
+            "column": 34
+          }
+        },
+        "element": {
+          "type": "CallExpression",
+          "start": 25,
+          "end": 47,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 10
+            },
+            "end": {
+              "line": 2,
+              "column": 32
+            }
+          },
+          "callee": {
+            "type": "Identifier",
+            "start": 25,
+            "end": 31,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 10
+              },
+              "end": {
+                "line": 2,
+                "column": 16
+              }
+            },
+            "name": "Record"
+          },
+          "arguments": [
+            {
+              "type": "Identifier",
+              "start": 32,
+              "end": 38,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 17
+                },
+                "end": {
+                  "line": 2,
+                  "column": 23
+                }
+              },
+              "name": "string"
+            },
+            {
+              "type": "Identifier",
+              "start": 40,
+              "end": 46,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 25
+                },
+                "end": {
+                  "line": 2,
+                  "column": 31
+                }
+              },
+              "name": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 50,
+      "end": 70,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 20
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 53,
+        "end": 55,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 5
+          }
+        },
+        "name": "F3"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 60,
+        "end": 70,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 10
+          },
+          "end": {
+            "line": 3,
+            "column": 20
+          }
+        },
+        "element": {
+          "type": "ArrayExpression",
+          "start": 60,
+          "end": 68,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 10
+            },
+            "end": {
+              "line": 3,
+              "column": 18
+            }
+          },
+          "element": {
+            "type": "Identifier",
+            "start": 60,
+            "end": 66,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 10
+              },
+              "end": {
+                "line": 3,
+                "column": 16
+              }
+            },
+            "name": "number"
+          }
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 71,
+      "end": 95,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 24
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 74,
+        "end": 76,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 3
+          },
+          "end": {
+            "line": 4,
+            "column": 5
+          }
+        },
+        "name": "F4"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 81,
+        "end": 95,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 10
+          },
+          "end": {
+            "line": 4,
+            "column": 24
+          }
+        },
+        "element": {
+          "type": "ArrayExpression",
+          "start": 81,
+          "end": 93,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 10
+            },
+            "end": {
+              "line": 4,
+              "column": 22
+            }
+          },
+          "element": {
+            "type": "ArrayExpression",
+            "start": 81,
+            "end": 91,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 10
+              },
+              "end": {
+                "line": 4,
+                "column": 20
+              }
+            },
+            "element": {
+              "type": "ArrayExpression",
+              "start": 81,
+              "end": 89,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 10
+                },
+                "end": {
+                  "line": 4,
+                  "column": 18
+                }
+              },
+              "element": {
+                "type": "ArrayExpression",
+                "start": 81,
+                "end": 87,
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 16
+                  }
+                },
+                "element": {
+                  "type": "ArrayExpression",
+                  "start": 81,
+                  "end": 85,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 10
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 14
+                    }
+                  },
+                  "element": {
+                    "type": "TupleExpression",
+                    "start": 81,
+                    "end": 83,
+                    "loc": {
+                      "start": {
+                        "line": 4,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 12
+                      }
+                    },
+                    "elements": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 96,
+      "end": 120,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 24
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 99,
+        "end": 101,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 3
+          },
+          "end": {
+            "line": 5,
+            "column": 5
+          }
+        },
+        "name": "F5"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 106,
+        "end": 120,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 10
+          },
+          "end": {
+            "line": 5,
+            "column": 24
+          }
+        },
+        "element": {
+          "type": "ArrayExpression",
+          "start": 106,
+          "end": 114,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 10
+            },
+            "end": {
+              "line": 5,
+              "column": 18
+            }
+          },
+          "element": {
+            "type": "TupleExpression",
+            "start": 106,
+            "end": 108,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 10
+              },
+              "end": {
+                "line": 5,
+                "column": 12
+              }
+            },
+            "elements": []
+          }
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 121,
+      "end": 148,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 27
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 124,
+        "end": 126,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "line": 6,
+            "column": 5
+          }
+        },
+        "name": "F6"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 131,
+        "end": 148,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 10
+          },
+          "end": {
+            "line": 6,
+            "column": 27
+          }
+        },
+        "element": {
+          "type": "NamespaceAccessExpression",
+          "start": 131,
+          "end": 146,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 10
+            },
+            "end": {
+              "line": 6,
+              "column": 25
+            }
+          },
+          "namespace": {
+            "type": "Identifier",
+            "start": 131,
+            "end": 139,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 10
+              },
+              "end": {
+                "line": 6,
+                "column": 18
+              }
+            },
+            "name": "MyModule"
+          },
+          "key": {
+            "type": "Identifier",
+            "start": 140,
+            "end": 146,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 19
+              },
+              "end": {
+                "line": 6,
+                "column": 25
+              }
+            },
+            "name": "MyType"
+          }
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 149,
+      "end": 169,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 20
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 152,
+        "end": 154,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 3
+          },
+          "end": {
+            "line": 7,
+            "column": 5
+          }
+        },
+        "name": "F7"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 159,
+        "end": 169,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 10
+          },
+          "end": {
+            "line": 7,
+            "column": 20
+          }
+        },
+        "element": {
+          "type": "ParenthesizedExpression",
+          "start": 159,
+          "end": 167,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 10
+            },
+            "end": {
+              "line": 7,
+              "column": 18
+            }
+          },
+          "expression": {
+            "type": "Identifier",
+            "start": 160,
+            "end": 166,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 11
+              },
+              "end": {
+                "line": 7,
+                "column": 17
+              }
+            },
+            "name": "string"
+          }
+        }
+      }
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 170,
+      "end": 226,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 56
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 173,
+        "end": 175,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 3
+          },
+          "end": {
+            "line": 8,
+            "column": 5
+          }
+        },
+        "name": "F8"
+      },
+      "parameters": [],
+      "body": {
+        "type": "ArrayExpression",
+        "start": 180,
+        "end": 226,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 10
+          },
+          "end": {
+            "line": 8,
+            "column": 56
+          }
+        },
+        "element": {
+          "type": "ParenthesizedExpression",
+          "start": 180,
+          "end": 224,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 10
+            },
+            "end": {
+              "line": 8,
+              "column": 54
+            }
+          },
+          "expression": {
+            "type": "IfExpression",
+            "start": 181,
+            "end": 223,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 11
+              },
+              "end": {
+                "line": 8,
+                "column": 53
+              }
+            },
+            "conditions": [
+              {
+                "type": "SubtypeRelation",
+                "start": 184,
+                "end": 199,
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 29
+                  }
+                },
+                "expression": {
+                  "type": "Identifier",
+                  "start": 184,
+                  "end": 190,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 20
+                    }
+                  },
+                  "name": "string"
+                },
+                "constraint": {
+                  "type": "Identifier",
+                  "start": 193,
+                  "end": 199,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 29
+                    }
+                  },
+                  "name": "string"
+                }
+              }
+            ],
+            "consequent": {
+              "type": "Literal",
+              "start": 202,
+              "end": 206,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 32
+                },
+                "end": {
+                  "line": 8,
+                  "column": 36
+                }
+              },
+              "value": "true",
+              "raw": "true"
+            },
+            "alternate": {
+              "type": "Literal",
+              "start": 216,
+              "end": 221,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 46
+                },
+                "end": {
+                  "line": 8,
+                  "column": 51
+                }
+              },
+              "value": "false",
+              "raw": "false"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

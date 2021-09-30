@@ -1,0 +1,181 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 72,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 0
+    }
+  },
+  "statements": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 71,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 71
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 3,
+        "end": 11,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        "name": "IsString"
+      },
+      "parameters": [
+        {
+          "type": "Parameter",
+          "start": 12,
+          "end": 13,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 12
+            },
+            "end": {
+              "line": 1,
+              "column": 13
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 12,
+            "end": 13,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 13
+              }
+            },
+            "name": "T"
+          },
+          "constraint": null,
+          "defaultType": null
+        }
+      ],
+      "body": {
+        "type": "IfExpression",
+        "start": 17,
+        "end": 71,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 17
+          },
+          "end": {
+            "line": 1,
+            "column": 71
+          }
+        },
+        "conditions": [
+          {
+            "type": "SubtypeRelation",
+            "start": 20,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 20
+              },
+              "end": {
+                "line": 1,
+                "column": 30
+              }
+            },
+            "expression": {
+              "type": "Identifier",
+              "start": 20,
+              "end": 21,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 20
+                },
+                "end": {
+                  "line": 1,
+                  "column": 21
+                }
+              },
+              "name": "T"
+            },
+            "constraint": {
+              "type": "Identifier",
+              "start": 24,
+              "end": 30,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 24
+                },
+                "end": {
+                  "line": 1,
+                  "column": 30
+                }
+              },
+              "name": "string"
+            }
+          }
+        ],
+        "consequent": {
+          "type": "Literal",
+          "start": 33,
+          "end": 43,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 33
+            },
+            "end": {
+              "line": 1,
+              "column": 43
+            }
+          },
+          "value": "a string",
+          "raw": "'a string'"
+        },
+        "alternate": {
+          "type": "Literal",
+          "start": 53,
+          "end": 69,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 53
+            },
+            "end": {
+              "line": 1,
+              "column": 69
+            }
+          },
+          "value": "something else",
+          "raw": "'something else'"
+        }
+      }
+    }
+  ]
+}

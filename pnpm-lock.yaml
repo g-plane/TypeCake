@@ -471,6 +471,7 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.14.9
       to-fast-properties: 2.0.0
+    dev: false
 
   /@babel/types/7.15.6:
     resolution: {integrity: sha512-BPU+7QhqNjmWyDO0/vitH/CuhpV8ZmK1wpKva8nuyNF5MJfuRNWMc+hc14+u9xT93kvykMdncrJT19h74uB1Ig==}
@@ -4907,7 +4908,7 @@ packages:
       '@babel/parser': 7.15.6
       '@babel/plugin-syntax-typescript': 7.14.5_@babel+core@7.15.5
       '@babel/traverse': 7.15.4
-      '@babel/types': 7.15.0
+      '@babel/types': 7.15.6
       '@jest/transform': 27.2.0
       '@jest/types': 27.1.1
       '@types/babel__traverse': 7.14.2

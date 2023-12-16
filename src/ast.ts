@@ -1,7 +1,9 @@
 import type { SourceLocation, Token as AcornToken } from 'acorn'
 
-export type Token = Omit<AcornToken, 'loc' | 'range'> &
-  Required<Pick<AcornToken, 'loc'>>
+export type Token =
+  & Omit<AcornToken, 'loc' | 'range'>
+  & Required<Pick<AcornToken, 'loc'>>
+  & { value: string }
 
 export interface NodeBase<N extends string = string> {
   type: N

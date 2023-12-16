@@ -1,5 +1,5 @@
-import type * as n from './ast'
-import type { GetNodeByType } from './utils'
+import type * as n from './ast.js'
+import type { GetNodeByType } from './utils.js'
 
 export interface NodeVisitor<N extends n.Node> {
   enter?(node: N): void
@@ -11,7 +11,7 @@ export type Visitors = {
 }
 
 export function createTraverser(
-  visitors: Visitors
+  visitors: Visitors,
 ): (program: n.Program) => n.Program {
   function visit(node: n.Node) {
     const visitor = visitors[node.type] as NodeVisitor<n.Node>
@@ -29,7 +29,7 @@ export interface VisitorFunction {
 
 export function visitNode<N extends n.Node>(
   node: N,
-  visitor: VisitorFunction
+  visitor: VisitorFunction,
 ): N {
   visitor(node)
   return node
@@ -37,7 +37,7 @@ export function visitNode<N extends n.Node>(
 
 export function visitEachChild<N extends n.Node>(
   node: N,
-  visitor: VisitorFunction
+  visitor: VisitorFunction,
 ): N {
   switch (node.type) {
     case 'Program':

@@ -1,7 +1,6 @@
-import { tokenizer, tokTypes as tt } from 'acorn'
-import type { TokenType } from 'acorn'
-import type * as n from './ast'
-import type { GetNodeByType } from './utils'
+import { type TokenType, tokTypes as tt, tokenizer } from 'acorn'
+import type * as n from './ast.js'
+import type { GetNodeByType } from './utils.js'
 
 const IN_PATTERN = 1
 
@@ -43,7 +42,7 @@ export class Parser {
   private expect(
     type: TokenType,
     value?: string,
-    message: string = 'Unexpected token.'
+    message: string = 'Unexpected token.',
   ): n.Token {
     if (
       this.current.type === type &&
@@ -95,7 +94,7 @@ export class Parser {
 
   private startNodeFromNode<N extends n.Node['type']>(
     node: n.NodeBase,
-    type: N
+    type: N,
   ): n.NodeBase<N> {
     return {
       type,
@@ -107,7 +106,7 @@ export class Parser {
 
   private finishNode<T extends n.Node['type'], N extends GetNodeByType<T>>(
     node: n.NodeBase<T>,
-    data: Omit<N, 'type' | 'start' | 'end' | 'loc'>
+    data: Omit<N, 'type' | 'start' | 'end' | 'loc'>,
   ): N {
     node.end = this.last.end
     node.loc.end = this.last.loc!.end
@@ -239,8 +238,7 @@ export class Parser {
 
   protected parseLiteral(type?: TokenType): n.Literal {
     const token = this.current
-    const isLiteral =
-      token.type === tt.num ||
+    const isLiteral = token.type === tt.num ||
       token.type === tt.string ||
       token.type === tt._true ||
       token.type === tt._false ||
@@ -349,7 +347,7 @@ export class Parser {
   }
 
   protected parseIntersectionType(
-    first?: n.Expression
+    first?: n.Expression,
   ): n.IntersectionExpression {
     const node = first
       ? this.startNodeFromNode(first, 'IntersectionExpression')
@@ -403,10 +401,9 @@ export class Parser {
 
   protected parseObjectExpressionProperty(): n.ObjectExpressionProperty {
     const node = this.startNode('ObjectExpressionProperty')
-    const key =
-      this.current.type === tt.bracketL
-        ? this.parseIndexedPropertyKey()
-        : this.parseIdentifier()
+    const key = this.current.type === tt.bracketL
+      ? this.parseIndexedPropertyKey()
+      : this.parseIdentifier()
     const optional = this.eat(tt.question)
     this.expect(tt.colon)
     const value = this.parseExpression()
@@ -419,17 +416,16 @@ export class Parser {
     this.expect(tt.bracketL)
     const id = this.parseIdentifier()
     this.expect(tt.colon)
-    const expression =
-      this.current.type === tt.name
-        ? this.parseIdentifier()
-        : this.parseLiteral()
+    const expression = this.current.type === tt.name
+      ? this.parseIdentifier()
+      : this.parseLiteral()
     this.expect(tt.bracketR)
 
     return this.finishNode(node, { id, expression })
   }
 
   protected parseNamespaceAccessExpression(
-    namespace: n.Identifier
+    namespace: n.Identifier,
   ): n.NamespaceAccessExpression {
     const node = this.startNodeFromNode(namespace, 'NamespaceAccessExpression')
     this.expect(tt.dot)
@@ -538,7 +534,7 @@ export class Parser {
   }
 
   protected parseIndexedAccessExpression(
-    object: n.Expression
+    object: n.Expression,
   ): n.IndexedAccessExpression {
     const node = this.startNodeFromNode(object, 'IndexedAccessExpression')
     const index = this.parseExpression()
@@ -564,13 +560,14 @@ export class Parser {
   }
 
   protected parsePipelineExpression(
-    source: n.Expression
+    source: n.Expression,
   ): n.PipelineExpression {
     const node = this.startNodeFromNode(source, 'PipelineExpression')
     this.expect(tt.relational, '>')
     const id = this.parseIdentifier()
-    const transformer =
-      this.current.type === tt.parenL ? this.parseCallExpression(id) : id
+    const transformer = this.current.type === tt.parenL
+      ? this.parseCallExpression(id)
+      : id
 
     return this.finishNode(node, { source, transformer })
   }

@@ -8,18 +8,17 @@
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc -b",
-    "watch": "rollup -b -w",
     "prepublishOnly": "tsc -b"
   },
-  "main": "dist/index.js",
   "exports": {
     ".": {
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     }
   },
   "bin": "./dist/index.js",
@@ -27,7 +26,6 @@
     "typecake": "workspace:*"
   },
   "devDependencies": {
-    "@gplane/tsconfig": "^5.0.0",
-    "@types/node": "^16.7.1"
+    "@types/node": "^20.10.4"
   }
 }

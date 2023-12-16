@@ -4,8 +4,7 @@
     "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "rootDir": "src",
-    "module": "commonjs",
-    "lib": ["ES2018"],
+    "module": "NodeNext",
     "types": [],
     "composite": true
   },

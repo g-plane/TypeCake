@@ -1,13 +1,13 @@
 import { atom } from 'jotai'
-import { Token, Parser, Emitter, codeFrame } from 'typecake'
+import { Emitter, Parser, type Token, codeFrame } from 'typecake'
 
 export const sourceCodeAtom = atom('')
 
 type ErrorCause = {
-  message: string
-  input: string
-  lastToken: Token
-  token: Token
+  message: string,
+  input: string,
+  lastToken: Token,
+  token: Token,
 }
 
 type ParserResult =

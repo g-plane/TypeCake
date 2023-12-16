@@ -1,17 +1,17 @@
 import {
-  extendTheme,
-  ChakraProvider,
   Box,
   Center,
+  ChakraProvider,
   Flex,
   HStack,
+  extendTheme,
 } from '@chakra-ui/react'
-import HeaderBar from './components/HeaderBar'
 import CodeSnippets from './components/CodeSnippets'
+import FooterBar from './components/FooterBar'
+import HeaderBar from './components/HeaderBar'
 import OutputControl from './components/OutputControl'
 import TypeCakeEditor from './components/TypeCakeEditor'
 import TypeScriptEditor from './components/TypeScriptEditor'
-import FooterBar from './components/FooterBar'
 
 const theme = extendTheme({
   fonts: {

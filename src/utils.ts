@@ -1,4 +1,4 @@
-import type * as n from './ast'
+import type * as n from './ast.js'
 
 export type GetNodeByType<N extends n.Node['type']> = Extract<
   n.Node,

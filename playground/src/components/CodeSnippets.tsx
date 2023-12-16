@@ -1,5 +1,5 @@
-import { useAtom } from 'jotai'
 import { Box, Select, Text } from '@chakra-ui/react'
+import { useAtom } from 'jotai'
 import { sourceCodeAtom } from '../states/codeAtom'
 
 const featuresExamples = new Map([
@@ -26,22 +26,26 @@ export default function CodeSnippets() {
   const [, setSourceCode] = useAtom(sourceCodeAtom)
 
   const handleSelectFeatureSnippet = async (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const file = featuresExamples.get(event.target.value)
     if (file) {
-      const code = await import(`../snippets/features/${file}.tc`)
-      setSourceCode(code.default)
+      const response = await fetch(
+        new URL(`../snippets/features/${file}.tc`, import.meta.url)
+      )
+      setSourceCode(await response.text())
     }
   }
 
   const handleSelectRealWorldSnippet = async (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const file = realWorldExamples.get(event.target.value)
     if (file) {
-      const code = await import(`../snippets/real-world/${file}.tc`)
-      setSourceCode(code.default)
+      const response = await fetch(
+        new URL(`../snippets/real-world/${file}.tc`, import.meta.url)
+      )
+      setSourceCode(await response.text())
     }
   }
 

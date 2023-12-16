@@ -1,8 +1,8 @@
-import * as assert from 'node:assert'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
+import { describe, expect, it } from 'vitest'
+import { Emitter, Parser } from '../../src'
 import { isExist } from '../utils'
-import { Parser, Emitter } from '../../src'
 
 const normalizeTestName = (name: string) => name.replace(/-/g, ' ')
 
@@ -42,7 +42,7 @@ describe.each(
       const snapshot = JSON.parse(
         await fs.promises.readFile(astSnapshot, 'utf8')
       )
-      assert.deepStrictEqual(JSON.parse(JSON.stringify(ast)), snapshot)
+      expect(structuredClone(ast), snapshot)
     } else {
       await fs.promises.writeFile(astSnapshot, JSON.stringify(ast, null, 2))
     }
@@ -52,7 +52,7 @@ describe.each(
     const outputSnapshot = path.join(snapshotPath, 'output.ts')
     if (await isExist(outputSnapshot)) {
       const snapshot = await fs.promises.readFile(outputSnapshot, 'utf8')
-      assert.strictEqual(emittedCode, snapshot)
+      expect(emittedCode, snapshot)
     } else {
       await fs.promises.writeFile(outputSnapshot, emittedCode)
     }

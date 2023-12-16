@@ -1,5 +1,5 @@
-import type * as n from './ast'
-import { visitNode, visitEachChild } from './traverser'
+import type * as n from './ast.js'
+import { visitEachChild, visitNode } from './traverser.js'
 
 export enum ScopeKind {
   Global,
@@ -15,7 +15,7 @@ export class Scope {
   constructor(
     public kind: ScopeKind,
     public parent: Scope | null,
-    public affectedNode: n.Node
+    public affectedNode: n.Node,
   ) {
     this.references = new Map()
     this.childScopes = new Set()

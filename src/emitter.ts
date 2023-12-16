@@ -1,4 +1,4 @@
-import type * as n from './ast'
+import type * as n from './ast.js'
 
 export class Emitter {
   private blocks: string[] = []

@@ -1,0 +1,4 @@
+{
+  "extends": "https://dprint.gplane.win/dprint.json",
+  "excludes": ["tests/compiler/fixtures", "tests/compiler/snapshots"]
+}

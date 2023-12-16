@@ -1,12 +1,11 @@
-export * from './ast'
-export { Parser } from './parser'
-export { Emitter } from './emitter'
-export { createTraverser } from './traverser'
+export * from './ast.js'
+export { Emitter } from './emitter.js'
+export { Parser } from './parser.js'
+export { createTraverser } from './traverser.js'
 export type {
-  Visitors,
   NodeVisitor,
-  visitNode,
+  Visitors,
   visitEachChild,
-} from './traverser'
-export { codeFrame } from './utils'
-export type { CodeFrameOptions } from './utils'
+  visitNode,
+} from './traverser.js'
+export { type CodeFrameOptions, codeFrame } from './utils.js'

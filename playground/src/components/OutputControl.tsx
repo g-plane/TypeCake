@@ -1,5 +1,5 @@
-import { useAtom } from 'jotai'
 import { Flex, FormControl, FormLabel, Switch } from '@chakra-ui/react'
+import { useAtom } from 'jotai'
 import { isShowASTAtom } from '../states/codeAtom'
 
 export default function OutputControl() {

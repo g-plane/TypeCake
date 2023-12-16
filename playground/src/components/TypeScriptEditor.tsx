@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { useAtom } from 'jotai'
 import { Box } from '@chakra-ui/react'
+import { useAtom } from 'jotai'
+import * as React from 'react'
 import {
-  isShowASTAtom,
-  generatedCodeAtom,
   astJsonAtom,
   errorOutputAtom,
+  generatedCodeAtom,
+  isShowASTAtom,
 } from '../states/codeAtom'
 import { editorOptions } from '../utils/editor-options'
 

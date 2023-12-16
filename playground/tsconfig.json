@@ -1,7 +1,9 @@
 {
   "extends": "@gplane/tsconfig",
   "compilerOptions": {
-    "noEmit": true
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler"
   },
   "references": [{ "path": "../" }],
   "ts-node": {

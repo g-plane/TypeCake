@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { useAtom } from 'jotai'
 import { Box } from '@chakra-ui/react'
-import type * as monaco from 'monaco-editor'
 import { useMonaco } from '@monaco-editor/react'
-import { gzip, ungzip } from 'pako'
+import { useAtom } from 'jotai'
 import { Base64 } from 'js-base64'
+import type * as monaco from 'monaco-editor'
+import { gzip, ungzip } from 'pako'
+import * as React from 'react'
 import { errorCauseAtom, sourceCodeAtom } from '../states/codeAtom'
 import { editorOptions } from '../utils/editor-options'
 
@@ -64,7 +64,7 @@ export default function TypeCakeEditor() {
   }, [errorCause, monacoInstance])
 
   const handleEditorDidMount = (
-    editor: monaco.editor.IStandaloneCodeEditor
+    editor: monaco.editor.IStandaloneCodeEditor,
   ) => {
     editorRef.current = editor
   }

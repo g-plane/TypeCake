@@ -1,4 +1,4 @@
-import type * as n from './ast.js'
+import * as n from './ast.js'
 
 export class Emitter {
   private blocks: string[] = []
@@ -338,14 +338,18 @@ export class Emitter {
 
   protected emitIfExpression(node: n.IfExpression) {
     node.conditions.forEach((condition) => {
-      this.emitExpression(condition.expression)
-      this.space()
-      this.add('extends')
-      this.space()
-      this.emitExpression(condition.constraint)
-      this.space()
-      this.add('?')
-      this.space()
+      if (condition.kind === n.SubtypeRelationKind.Equal) {
+        this.add('(<__T>() => __T extends ')
+        this.emitExpression(condition.expression)
+        this.add(' ? 1 : 2) extends (<__T>() => __T extends ')
+        this.emitExpression(condition.constraint)
+        this.add(' ? 1 : 2)')
+      } else {
+        this.emitExpression(condition.expression)
+        this.add(' extends ')
+        this.emitExpression(condition.constraint)
+      }
+      this.add(' ? ')
     })
     this.emitExpression(node.consequent)
     node.conditions.forEach(() => {

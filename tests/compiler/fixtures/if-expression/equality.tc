@@ -1,0 +1,1 @@
+fn IsAny(T) = if T == any { true } else { false }

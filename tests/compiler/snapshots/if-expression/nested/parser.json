@@ -123,6 +123,7 @@
               },
               "name": "T"
             },
+            "kind": 0,
             "constraint": {
               "type": "Identifier",
               "start": 21,
@@ -203,6 +204,7 @@
                 },
                 "name": "T"
               },
+              "kind": 0,
               "constraint": {
                 "type": "Identifier",
                 "start": 61,

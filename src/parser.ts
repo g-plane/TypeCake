@@ -1,5 +1,5 @@
 import { type TokenType, tokTypes as tt, tokenizer } from 'acorn'
-import type * as n from './ast.js'
+import * as n from './ast.js'
 import type { GetNodeByType } from './utils.js'
 
 const IN_PATTERN = 1
@@ -525,12 +525,18 @@ export class Parser {
     const node = this.startNode('SubtypeRelation')
     this.isInPattern <<= 1
     const expression = this.parseNonConditionalExpression()
-    this.expect(tt.colon)
+    let kind
+    if (this.eat(tt.equality, '==')) {
+      kind = n.SubtypeRelationKind.Equal
+    } else {
+      this.expect(tt.colon)
+      kind = n.SubtypeRelationKind.Subtype
+    }
     this.isInPattern |= IN_PATTERN
     const constraint = this.parseNonConditionalExpression()
     this.isInPattern >>= 1
 
-    return this.finishNode(node, { expression, constraint })
+    return this.finishNode(node, { expression, kind, constraint })
   }
 
   protected parseIndexedAccessExpression(

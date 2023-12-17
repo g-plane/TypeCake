@@ -236,7 +236,13 @@ export interface IfExpression extends NodeBase {
 export interface SubtypeRelation extends NodeBase {
   type: 'SubtypeRelation'
   expression: Expression
+  kind: SubtypeRelationKind
   constraint: Expression
+}
+
+export enum SubtypeRelationKind {
+  Subtype,
+  Equal,
 }
 
 export interface ConstInExpression extends NodeBase {

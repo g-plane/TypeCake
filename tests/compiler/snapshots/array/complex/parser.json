@@ -758,6 +758,7 @@
                   },
                   "name": "string"
                 },
+                "kind": 0,
                 "constraint": {
                   "type": "Identifier",
                   "start": 193,

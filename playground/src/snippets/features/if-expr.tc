@@ -24,3 +24,10 @@ fn F3(T1, T2) = if T1 : string && T2 : number {
 
 fn Result4() = F3('', 0)
 fn Result5() = F3(false, 0)
+
+// wrong way to check if a type is `any`
+fn Result6() = if unknown : any { true } else { false }
+fn Result7() = if any : unknown { true } else { false }
+// correct
+fn Result8() = if any == any { true } else { false }
+fn Result9() = if unknown == any { true } else { false }

@@ -1,12 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { useAtom } from 'jotai'
 import * as React from 'react'
-import {
-  astJsonAtom,
-  errorOutputAtom,
-  generatedCodeAtom,
-  isShowASTAtom,
-} from '../states/codeAtom'
+import { astJsonAtom, errorOutputAtom, generatedCodeAtom, isShowASTAtom } from '../states/codeAtom'
 import { editorOptions } from '../utils/editor-options'
 
 const MonacoEditor = React.lazy(() => import('@monaco-editor/react'))

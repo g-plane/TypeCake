@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@gplane/tsconfig": "^6.1.0",
-    "dprint": "^0.43.2",
+    "dprint": "^0.45.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vitest": "^1.0.4"

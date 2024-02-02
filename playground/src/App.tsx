@@ -1,11 +1,4 @@
-import {
-  Box,
-  Center,
-  ChakraProvider,
-  Flex,
-  HStack,
-  extendTheme,
-} from '@chakra-ui/react'
+import { Box, Center, ChakraProvider, Flex, HStack, extendTheme } from '@chakra-ui/react'
 import CodeSnippets from './components/CodeSnippets'
 import FooterBar from './components/FooterBar'
 import HeaderBar from './components/HeaderBar'
